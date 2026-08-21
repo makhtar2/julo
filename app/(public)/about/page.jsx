@@ -78,7 +78,9 @@ export default function AboutPage() {
                             À Propos de Julo
                         </h1>
                         <p className="mt-6 max-w-2xl text-sm sm:text-lg font-semibold leading-relaxed text-slate-200">
-                            Votre destination complète pour l’achat de produits électroniques de qualité et pour les services de sérigraphie et d’infographie sur-mesure au Sénégal.
+                            Votre destination complète pour l’achat de produits électroniques de
+                            qualité et pour les services de sérigraphie et d’infographie sur-mesure
+                            au Sénégal.
                         </p>
 
                         <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -124,13 +126,24 @@ export default function AboutPage() {
                         </h2>
                         <div className="mt-8 space-y-5 text-slate-600 font-medium leading-relaxed">
                             <p>
-                                Co-fondée par <strong className="text-slate-900">Babacar Diop Gaye</strong> et <strong className="text-slate-900">Makhtar Wade</strong>, <span className="font-black text-amber-600">Julo</span> est née d&apos;une ambition commune : démocratiser l&apos;accès aux équipements technologiques fiables tout en offrant un pôle de création visuelle et de sérigraphie de haute précision.
+                                Co-fondée par{' '}
+                                <strong className="text-slate-900">Babacar Diop Gaye</strong> et{' '}
+                                <strong className="text-slate-900">Makhtar Wade</strong>,{' '}
+                                <span className="font-black text-amber-600">Julo</span> est née
+                                d&apos;une ambition commune : démocratiser l&apos;accès aux
+                                équipements technologiques fiables tout en offrant un pôle de
+                                création visuelle et de sérigraphie de haute précision.
                             </p>
                             <p>
-                                Nous proposons une vaste gamme de produits allant des accessoires pour téléphones (étuis, chargeurs rapides, écouteurs, protecteurs d&apos;écran) aux derniers modèles de smartphones et ordinateurs portables adaptés aux professionnels comme aux étudiants.
+                                Nous proposons une vaste gamme de produits allant des accessoires
+                                pour téléphones (étuis, chargeurs rapides, écouteurs, protecteurs
+                                d&apos;écran) aux derniers modèles de smartphones et ordinateurs
+                                portables adaptés aux professionnels comme aux étudiants.
                             </p>
                             <p>
-                                En parallèle, notre atelier d&apos;infographie et de sérigraphie prend en charge la personnalisation complète de vos t-shirts, polos, sacs, bannières et identités visuelles d&apos;entreprises.
+                                En parallèle, notre atelier d&apos;infographie et de sérigraphie
+                                prend en charge la personnalisation complète de vos t-shirts, polos,
+                                sacs, bannières et identités visuelles d&apos;entreprises.
                             </p>
                         </div>
                     </div>
@@ -142,7 +155,10 @@ export default function AboutPage() {
                                 Notre Engagement Qualité
                             </h3>
                             <p className="mt-5 text-sm font-semibold leading-relaxed text-slate-300">
-                                Chez Julo, nous nous engageons à fournir des produits électroniques de la plus haute qualité et des services de personnalisation exceptionnels. Nous combinons l&apos;innovation technologique avec la créativité visuelle pour surpasser vos attentes.
+                                Chez Julo, nous nous engageons à fournir des produits électroniques
+                                de la plus haute qualité et des services de personnalisation
+                                exceptionnels. Nous combinons l&apos;innovation technologique avec
+                                la créativité visuelle pour surpasser vos attentes.
                             </p>
                             <div className="mt-8 rounded-3xl bg-white/10 p-5 backdrop-blur-md">
                                 <p className="text-sm font-black leading-relaxed text-amber-300">
@@ -167,27 +183,39 @@ export default function AboutPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
                         <div className="bg-white rounded-[2rem] border border-slate-100 p-7 shadow-xl shadow-slate-200/40">
-                            <h3 className="text-lg font-black text-slate-900 mb-2">Accessoires Téléphone</h3>
+                            <h3 className="text-lg font-black text-slate-900 mb-2">
+                                Accessoires Téléphone
+                            </h3>
                             <p className="text-xs font-medium text-slate-500 leading-relaxed">
-                                Étuis, chargeurs haute vitesse, écouteurs sans fil, protecteurs d&apos;écran renforcés.
+                                Étuis, chargeurs haute vitesse, écouteurs sans fil, protecteurs
+                                d&apos;écran renforcés.
                             </p>
                         </div>
                         <div className="bg-white rounded-[2rem] border border-slate-100 p-7 shadow-xl shadow-slate-200/40">
-                            <h3 className="text-lg font-black text-slate-900 mb-2">Smartphones & Mobiles</h3>
+                            <h3 className="text-lg font-black text-slate-900 mb-2">
+                                Smartphones & Mobiles
+                            </h3>
                             <p className="text-xs font-medium text-slate-500 leading-relaxed">
-                                Derniers modèles de smartphones garantis et sélectionnés parmi les meilleures marques.
+                                Derniers modèles de smartphones garantis et sélectionnés parmi les
+                                meilleures marques.
                             </p>
                         </div>
                         <div className="bg-white rounded-[2rem] border border-slate-100 p-7 shadow-xl shadow-slate-200/40">
-                            <h3 className="text-lg font-black text-slate-900 mb-2">Ordinateurs & PC</h3>
+                            <h3 className="text-lg font-black text-slate-900 mb-2">
+                                Ordinateurs & PC
+                            </h3>
                             <p className="text-xs font-medium text-slate-500 leading-relaxed">
-                                Ordinateurs portables et de bureau pour étudiants, professionnels et créatifs.
+                                Ordinateurs portables et de bureau pour étudiants, professionnels et
+                                créatifs.
                             </p>
                         </div>
                         <div className="bg-white rounded-[2rem] border border-slate-100 p-7 shadow-xl shadow-slate-200/40">
-                            <h3 className="text-lg font-black text-slate-900 mb-2">Sérigraphie & Infographie</h3>
+                            <h3 className="text-lg font-black text-slate-900 mb-2">
+                                Sérigraphie & Infographie
+                            </h3>
                             <p className="text-xs font-medium text-slate-500 leading-relaxed">
-                                Personnalisation textile (t-shirts, polos), sacs, bannières, logos et chartes graphiques.
+                                Personnalisation textile (t-shirts, polos), sacs, bannières, logos
+                                et chartes graphiques.
                             </p>
                         </div>
                     </div>
@@ -200,7 +228,9 @@ export default function AboutPage() {
                             Livraison Rapide et Sécurisée
                         </h2>
                         <p className="mt-4 text-sm font-semibold leading-relaxed text-slate-300">
-                            Profitez de notre service de livraison rapide et sécurisée, garantissant que vos produits personnalisés et électroniques vous parviennent en parfait état dans les délais convenus.
+                            Profitez de notre service de livraison rapide et sécurisée, garantissant
+                            que vos produits personnalisés et électroniques vous parviennent en
+                            parfait état dans les délais convenus.
                         </p>
                     </div>
                     <div className="rounded-[2.5rem] bg-white border border-slate-100 p-8 sm:p-10 shadow-xl shadow-slate-200/40">
@@ -209,14 +239,12 @@ export default function AboutPage() {
                             Service Après-Vente Réactif
                         </h2>
                         <p className="mt-4 text-sm font-semibold leading-relaxed text-slate-500">
-                            Notre équipe d&apos;assistance est disponible pour répondre à toutes vos questions. Que ce soit pour des produits électroniques ou des commandes de personnalisation, nous garantissons votre entière satisfaction.
+                            Notre équipe d&apos;assistance est disponible pour répondre à toutes vos
+                            questions. Que ce soit pour des produits électroniques ou des commandes
+                            de personnalisation, nous garantissons votre entière satisfaction.
                         </p>
                     </div>
                 </section>
-            </div>
-        </div>
-    );
-}
             </div>
         </div>
     );
