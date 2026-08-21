@@ -1,0 +1,6 @@
+set -e
+
+git diff --cached --name-only --diff-filter=ACM -z |
+    xargs -0 -r npx secretlint --no-gitignore --no-glob --maskSecrets
+
+npx lint-staged

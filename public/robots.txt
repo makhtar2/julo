@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /profile/
+Disallow: /orders/
+
+Sitemap: https://globalairsn.com/sitemap.xml

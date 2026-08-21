@@ -1,0 +1,73 @@
+name: DevSecOps Pipeline
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    security-audit:
+        name: Security Audit & Lint
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0 # Necessary for gitleaks to scan history
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+                  cache: 'npm'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Run Dependency Audit
+              run: npm audit --audit-level=high
+
+            - name: Static Security Analysis (Lint)
+              run: npm run lint
+
+            - name: Secret Detection (Gitleaks)
+              uses: gitleaks/gitleaks-action@v2
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    build-and-test:
+        name: Build & Test
+        needs: security-audit
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+                  cache: 'npm'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Check code formatting
+              run: npm run format:check
+
+            - name: Run unit tests
+              run: npm run test:run
+
+            - name: Build Next.js app
+              run: npm run build
+              env:
+                  # Dummy variables required to pass Zod env validation during the build
+                  NEXT_PUBLIC_SUPABASE_URL: 'https://dummy.supabase.co'
+                  NEXT_PUBLIC_SUPABASE_ANON_KEY: 'dummy_anon_key'
+                  DATABASE_URL: 'postgres://dummy:dummy@localhost:5432/dummy'
+                  DIRECT_URL: 'postgres://dummy:dummy@localhost:5432/dummy'
+                  NEXTAUTH_SECRET: 'dummy_secret'
+                  SUPABASE_SERVICE_ROLE_KEY: 'dummy_service_role'
