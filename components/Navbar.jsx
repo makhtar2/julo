@@ -273,12 +273,17 @@ const Navbar = () => {
                     <div className="absolute left-1/2 -translate-x-1/2 sm:static sm:translate-x-0 shrink-0">
                         <Link
                             href="/"
-                            aria-label="Julo - Retour à l'accueil"
+                            aria-label="JULO - Retour à l'accueil"
                             className="flex items-center gap-2 group"
                         >
-                            <span className="text-2xl sm:text-3xl font-black tracking-tighter text-slate-900 uppercase transition-transform group-hover:scale-105">
-                                JU<span className="text-amber-500">LO</span>
-                            </span>
+                            <Image
+                                src={assets.julo_logo_transparent}
+                                alt="JULO."
+                                width={140}
+                                height={50}
+                                priority
+                                className="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
+                            />
                             <span className="text-[9px] font-black uppercase tracking-widest bg-amber-500 text-slate-950 px-2 py-0.5 rounded-full hidden sm:inline-block">
                                 PROD
                             </span>

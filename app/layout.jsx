@@ -48,14 +48,22 @@ export const metadata = {
             'Achetez vos téléphones, ordinateurs, accessoires et commandez vos impressions sérigraphiques et créations graphiques sur-mesure.',
         url: 'https://julo.sn',
         siteName: 'Julo',
+        images: [
+            {
+                url: '/assets/julo_logo.png',
+                width: 1200,
+                height: 630,
+                alt: 'Julo Sénégal - Électronique & Sérigraphie',
+            },
+        ],
         locale: 'fr_SN',
         type: 'website',
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Global Air Sénégal',
-        description: "Le meilleur de l'électroménager à Dakar.",
-        images: ['/assets/gs_logo.jpg'],
+        title: 'Julo Sénégal',
+        description: 'Électronique & Sérigraphie/Infographie sur-mesure au Sénégal.',
+        images: ['/assets/julo_logo.png'],
     },
     robots: {
         index: true,
@@ -82,8 +90,7 @@ export default function RootLayout({ children }) {
         url: 'https://globalairsn.com',
         logo: 'https://globalairsn.com/assets/gs_logo.jpg',
         image: 'https://globalairsn.com/assets/gs_logo.jpg',
-        description:
-            'Vente de climatiseurs, téléviseurs et électroménager premium au Sénégal.',
+        description: 'Vente de climatiseurs, téléviseurs et électroménager premium au Sénégal.',
         brand: {
             '@type': 'Brand',
             name: 'Global Air',

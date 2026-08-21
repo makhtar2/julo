@@ -75,15 +75,21 @@ const Footer = () => {
                     {/* Brand Info */}
                     <div className="lg:col-span-5">
                         <Link href="/" className="flex items-center gap-2">
-                            <span className="text-3xl font-black tracking-tighter text-slate-900 uppercase">
-                                JU<span className="text-amber-500">LO</span>
-                            </span>
+                            <Image
+                                src={assets.julo_logo_transparent}
+                                alt="JULO."
+                                width={140}
+                                height={50}
+                                className="h-9 w-auto object-contain"
+                            />
                             <span className="text-[9px] font-black uppercase tracking-widest bg-amber-500 text-slate-950 px-2.5 py-0.5 rounded-full">
                                 PROD
                             </span>
                         </Link>
                         <p className="mt-6 text-slate-700 font-medium text-sm leading-relaxed max-w-sm">
-                            Votre destination complète pour l’achat de produits électroniques de qualité et pour vos besoins de sérigraphie et d’infographie sur-mesure au Sénégal.
+                            Votre destination complète pour l’achat de produits électroniques de
+                            qualité et pour vos besoins de sérigraphie et d’infographie sur-mesure
+                            au Sénégal.
                         </p>
                         <p className="mt-3 text-xs font-bold text-slate-500">
                             Co-fondateurs : Babacar Diop Gaye & Makhtar Wade

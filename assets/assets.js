@@ -1,11 +1,15 @@
-import global_air_logo from './glob.svg';
+import julo_logo from './julo_logo.png';
+import julo_logo_transparent from './julo_logo_transparent.png';
+import julo_logo_white from './julo_logo_white.png';
 import hero_model_img from './hero_model_img.png';
 
 import { ClockFadingIcon, HeadsetIcon, SendIcon } from 'lucide-react';
 
 export const assets = {
     hero_model_img,
-    global_air_logo,
+    julo_logo,
+    julo_logo_transparent,
+    julo_logo_white,
 };
 
 export const ourSpecsData = [

@@ -329,19 +329,16 @@ const InvoicePDF = ({ order }) => {
                     <View style={styles.companyBox}>
                         <View style={styles.logoBox}>
                             <View style={styles.logo}>
-                                <Text style={styles.logoText}>GA</Text>
+                                <Text style={styles.logoText}>JU</Text>
                             </View>
                             <View>
-                                <Text style={styles.brandName}>GLOBAL AIR</Text>
-                                <Text style={styles.brandTag}>L&apos;excellence au Sénégal</Text>
+                                <Text style={styles.brandName}>JULO PROD</Text>
+                                <Text style={styles.brandTag}>Électronique & Sérigraphie</Text>
                             </View>
                         </View>
-                        <Text style={styles.companyInfo}>
-                            Avenue Cheikh Anta Diop, Fenêtre Mermoz
-                        </Text>
-                        <Text style={styles.companyInfo}>Dakar, Sénégal</Text>
-                        <Text style={styles.companyInfo}>Tél: +221 77 783 27 98</Text>
-                        <Text style={styles.companyInfo}>Email: contact@globalairsn.com</Text>
+                        <Text style={styles.companyInfo}>Dakar & Touba, Sénégal</Text>
+                        <Text style={styles.companyInfo}>Tél: +221 75 446 90 97</Text>
+                        <Text style={styles.companyInfo}>Email: contact@julo.sn</Text>
                     </View>
 
                     <View style={styles.invoiceDetailsBox}>
@@ -360,9 +357,7 @@ const InvoicePDF = ({ order }) => {
                 <View style={styles.clientSection}>
                     <View style={styles.clientInfo}>
                         <Text style={styles.sectionLabel}>Facturé à :</Text>
-                        <Text style={styles.clientName}>
-                            {order.address?.name || order.user?.name}
-                        </Text>
+                        <Text style={styles.clientName}>{order.address?.name}</Text>
                         <Text style={styles.clientText}>
                             {order.address?.street}, {order.address?.city}
                         </Text>
@@ -376,7 +371,9 @@ const InvoicePDF = ({ order }) => {
                         </Text>
                         <Text style={styles.paymentText}>
                             Type:{' '}
-                            {order.address?.name === 'Global Air Dakar' ? 'Retrait' : 'Livraison'}
+                            {order.address?.name === 'Julo Store & Studio'
+                                ? 'Retrait'
+                                : 'Livraison'}
                         </Text>
                     </View>
                 </View>
