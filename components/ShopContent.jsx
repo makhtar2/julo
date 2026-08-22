@@ -24,16 +24,60 @@ import {
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const categoryIcons = {
-    Smartphones: <Smartphone size={18} strokeWidth={1.5} />,
-    Téléphones: <Smartphone size={18} strokeWidth={1.5} />,
-    Ordinateurs: <Laptop size={18} strokeWidth={1.5} />,
-    PC: <Laptop size={18} strokeWidth={1.5} />,
-    Accessoires: <Headphones size={18} strokeWidth={1.5} />,
-    'Câbles & Chargeurs': <Cable size={18} strokeWidth={1.5} />,
-    Sérigraphie: <Shirt size={18} strokeWidth={1.5} />,
-    'Branding & Infographie': <Palette size={18} strokeWidth={1.5} />,
-    default: <LayoutGrid size={18} strokeWidth={1.5} />,
+const getCategoryIcon = (catName) => {
+    const name = (catName || '').toLowerCase();
+    if (
+        name.includes('phone') ||
+        name.includes('téléphone') ||
+        name.includes('apple') ||
+        name.includes('samsung') ||
+        name.includes('mobile') ||
+        name.includes('iphone')
+    ) {
+        return <Smartphone size={18} strokeWidth={1.5} />;
+    }
+    if (
+        name.includes('pc') ||
+        name.includes('ordinateur') ||
+        name.includes('laptop') ||
+        name.includes('mac')
+    ) {
+        return <Laptop size={18} strokeWidth={1.5} />;
+    }
+    if (
+        name.includes('audio') ||
+        name.includes('casque') ||
+        name.includes('écouteur') ||
+        name.includes('airpod')
+    ) {
+        return <Headphones size={18} strokeWidth={1.5} />;
+    }
+    if (
+        name.includes('charge') ||
+        name.includes('cable') ||
+        name.includes('accessoire') ||
+        name.includes('gan')
+    ) {
+        return <Cable size={18} strokeWidth={1.5} />;
+    }
+    if (
+        name.includes('serigraphie') ||
+        name.includes('sérigraphie') ||
+        name.includes('textile') ||
+        name.includes('t-shirt') ||
+        name.includes('polo')
+    ) {
+        return <Shirt size={18} strokeWidth={1.5} />;
+    }
+    if (
+        name.includes('brand') ||
+        name.includes('graph') ||
+        name.includes('design') ||
+        name.includes('logo')
+    ) {
+        return <Palette size={18} strokeWidth={1.5} />;
+    }
+    return <LayoutGrid size={18} strokeWidth={1.5} />;
 };
 
 const sortOptions = [
@@ -105,8 +149,12 @@ export default function ShopContent({ initialProducts, initialCategories }) {
                   (product.description &&
                       product.description.toLowerCase().includes(search.toLowerCase()))
                 : true;
+            const catLower = categoryParam?.toLowerCase() || '';
+            const productCat = (product.Category?.name || product.category || '').toLowerCase();
             const matchesCategory = categoryParam
-                ? product.category === categoryParam || product.Category?.name === categoryParam
+                ? productCat === catLower ||
+                  productCat.includes(catLower) ||
+                  catLower.includes(productCat)
                 : true;
             const matchesMinPrice = minPriceParam ? product.price >= Number(minPriceParam) : true;
             const matchesMaxPrice = maxPriceParam ? product.price <= Number(maxPriceParam) : true;
@@ -203,7 +251,7 @@ export default function ShopContent({ initialProducts, initialCategories }) {
                                         categoryParam === cat ? 'text-[#C59A63]' : 'text-[#8C8275]'
                                     }
                                 >
-                                    {categoryIcons[cat] || categoryIcons.default}
+                                    {getCategoryIcon(cat)}
                                 </span>
                                 <span className="line-clamp-1 text-left">{cat}</span>
                             </div>

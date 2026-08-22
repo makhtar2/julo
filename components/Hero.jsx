@@ -21,44 +21,72 @@ const Hero = ({ initialCategories = [] }) => {
         window.open(`https://wa.me/221754469097?text=${encodeURIComponent(msg)}`, '_blank');
     };
 
-    const categoriesList = [
-        {
-            title: 'iPhone & Apple',
-            subtitle: 'Découvrir',
-            href: '/shop?category=telephones',
-            fallbackIcon: Smartphone,
-        },
-        {
-            title: 'Samsung Galaxy',
-            subtitle: 'Découvrir',
-            href: '/shop?category=telephones',
-            fallbackIcon: Smartphone,
-        },
-        {
-            title: 'Ordinateurs & PC',
-            subtitle: 'Découvrir',
-            href: '/shop?category=ordinateurs',
-            fallbackIcon: Laptop,
-        },
-        {
-            title: 'Audio & Écouteurs',
-            subtitle: 'Découvrir',
-            href: '/shop?category=accessoires',
-            fallbackIcon: Headphones,
-        },
-        {
-            title: 'Accessoires & GaN',
-            subtitle: 'Découvrir',
-            href: '/shop?category=accessoires',
-            fallbackIcon: Cable,
-        },
-        {
-            title: 'Sérigraphie & Textile',
-            subtitle: 'Découvrir',
-            href: '/shop?category=serigraphie',
-            fallbackIcon: Shirt,
-        },
+    const getCategoryIcon = (categoryName) => {
+        const name = (categoryName || '').toLowerCase();
+        if (
+            name.includes('phone') ||
+            name.includes('téléphone') ||
+            name.includes('apple') ||
+            name.includes('samsung') ||
+            name.includes('mobile') ||
+            name.includes('iphone')
+        ) {
+            return Smartphone;
+        }
+        if (
+            name.includes('pc') ||
+            name.includes('ordinateur') ||
+            name.includes('laptop') ||
+            name.includes('mac')
+        ) {
+            return Laptop;
+        }
+        if (
+            name.includes('audio') ||
+            name.includes('casque') ||
+            name.includes('écouteur') ||
+            name.includes('airpod')
+        ) {
+            return Headphones;
+        }
+        if (
+            name.includes('charge') ||
+            name.includes('cable') ||
+            name.includes('accessoire') ||
+            name.includes('gan')
+        ) {
+            return Cable;
+        }
+        if (
+            name.includes('serigraphie') ||
+            name.includes('sérigraphie') ||
+            name.includes('textile') ||
+            name.includes('t-shirt') ||
+            name.includes('polo')
+        ) {
+            return Shirt;
+        }
+        return Smartphone;
+    };
+
+    const defaultCategories = [
+        'Smartphones & Apple',
+        'Samsung Galaxy',
+        'Ordinateurs & PC',
+        'Audio & Écouteurs',
+        'Accessoires & GaN',
+        'Sérigraphie & Textile',
     ];
+
+    const sourceCategories =
+        initialCategories && initialCategories.length > 0 ? initialCategories : defaultCategories;
+
+    const categoriesList = sourceCategories.slice(0, 6).map((catName) => ({
+        title: catName,
+        subtitle: 'Découvrir',
+        href: `/shop?category=${encodeURIComponent(catName)}`,
+        fallbackIcon: getCategoryIcon(catName),
+    }));
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 pb-16">
