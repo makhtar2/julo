@@ -2,17 +2,44 @@
 import React from 'react';
 import { useCartStore } from '@/lib/store';
 import ProductCard from '@/components/ProductCard';
-import { HeartIcon } from 'lucide-react';
+import { HeartIcon, ArrowLeft, Bell } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 export default function WishlistPage() {
     const wishlist = useCartStore((state) => state.wishlist);
+    const router = useRouter();
 
     return (
-        <div className="min-h-screen bg-[#FAF8F5] px-4 sm:px-6 lg:px-8 py-10">
+        <div className="min-h-screen bg-[#FAF8F5] px-4 sm:px-6 lg:px-8 py-4 sm:py-10 pb-28 sm:pb-16">
             <div className="max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+                {/* Mobile Header Matching Screen 2 ("Saved Items") */}
+                <div className="sm:hidden flex items-center justify-between mb-5 pt-1">
+                    <button
+                        onClick={() => router.back()}
+                        aria-label="Retour"
+                        className="size-10 rounded-full bg-white border border-[#EAE6DF] shadow-xs flex items-center justify-center text-[#1C1B1F] active:scale-95 transition-all"
+                    >
+                        <ArrowLeft size={18} strokeWidth={2.2} />
+                    </button>
+
+                    <h1 className="text-base font-black text-[#1C1B1F] tracking-tight">
+                        Saved Items
+                    </h1>
+
+                    <Link
+                        href="/shop?sort=newest"
+                        aria-label="Notifications"
+                        className="size-10 rounded-full bg-white border border-[#EAE6DF] shadow-xs flex items-center justify-center text-[#1C1B1F] relative active:scale-95 transition-all"
+                    >
+                        <Bell size={18} strokeWidth={2.2} />
+                        <span className="absolute top-2.5 right-2.5 size-2 bg-[#10B981] rounded-full ring-2 ring-white" />
+                    </Link>
+                </div>
+
+                {/* Desktop Header */}
+                <div className="hidden sm:flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
                     <div>
                         <div className="flex items-center gap-3 mb-2">
                             <div className="h-px w-8 bg-[#D6CEBE]" />
@@ -33,8 +60,9 @@ export default function WishlistPage() {
                     </div>
                 </div>
 
+                {/* 2-Column Grid (Exact Mockup Layout) */}
                 {wishlist.length > 0 ? (
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
                         {wishlist.map((product) => (
                             <ProductCard key={product.id} product={product} />
                         ))}
@@ -52,12 +80,12 @@ export default function WishlistPage() {
                             Votre liste de favoris est vide
                         </h3>
                         <p className="text-[#8C8275] font-normal text-xs sm:text-sm max-w-xs mb-8">
-                            Explorez nos smartphones, ordinateurs et textiles pour ajouter vos coups
-                            de cœur.
+                            Explorez nos smartphones, ordinateurs et accessoires pour ajouter vos
+                            coups de cœur.
                         </p>
                         <Link
                             href="/shop"
-                            className="px-8 py-3.5 bg-[#1C1B1F] hover:bg-[#C59A63] text-white rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-sm active:scale-95"
+                            className="px-8 py-3.5 bg-[#1C1B1F] hover:bg-[#10B981] text-white rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-sm active:scale-95"
                         >
                             Découvrir la Boutique
                         </Link>

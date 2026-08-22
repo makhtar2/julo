@@ -386,10 +386,10 @@ export default function ShopContent({ initialProducts, initialCategories }) {
                             />
                             <input
                                 type="text"
-                                placeholder="Rechercher un modèle, marque, t-shirt..."
+                                placeholder="Rechercher un modèle, iPhone, Samsung, MacBook..."
                                 value={localSearch}
                                 onChange={(e) => setLocalSearch(e.target.value)}
-                                className="w-full bg-white border border-[#EAE6DF] rounded-full pl-10 pr-10 py-2.5 text-xs font-medium text-[#1C1B1F] placeholder:text-zinc-400 focus:outline-none focus:border-[#C59A63] shadow-xs transition-all"
+                                className="w-full bg-white border border-[#EAE6DF] rounded-full pl-10 pr-10 py-2.5 text-xs font-medium text-[#1C1B1F] placeholder:text-zinc-400 focus:outline-none focus:border-[#10B981] shadow-xs transition-all"
                             />
                             {localSearch && (
                                 <button

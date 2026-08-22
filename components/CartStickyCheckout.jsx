@@ -18,40 +18,30 @@ export default function CartStickyCheckout({
             <motion.div
                 initial={{ y: 24, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="pointer-events-auto max-w-lg mx-auto bg-white/95 backdrop-blur-xl border border-slate-200/80 rounded-2xl shadow-[0_-8px_40px_-12px_rgba(15,23,42,0.25)] overflow-hidden"
+                className="pointer-events-auto max-w-md mx-auto"
             >
-                <div className="flex items-center gap-2 px-3 py-2 bg-slate-50/80 border-b border-slate-100">
-                    <span className="flex items-center gap-1 text-[9px] font-black text-slate-500 uppercase tracking-widest">
-                        <ShieldCheck size={12} className="text-emerald-600" />
-                        Paiement sécurisé
-                    </span>
-                    <span className="text-slate-300">·</span>
-                    <span className="flex items-center gap-1 text-[9px] font-black text-slate-500 uppercase tracking-widest">
-                        <Truck size={12} className="text-blue-600" />
-                        {deliveryNote}
-                    </span>
-                </div>
-
-                <div className="flex items-center gap-3 p-3">
-                    <div className="flex-1 min-w-0">
-                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                            {itemCount} article{itemCount > 1 ? 's' : ''}
-                        </p>
-                        <p className="text-xl font-black text-slate-900 tracking-tight leading-none mt-0.5">
-                            {finalTotal.toLocaleString('fr-SN')}
-                            <span className="text-xs text-slate-400 ml-1">{currency}</span>
-                        </p>
+                <button
+                    type="button"
+                    onClick={onConfirm}
+                    disabled={isLoading}
+                    className="w-full bg-[#10B981] hover:bg-[#059669] text-white py-3.5 px-5 rounded-2xl font-bold text-sm shadow-xl shadow-[#10B981]/30 active:scale-[0.98] transition-all flex items-center justify-between gap-3 disabled:opacity-60"
+                >
+                    <div className="flex items-center gap-2 text-left">
+                        <span className="font-extrabold text-sm">
+                            {isLoading ? 'Traitement en cours…' : 'Go To Checkout'}
+                        </span>
+                        <span className="text-[11px] bg-white/20 px-2 py-0.5 rounded-full font-semibold">
+                            {itemCount}
+                        </span>
                     </div>
-                    <button
-                        type="button"
-                        onClick={onConfirm}
-                        disabled={isLoading}
-                        className="shrink-0 flex items-center justify-center gap-2 bg-[#C59A63] text-white px-5 py-3.5 rounded-full font-bold text-xs uppercase tracking-wider shadow-lg shadow-[#C59A63]/25 hover:bg-[#B4874F] active:scale-[0.98] transition-all disabled:opacity-60"
-                    >
-                        {isLoading ? '…' : 'Commander'}
-                        {!isLoading && <ArrowRight size={16} />}
-                    </button>
-                </div>
+
+                    <div className="flex items-center gap-2">
+                        <span className="font-black text-sm">
+                            {finalTotal.toLocaleString('fr-SN')} {currency}
+                        </span>
+                        <ArrowRight size={16} strokeWidth={2.5} />
+                    </div>
+                </button>
             </motion.div>
         </div>
     );

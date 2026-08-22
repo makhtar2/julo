@@ -108,7 +108,11 @@ const Navbar = ({ user, isAdmin }) => {
     ];
 
     return (
-        <nav className="relative bg-[#FAF8F5]/90 backdrop-blur-md border-b border-[#EAE6DF] sticky top-0 z-[150]">
+        <nav
+            className={`relative bg-[#FAF8F5]/90 backdrop-blur-md border-b border-[#EAE6DF] sticky top-0 z-[150] ${
+                pathname === '/' ? 'hidden sm:block' : ''
+            }`}
+        >
             {/* Mobile Search Overlay */}
             <AnimatePresence>
                 {isSearchOpen && (
