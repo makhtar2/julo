@@ -28,18 +28,32 @@ export async function addCategory(name) {
 export async function getCategories() {
     const { JULO_CATEGORIES } = await import('@/lib/mockProducts');
     const { createPublicClient } = await import('@/lib/supabase/server');
-    const supabase = createPublicClient();
+
     try {
-        const { data: categories, error } = await supabase
+        const supabase = createPublicClient();
+        const { data: dbCategories, error } = await supabase
             .from('Category')
             .select('*')
             .order('name', { ascending: true });
 
-        if (error || !categories || categories.length === 0) {
-            return { categories: JULO_CATEGORIES };
+        const juloDbCategories = (dbCategories || []).filter((c) => {
+            const name = (c.name || '').toLowerCase();
+            const isOldGlobalAir =
+                name.includes('ventilateur') ||
+                name.includes('climatiseur') ||
+                name.includes('fontaine') ||
+                name.includes('bouilloire') ||
+                name.includes('valise') ||
+                name.includes('woofer') ||
+                name.includes('téléviseur');
+            return !isOldGlobalAir;
+        });
+
+        if (!error && juloDbCategories.length > 0) {
+            return { categories: juloDbCategories };
         }
 
-        return { categories };
+        return { categories: JULO_CATEGORIES };
     } catch {
         return { categories: JULO_CATEGORIES };
     }

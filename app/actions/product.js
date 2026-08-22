@@ -141,10 +141,10 @@ export async function updateProduct(id, productData) {
 export async function getProducts(filters = {}) {
     const { JULO_MOCK_PRODUCTS } = await import('@/lib/mockProducts');
     const { createPublicClient } = await import('@/lib/supabase/server');
-    const supabase = createPublicClient();
     const { category, search } = filters;
 
     try {
+        const supabase = createPublicClient();
         let query = supabase.from('Product').select('*, Category(id, name), rating:Rating(rating)');
 
         if (category) {
@@ -163,13 +163,35 @@ export async function getProducts(filters = {}) {
             query = query.ilike('name', `%${search}%`);
         }
 
-        const { data: products, error } = await query.order('createdAt', { ascending: false });
+        const { data: dbProducts, error } = await query.order('createdAt', { ascending: false });
 
-        if (!error && products && products.length > 0) {
-            return { products: JSON.parse(JSON.stringify(products)) };
+        // Filter out legacy products if connected to an external old database
+        const juloDbProducts = (dbProducts || []).filter((p) => {
+            const catName = (p.Category?.name || p.category || '').toLowerCase();
+            const pName = (p.name || '').toLowerCase();
+            const isOldGlobalAir =
+                catName.includes('ventilateur') ||
+                catName.includes('climatiseur') ||
+                catName.includes('fontaine') ||
+                catName.includes('bouilloire') ||
+                catName.includes('valise') ||
+                catName.includes('woofer') ||
+                catName.includes('téléviseur') ||
+                pName.includes('ventilateur') ||
+                pName.includes('climatiseur') ||
+                pName.includes('fontaine') ||
+                pName.includes('bouilloire') ||
+                pName.includes('valise') ||
+                pName.includes('woofer') ||
+                pName.includes('téléviseur smart');
+            return !isOldGlobalAir;
+        });
+
+        if (!error && juloDbProducts.length > 0) {
+            return { products: JSON.parse(JSON.stringify(juloDbProducts)) };
         }
 
-        // Realistic JULO mock products fallback
+        // Return JULO's full multi-brand Senegalese catalog
         let filteredMock = [...JULO_MOCK_PRODUCTS];
         if (category) {
             const catLower = category.toLowerCase();
@@ -212,9 +234,15 @@ export async function getProducts(filters = {}) {
 export async function getProduct(id) {
     const { JULO_MOCK_PRODUCTS } = await import('@/lib/mockProducts');
     const { createPublicClient } = await import('@/lib/supabase/server');
-    const supabase = createPublicClient();
+
+    // 1. Direct lookup in JULO's real catalog
+    const mockProduct = JULO_MOCK_PRODUCTS.find((p) => p.id === id);
+    if (mockProduct) {
+        return { product: mockProduct };
+    }
 
     try {
+        const supabase = createPublicClient();
         const { data: product, error } = await supabase
             .from('Product')
             .select('*, Category(id, name), rating:Rating(*, user:User(id, name))')
@@ -222,20 +250,24 @@ export async function getProduct(id) {
             .single();
 
         if (!error && product) {
-            return { product: JSON.parse(JSON.stringify(product)) };
-        }
+            const catName = (product.Category?.name || product.category || '').toLowerCase();
+            const pName = (product.name || '').toLowerCase();
+            const isOldGlobalAir =
+                catName.includes('ventilateur') ||
+                catName.includes('climatiseur') ||
+                catName.includes('fontaine') ||
+                catName.includes('bouilloire') ||
+                catName.includes('valise') ||
+                catName.includes('woofer') ||
+                catName.includes('téléviseur');
 
-        const mockProduct = JULO_MOCK_PRODUCTS.find((p) => p.id === id);
-        if (mockProduct) {
-            return { product: mockProduct };
+            if (!isOldGlobalAir) {
+                return { product: JSON.parse(JSON.stringify(product)) };
+            }
         }
 
         return { error: 'Produit non trouvé.' };
     } catch {
-        const mockProduct = JULO_MOCK_PRODUCTS.find((p) => p.id === id);
-        if (mockProduct) {
-            return { product: mockProduct };
-        }
         return { error: 'Produit non trouvé.' };
     }
 }
@@ -244,50 +276,19 @@ export async function getSearchSuggestions(query) {
     if (!query || query.length < 2) return { suggestions: [] };
 
     const { JULO_MOCK_PRODUCTS } = await import('@/lib/mockProducts');
-    const { createPublicClient } = await import('@/lib/supabase/server');
-    const supabase = createPublicClient();
+    const qLower = query.toLowerCase();
 
-    try {
-        const { data: suggestions, error } = await supabase
-            .from('Product')
-            .select('id, name, images, price, Category(name)')
-            .ilike('name', `%${query}%`)
-            .limit(5);
+    const mockSuggestions = JULO_MOCK_PRODUCTS.filter((p) => p.name.toLowerCase().includes(qLower))
+        .slice(0, 5)
+        .map((p) => ({
+            id: p.id,
+            name: p.name,
+            images: p.images,
+            price: p.price,
+            Category: p.Category,
+        }));
 
-        if (!error && suggestions && suggestions.length > 0) {
-            return { suggestions };
-        }
-
-        const qLower = query.toLowerCase();
-        const mockSuggestions = JULO_MOCK_PRODUCTS.filter((p) =>
-            p.name.toLowerCase().includes(qLower)
-        )
-            .slice(0, 5)
-            .map((p) => ({
-                id: p.id,
-                name: p.name,
-                images: p.images,
-                price: p.price,
-                Category: p.Category,
-            }));
-
-        return { suggestions: mockSuggestions };
-    } catch {
-        const qLower = query.toLowerCase();
-        const mockSuggestions = JULO_MOCK_PRODUCTS.filter((p) =>
-            p.name.toLowerCase().includes(qLower)
-        )
-            .slice(0, 5)
-            .map((p) => ({
-                id: p.id,
-                name: p.name,
-                images: p.images,
-                price: p.price,
-                Category: p.Category,
-            }));
-
-        return { suggestions: mockSuggestions };
-    }
+    return { suggestions: mockSuggestions };
 }
 
 export async function deleteProduct(id) {
