@@ -57,7 +57,7 @@ const ProductCard = ({ product, priority = false }) => {
                     <Image
                         width={400}
                         height={400}
-                        className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-500 mix-blend-multiply"
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 rounded-xl"
                         src={product.images?.[0] || '/placeholder-image.png'}
                         alt={product.name}
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"

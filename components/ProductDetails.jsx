@@ -118,7 +118,7 @@ const ProductDetails = ({ product }) => {
                                 alt={product.name}
                                 width={700}
                                 height={700}
-                                className="w-full h-full object-contain mix-blend-multiply drop-shadow-md"
+                                className="w-full h-full object-cover rounded-2xl drop-shadow-sm"
                                 priority
                             />
                         </motion.div>
@@ -137,7 +137,7 @@ const ProductDetails = ({ product }) => {
                                 <button
                                     key={index}
                                     onClick={() => setMainImage(image)}
-                                    className={`bg-white shrink-0 size-20 sm:size-24 rounded-2xl border-2 transition-all p-2 flex items-center justify-center ${
+                                    className={`bg-white shrink-0 size-20 sm:size-24 rounded-2xl border-2 transition-all p-1.5 flex items-center justify-center overflow-hidden ${
                                         mainImage === image
                                             ? 'border-[#C59A63] shadow-md scale-95'
                                             : 'border-[#EAE6DF] hover:border-zinc-300'
@@ -145,7 +145,7 @@ const ProductDetails = ({ product }) => {
                                 >
                                     <Image
                                         src={image}
-                                        className="object-contain w-full h-full mix-blend-multiply"
+                                        className="object-cover w-full h-full rounded-xl"
                                         alt=""
                                         width={80}
                                         height={80}

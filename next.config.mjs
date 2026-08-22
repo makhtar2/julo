@@ -23,7 +23,7 @@ const contentSecurityPolicy = [
     "default-src 'self'",
     "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com",
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob: https://res.cloudinary.com https://*.supabase.co https://www.facebook.com https://www.googletagmanager.com",
+    "img-src 'self' data: blob: https://images.unsplash.com https://*.unsplash.com https://plus.unsplash.com https://res.cloudinary.com https://*.supabase.co https://www.facebook.com https://www.googletagmanager.com",
     "font-src 'self' data:",
     "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://eu.posthog.com https://www.google-analytics.com https://www.facebook.com https://connect.facebook.net https://vitals.vercel-insights.com https://va.vercel-scripts.com",
     "frame-src 'self'",
@@ -94,13 +94,31 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'mpgjgsojeezqiovtkepz.supabase.co',
+                hostname: 'images.unsplash.com',
                 port: '',
-                pathname: '/storage/v1/object/public/**',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: '*.unsplash.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'plus.unsplash.com',
+                port: '',
+                pathname: '/**',
             },
             {
                 protocol: 'https',
                 hostname: 'res.cloudinary.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: '*.supabase.co',
                 port: '',
                 pathname: '/**',
             },
