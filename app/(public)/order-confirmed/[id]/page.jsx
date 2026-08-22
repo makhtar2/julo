@@ -83,10 +83,10 @@ export default function OrderConfirmedPage() {
         );
 
     const orderShortId = order.id.slice(-6).toUpperCase();
-    const phoneNumber = '221777832798';
+    const phoneNumber = '221754469097';
 
     const handleWhatsAppChat = () => {
-        const message = `Bonjour Global Air, je viens de passer la commande #${orderShortId}. Pouvez-vous me confirmer la livraison ?`;
+        const message = `Bonjour JULO, je viens de passer la commande #${orderShortId}. Pouvez-vous me confirmer la livraison ?`;
         window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
     };
 

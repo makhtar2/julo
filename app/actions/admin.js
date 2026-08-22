@@ -1,4 +1,4 @@
-﻿'use server';
+'use server';
 
 import { createAdminClient } from '@/lib/supabase/admin';
 import { checkAdmin } from '@/lib/auth-utils';
@@ -208,11 +208,11 @@ export async function updateOrder(orderId, orderData) {
                 if (clientPhone) {
                     let smsMessage = '';
                     if (status === 'PAID') {
-                        smsMessage = `Global Air: Votre commande #${orderShortId} est PAYÉE. Merci de votre confiance !`;
+                        smsMessage = `JULO: Votre commande #${orderShortId} est PAYÉE. Merci de votre confiance !`;
                     } else if (status === 'CONFIRMED') {
-                        smsMessage = `Global Air: Votre commande #${orderShortId} est CONFIRMÉE. Paiement à la livraison.`;
+                        smsMessage = `JULO: Votre commande #${orderShortId} est CONFIRMÉE. Paiement à la livraison.`;
                     } else if (status === 'SHIPPED') {
-                        smsMessage = `Global Air: Votre commande #${orderShortId} est en cours de LIVRAISON !`;
+                        smsMessage = `JULO: Votre commande #${orderShortId} est en cours de LIVRAISON !`;
                     }
 
                     if (smsMessage) {

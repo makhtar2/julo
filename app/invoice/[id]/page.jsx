@@ -71,7 +71,7 @@ export default function InvoicePage() {
             const pdfWidth = pdf.internal.pageSize.getWidth();
             const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
             pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
-            pdf.save(`Facture-Global Air-${order.id.slice(-6).toUpperCase()}.pdf`);
+            pdf.save(`Facture-JULO-${order.id.slice(-6).toUpperCase()}.pdf`);
         } catch (err) {
             console.error('Export error:', err);
         }
@@ -165,23 +165,23 @@ export default function InvoicePage() {
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-8 mb-16">
                         <div className="flex flex-col gap-4">
                             <div className="flex items-center gap-3">
-                                <div className="size-14 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-blue-600/20">
-                                    GA
+                                <div className="size-14 bg-[#10B981] rounded-2xl flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-emerald-500/20">
+                                    JU
                                 </div>
                                 <div>
                                     <h2 className="text-2xl font-black text-slate-900 tracking-tight leading-none">
-                                        GLOBAL AIR
+                                        JULO.
                                     </h2>
-                                    <p className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.3em] mt-1">
-                                        L&apos;excellence au Sénégal
+                                    <p className="text-[10px] font-bold text-[#10B981] uppercase tracking-[0.3em] mt-1">
+                                        High-Tech & Lifestyle Premium
                                     </p>
                                 </div>
                             </div>
                             <div className="text-[11px] text-slate-500 font-medium leading-relaxed mt-2">
-                                <p>Avenue Cheikh Anta Diop, Fenêtre Mermoz</p>
-                                <p>Dakar, Sénégal</p>
-                                <p className="font-bold text-slate-700">Tél: +221 77 783 27 98</p>
-                                <p>Email: contact@globalairsn.com</p>
+                                <p>Boutique Officielle JULO</p>
+                                <p>Dakar & Touba, Sénégal</p>
+                                <p className="font-bold text-slate-700">Tél: +221 75 446 90 97</p>
+                                <p>Email: contact@julo.sn</p>
                             </div>
                         </div>
 
@@ -371,15 +371,15 @@ export default function InvoicePage() {
 
                         {/* Professional Digital Stamp */}
                         <div className="relative size-32 flex items-center justify-center">
-                            <div className="absolute inset-0 border-4 border-dashed border-blue-600/20 rounded-full" />
-                            <div className="text-center rotate-[-15deg] border-4 border-blue-600/30 p-2 rounded-xl">
-                                <p className="text-[8px] font-black text-blue-600/40 uppercase tracking-widest leading-none mb-1">
+                            <div className="absolute inset-0 border-4 border-dashed border-[#10B981]/20 rounded-full" />
+                            <div className="text-center rotate-[-15deg] border-4 border-[#10B981]/30 p-2 rounded-xl">
+                                <p className="text-[8px] font-black text-[#10B981]/60 uppercase tracking-widest leading-none mb-1">
                                     Authentifié par
                                 </p>
-                                <p className="text-xs font-black text-blue-600/60 uppercase tracking-tighter leading-none">
-                                    GLOBAL AIR
+                                <p className="text-xs font-black text-[#10B981] uppercase tracking-tighter leading-none">
+                                    JULO.
                                 </p>
-                                <p className="text-[7px] font-bold text-blue-600/40 mt-1 uppercase">
+                                <p className="text-[7px] font-bold text-[#10B981]/60 mt-1 uppercase">
                                     {order.id.slice(0, 8)}
                                 </p>
                             </div>
