@@ -69,7 +69,7 @@ const Hero = ({ initialCategories = [] }) => {
         return Smartphone;
     };
 
-    const defaultCategories = [
+    const juloCategories = [
         'Smartphones & Apple',
         'Samsung Galaxy',
         'Ordinateurs & PC',
@@ -78,10 +78,7 @@ const Hero = ({ initialCategories = [] }) => {
         'Sérigraphie & Textile',
     ];
 
-    const sourceCategories =
-        initialCategories && initialCategories.length > 0 ? initialCategories : defaultCategories;
-
-    const categoriesList = sourceCategories.slice(0, 6).map((catName) => ({
+    const categoriesList = juloCategories.map((catName) => ({
         title: catName,
         subtitle: 'Découvrir',
         href: `/shop?category=${encodeURIComponent(catName)}`,

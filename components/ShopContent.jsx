@@ -140,7 +140,15 @@ export default function ShopContent({ initialProducts, initialCategories }) {
     }, [isSidebarOpen]);
 
     const products = useMemo(() => initialProducts || [], [initialProducts]);
-    const categories = initialCategories?.map((c) => c.name) || [];
+    const juloCategories = [
+        'Smartphones & Apple',
+        'Samsung Galaxy',
+        'Ordinateurs & PC',
+        'Audio & Écouteurs',
+        'Accessoires & GaN',
+        'Sérigraphie & Textile',
+    ];
+    const categories = juloCategories;
 
     const sortedAndFilteredProducts = useMemo(() => {
         let result = products.filter((product) => {
