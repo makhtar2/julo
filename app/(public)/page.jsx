@@ -3,6 +3,7 @@ import Hero from '@/components/Hero';
 import Newsletter from '@/components/Newsletter';
 import OurSpecs from '@/components/OurSpec';
 import LatestProducts from '@/components/LatestProducts';
+import Testimonials from '@/components/Testimonials';
 import Faq from '@/components/Faq';
 import { getProducts } from '@/app/actions/product';
 import { getCategories } from '@/app/actions/category';
@@ -20,10 +21,11 @@ export default async function Home() {
     const categoriesList = categories?.map((c) => c.name) || [];
 
     return (
-        <div className="bg-white text-zinc-900">
+        <div className="bg-white text-[#1C1B1F]">
             <Hero initialCategories={categoriesList} initialBanners={banners || []} />
             <LatestProducts products={products} />
             <BestSelling products={products} />
+            <Testimonials />
             <OurSpecs />
             <Faq />
             <Newsletter />

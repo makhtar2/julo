@@ -8,34 +8,35 @@ export const revalidate = 3600;
 export async function generateMetadata({ searchParams }) {
     const params = await searchParams;
     const category = params?.category;
-    const baseUrl = 'https://globalairsn.com';
+    const baseUrl = 'https://julo.sn';
 
     if (category) {
         return {
-            title: `${category} au Sénégal — Meilleur Prix | Global Air`,
-            description: `Achetez votre ${category} au Sénégal chez Global Air. Large choix, livraison express à Dakar et garantie officielle. Équipez votre maison dès aujourd'hui.`,
+            title: `${category} au Sénégal — Boutique JULO`,
+            description: `Achetez vos ${category} au Sénégal chez JULO. Produits 100% originaux, smartphones, ordinateurs et sérigraphie personnalisée. Livraison rapide à Dakar, Thiès et Touba.`,
             alternates: {
                 canonical: `${baseUrl}/shop?category=${encodeURIComponent(category)}`,
             },
             openGraph: {
-                title: `${category} Premium au Sénégal | Global Air`,
-                description: `Les meilleurs modèles de ${category} sont chez Global Air. Livraison rapide partout au Sénégal.`,
-                images: ['/assets/gs_logo.jpg'],
+                title: `${category} Premium au Sénégal | JULO`,
+                description: `Découvrez la sélection ${category} chez JULO. Livraison express partout au Sénégal.`,
+                images: ['/assets/julo_logo_transparent.png'],
             },
         };
     }
 
     return {
-        title: 'Boutique Électroménager au Sénégal | Global Air',
+        title: 'Boutique Tech & Sérigraphie au Sénégal | JULO',
         description:
-            'Découvrez le plus grand choix de climatiseurs et électroménager au Sénégal. Livraison express 24h/48h. Meilleur rapport qualité/prix.',
+            'Découvrez la collection complète JULO : Smartphones Apple & Samsung, MacBook, PC portables, chargeurs GaN et vêtements personnalisés en sérigraphie. Livraison express au Sénégal.',
         alternates: {
             canonical: `${baseUrl}/shop`,
         },
         openGraph: {
-            title: 'Global Air Sénégal — Boutique Officielle',
-            description: 'Équipez votre maison avec le meilleur de la technologie au Sénégal.',
-            images: ['/assets/gs_logo.jpg'],
+            title: 'JULO Sénégal — Boutique High-Tech & Studio de Sérigraphie',
+            description:
+                'Équipez votre quotidien avec le meilleur de la technologie et du style au Sénégal.',
+            images: ['/assets/julo_logo_transparent.png'],
         },
     };
 }

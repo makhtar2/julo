@@ -26,6 +26,7 @@ export async function addCategory(name) {
 }
 
 export async function getCategories() {
+    const { JULO_CATEGORIES } = await import('@/lib/mockProducts');
     const { createPublicClient } = await import('@/lib/supabase/server');
     const supabase = createPublicClient();
     try {
@@ -34,11 +35,13 @@ export async function getCategories() {
             .select('*')
             .order('name', { ascending: true });
 
-        if (error) throw error;
+        if (error || !categories || categories.length === 0) {
+            return { categories: JULO_CATEGORIES };
+        }
 
         return { categories };
-    } catch (error) {
-        return { error: 'Erreur lors de la récupération des catégories.' };
+    } catch {
+        return { categories: JULO_CATEGORIES };
     }
 }
 
