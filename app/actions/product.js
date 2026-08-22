@@ -143,92 +143,76 @@ export async function getProducts(filters = {}) {
     const { createPublicClient } = await import('@/lib/supabase/server');
     const { category, search } = filters;
 
+    let allProducts = [...JULO_MOCK_PRODUCTS];
+
     try {
         const supabase = createPublicClient();
-        let query = supabase.from('Product').select('*, Category(id, name), rating:Rating(rating)');
+        const { data: dbProducts } = await supabase
+            .from('Product')
+            .select('*, Category(id, name), rating:Rating(rating)')
+            .order('createdAt', { ascending: false });
 
-        if (category) {
-            const { data: catData } = await supabase
-                .from('Category')
-                .select('id')
-                .eq('name', category)
-                .single();
+        if (dbProducts && dbProducts.length > 0) {
+            const validDbProducts = dbProducts.filter((p) => {
+                const catName = (p.Category?.name || p.category || '').toLowerCase();
+                const pName = (p.name || '').toLowerCase();
+                const isOldAppliance =
+                    catName.includes('ventilateur') ||
+                    catName.includes('climatiseur') ||
+                    catName.includes('fontaine') ||
+                    catName.includes('bouilloire') ||
+                    catName.includes('valise') ||
+                    catName.includes('woofer') ||
+                    pName.includes('ventilateur') ||
+                    pName.includes('climatiseur') ||
+                    pName.includes('fontaine') ||
+                    pName.includes('bouilloire') ||
+                    pName.includes('valise') ||
+                    pName.includes('woofer');
+                return !isOldAppliance;
+            });
 
-            if (catData) {
-                query = query.eq('categoryId', catData.id);
+            // Prepend new DB products that are not already in mock
+            const existingIds = new Set(allProducts.map((p) => p.id));
+            for (const dp of validDbProducts) {
+                if (!existingIds.has(dp.id)) {
+                    allProducts.unshift(dp);
+                }
             }
         }
-
-        if (search) {
-            query = query.ilike('name', `%${search}%`);
-        }
-
-        const { data: dbProducts, error } = await query.order('createdAt', { ascending: false });
-
-        // Filter out legacy products if connected to an external old database
-        const juloDbProducts = (dbProducts || []).filter((p) => {
-            const catName = (p.Category?.name || p.category || '').toLowerCase();
-            const pName = (p.name || '').toLowerCase();
-            const isOldGlobalAir =
-                catName.includes('ventilateur') ||
-                catName.includes('climatiseur') ||
-                catName.includes('fontaine') ||
-                catName.includes('bouilloire') ||
-                catName.includes('valise') ||
-                catName.includes('woofer') ||
-                catName.includes('téléviseur') ||
-                pName.includes('ventilateur') ||
-                pName.includes('climatiseur') ||
-                pName.includes('fontaine') ||
-                pName.includes('bouilloire') ||
-                pName.includes('valise') ||
-                pName.includes('woofer') ||
-                pName.includes('téléviseur smart');
-            return !isOldGlobalAir;
-        });
-
-        if (!error && juloDbProducts.length > 0) {
-            return { products: JSON.parse(JSON.stringify(juloDbProducts)) };
-        }
-
-        // Return JULO's full multi-brand Senegalese catalog
-        let filteredMock = [...JULO_MOCK_PRODUCTS];
-        if (category) {
-            const catLower = category.toLowerCase();
-            filteredMock = filteredMock.filter((p) => {
-                const pCat = (p.Category?.name || p.category || '').toLowerCase();
-                return pCat.includes(catLower) || catLower.includes(pCat);
-            });
-        }
-        if (search) {
-            const sLower = search.toLowerCase();
-            filteredMock = filteredMock.filter(
-                (p) =>
-                    p.name.toLowerCase().includes(sLower) ||
-                    (p.description && p.description.toLowerCase().includes(sLower))
-            );
-        }
-
-        return { products: filteredMock };
     } catch {
-        let filteredMock = [...JULO_MOCK_PRODUCTS];
-        if (category) {
-            const catLower = category.toLowerCase();
-            filteredMock = filteredMock.filter((p) => {
-                const pCat = (p.Category?.name || p.category || '').toLowerCase();
-                return pCat.includes(catLower) || catLower.includes(pCat);
-            });
-        }
-        if (search) {
-            const sLower = search.toLowerCase();
-            filteredMock = filteredMock.filter(
-                (p) =>
-                    p.name.toLowerCase().includes(sLower) ||
-                    (p.description && p.description.toLowerCase().includes(sLower))
-            );
-        }
-        return { products: filteredMock };
+        // Fallback to JULO catalog
     }
+
+    // Apply category filter if provided
+    if (category) {
+        const catLower = category.toLowerCase();
+        allProducts = allProducts.filter((p) => {
+            const pCat = (p.Category?.name || p.category || '').toLowerCase();
+            const pBrand = (p.brand || '').toLowerCase();
+            const pName = (p.name || '').toLowerCase();
+            return (
+                pCat === catLower ||
+                pCat.includes(catLower) ||
+                catLower.includes(pCat) ||
+                (pBrand && catLower.includes(pBrand)) ||
+                (pBrand && pCat.includes(pBrand)) ||
+                catLower.split(/[ ,&]+/).some((t) => t && (pName.includes(t) || pCat.includes(t)))
+            );
+        });
+    }
+
+    // Apply search filter if provided
+    if (search) {
+        const sLower = search.toLowerCase();
+        allProducts = allProducts.filter(
+            (p) =>
+                p.name.toLowerCase().includes(sLower) ||
+                (p.description && p.description.toLowerCase().includes(sLower))
+        );
+    }
+
+    return { products: allProducts };
 }
 
 export async function getProduct(id) {
@@ -250,20 +234,7 @@ export async function getProduct(id) {
             .single();
 
         if (!error && product) {
-            const catName = (product.Category?.name || product.category || '').toLowerCase();
-            const pName = (product.name || '').toLowerCase();
-            const isOldGlobalAir =
-                catName.includes('ventilateur') ||
-                catName.includes('climatiseur') ||
-                catName.includes('fontaine') ||
-                catName.includes('bouilloire') ||
-                catName.includes('valise') ||
-                catName.includes('woofer') ||
-                catName.includes('téléviseur');
-
-            if (!isOldGlobalAir) {
-                return { product: JSON.parse(JSON.stringify(product)) };
-            }
+            return { product: JSON.parse(JSON.stringify(product)) };
         }
 
         return { error: 'Produit non trouvé.' };

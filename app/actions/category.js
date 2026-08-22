@@ -29,31 +29,32 @@ export async function getCategories() {
     const { JULO_CATEGORIES } = await import('@/lib/mockProducts');
     const { createPublicClient } = await import('@/lib/supabase/server');
 
+    let allCategories = [...JULO_CATEGORIES];
+
     try {
         const supabase = createPublicClient();
-        const { data: dbCategories, error } = await supabase
+        const { data: dbCategories } = await supabase
             .from('Category')
             .select('*')
             .order('name', { ascending: true });
 
-        const juloDbCategories = (dbCategories || []).filter((c) => {
-            const name = (c.name || '').toLowerCase();
-            const isOldGlobalAir =
-                name.includes('ventilateur') ||
-                name.includes('climatiseur') ||
-                name.includes('fontaine') ||
-                name.includes('bouilloire') ||
-                name.includes('valise') ||
-                name.includes('woofer') ||
-                name.includes('téléviseur');
-            return !isOldGlobalAir;
-        });
-
-        if (!error && juloDbCategories.length > 0) {
-            return { categories: juloDbCategories };
+        if (dbCategories && dbCategories.length > 0) {
+            const existingNames = new Set(allCategories.map((c) => c.name.toLowerCase()));
+            for (const cat of dbCategories) {
+                const nameLow = (cat.name || '').toLowerCase();
+                const isOldAppliance =
+                    nameLow.includes('ventilateur') ||
+                    nameLow.includes('climatiseur') ||
+                    nameLow.includes('fontaine') ||
+                    nameLow.includes('bouilloire') ||
+                    nameLow.includes('valise') ||
+                    nameLow.includes('woofer');
+                if (!isOldAppliance && !existingNames.has(nameLow)) {
+                    allCategories.push(cat);
+                }
+            }
         }
-
-        return { categories: JULO_CATEGORIES };
+        return { categories: allCategories };
     } catch {
         return { categories: JULO_CATEGORIES };
     }
