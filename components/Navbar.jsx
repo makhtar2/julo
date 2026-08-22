@@ -94,13 +94,18 @@ const Navbar = ({ user, isAdmin }) => {
     const navLinks = [
         { name: 'Accueil', href: '/', isHome: true },
         { name: 'Boutique', href: '/shop' },
-        { name: 'Apple & Samsung', href: '/shop?category=Smartphones' },
-        { name: 'Tecno & Infinix', href: '/shop?category=Tecno' },
-        { name: 'Ordinateurs', href: '/shop?category=Ordinateurs' },
-        { name: 'Audio & Oraimo', href: '/shop?category=Audio' },
         { name: 'Sérigraphie', href: '/shop?category=Sérigraphie' },
         { name: 'À Propos', href: '/about' },
         { name: 'Contact', href: '/contact' },
+    ];
+
+    const categoryLinks = [
+        { name: 'Smartphones & Apple', href: '/shop?category=Smartphones' },
+        { name: 'Samsung Galaxy', href: '/shop?category=Samsung' },
+        { name: 'Tecno, Infinix & Itel', href: '/shop?category=Tecno' },
+        { name: 'Ordinateurs & PC', href: '/shop?category=Ordinateurs' },
+        { name: 'Audio & Oraimo', href: '/shop?category=Audio' },
+        { name: 'Accessoires & GaN', href: '/shop?category=Accessoires' },
     ];
 
     return (
@@ -245,7 +250,7 @@ const Navbar = ({ user, isAdmin }) => {
                             {/* Drawer Links */}
                             <div className="flex-1 overflow-y-auto p-4 space-y-1">
                                 <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#8C8275] px-3 mb-2">
-                                    Navigation &amp; Rayons
+                                    Menu Principal
                                 </p>
                                 {navLinks.map((link) => {
                                     const isActive = pathname === link.href;
@@ -273,6 +278,24 @@ const Navbar = ({ user, isAdmin }) => {
                                         </Link>
                                     );
                                 })}
+
+                                <div className="pt-4 border-t border-[#EAE6DF] mt-4 space-y-1">
+                                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#8C8275] px-3 mb-2">
+                                        Rayons Populaires
+                                    </p>
+                                    <div className="grid grid-cols-2 gap-1.5 px-1">
+                                        {categoryLinks.map((cat) => (
+                                            <Link
+                                                key={cat.name}
+                                                href={cat.href}
+                                                onClick={() => setIsMobileMenuOpen(false)}
+                                                className="p-2.5 rounded-xl bg-white border border-[#EAE6DF] hover:border-[#C59A63] text-[11px] font-bold text-[#1C1B1F] transition-all truncate"
+                                            >
+                                                {cat.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
 
                                 <div className="pt-4 border-t border-[#EAE6DF] mt-4 space-y-1">
                                     <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#8C8275] px-3 mb-2">
