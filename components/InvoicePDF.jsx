@@ -332,8 +332,10 @@ const InvoicePDF = ({ order }) => {
                                 <Text style={styles.logoText}>JU</Text>
                             </View>
                             <View>
-                                <Text style={styles.brandName}>JULO PROD</Text>
-                                <Text style={styles.brandTag}>Électronique & Sérigraphie</Text>
+                                <Text style={styles.brandName}>JULO</Text>
+                                <Text style={styles.brandTag}>
+                                    Boutique High-Tech & Électronique
+                                </Text>
                             </View>
                         </View>
                         <Text style={styles.companyInfo}>Dakar & Touba, Sénégal</Text>

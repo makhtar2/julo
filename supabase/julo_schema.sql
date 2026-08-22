@@ -2,7 +2,7 @@
 -- 🚀 JULO - SCHÉMA SQL COMPLET POUR NOUVELLE BASE DE DONNÉES SUPABASE DÉDIÉE
 -- ==============================================================================
 -- Catalogue multi-marques adapté au Sénégal : Apple, Samsung, Tecno, Infinix,
--- Itel, Xiaomi, Oraimo, JBL, HP, Lenovo & Atelier de Sérigraphie JULO.
+-- Itel, Xiaomi, Oraimo, JBL, HP, Lenovo, Asus & Montres Connectées JULO.
 
 -- 1. EXTENSIONS
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -211,7 +211,7 @@ INSERT INTO "Category" ("id", "name", "slug") VALUES
     ('55555555-5555-5555-5555-555555555555', 'Ordinateurs & PC', 'ordinateurs-pc'),
     ('66666666-6666-6666-6666-666666666666', 'Audio, Enceintes & Oraimo', 'audio-enceintes-oraimo'),
     ('77777777-7777-7777-7777-777777777777', 'Accessoires & Énergie', 'accessoires-energie'),
-    ('88888888-8888-8888-8888-888888888888', 'Sérigraphie & Goodies', 'serigraphie-goodies')
+    ('88888888-8888-8888-8888-888888888888', 'Montres & Wearables', 'montres-wearables')
 ON CONFLICT ("name") DO NOTHING;
 
 -- 2. Produits Phares par Marque et par Budget
@@ -231,9 +231,9 @@ INSERT INTO "Product" ("name", "description", "mrp", "price", "categoryId", "sto
     ('JBL Flip 6 Enceinte Bluetooth Étanche IP67', 'Son JBL Original Pro puissant, 12h d''autonomie et résistance totale à l''eau et poussière.', 98000, 85000, '66666666-6666-6666-6666-666666666666', 10, true, ARRAY['https://images.unsplash.com/photo-1545454675-3531b543be5d?w=900&auto=format&fit=crop&q=80']),
     ('Batterie Externe Oraimo Toast 20 000 mAh 22.5W', 'Recharge 4 à 5 fois un smartphone, charge rapide 22.5W Type-C et torche LED intégrée.', 25000, 18000, '77777777-7777-7777-7777-777777777777', 45, true, ARRAY['https://images.unsplash.com/photo-1609592426505-d227b8755678?w=900&auto=format&fit=crop&q=80']),
     ('Kit Ring Light 18 Pouces avec Trépied Professionnel 2m10', 'Indispensable pour vidéos TikTok/Instagram, 3 supports téléphones et télécommande sans fil.', 45000, 35000, '77777777-7777-7777-7777-777777777777', 20, true, ARRAY['https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=900&auto=format&fit=crop&q=80']),
-    ('T-Shirt Premium JULO Studio 100% Coton Peigné 240g/m²', 'Coupe oversize streetwear, coton lourd biologique, impression sérigraphique HD indélébile.', 18000, 12000, '88888888-8888-8888-8888-888888888888', 50, true, ARRAY['https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=900&auto=format&fit=crop&q=80']),
-    ('Pack 10 Polos Corporate Entreprise Sérigraphiés / Brodés', 'Piqué de coton 220g/m², broderie de votre logo d''entreprise, livraison rapide au Sénégal.', 130000, 95000, '88888888-8888-8888-8888-888888888888', 15, true, ARRAY['https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?w=900&auto=format&fit=crop&q=80']),
-    ('Casquette Trucker / Baseball Brodée Personnalisée JULO', 'Broderie 3D en relief haute précision, fermeture réglable snapback.', 12000, 7500, '88888888-8888-8888-8888-888888888888', 40, true, ARRAY['https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=900&auto=format&fit=crop&q=80'])
+    ('Apple Watch Series 9 GPS 45mm Boîtier Aluminium Minuit', 'Puce S9 SiP, geste Double Tap, capteurs ECG et oxygène sanguin SpO2.', 290000, 255000, '88888888-8888-8888-8888-888888888888', 8, true, ARRAY['https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=900&auto=format&fit=crop&q=80']),
+    ('Samsung Galaxy Watch 6 Classic 47mm Lunette Tournante', 'Boîtier en acier inoxydable, analyse corporelle BIA, suivi santé avancé.', 230000, 195000, '88888888-8888-8888-8888-888888888888', 10, true, ARRAY['https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=900&auto=format&fit=crop&q=80']),
+    ('Oraimo Watch 4 Plus Écran HD 2.01" & Appels Bluetooth', 'Grand écran tactile HD 2.01 pouces, appels sans fil et 7 jours d''autonomie.', 30000, 22000, '88888888-8888-8888-8888-888888888888', 35, true, ARRAY['https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=900&auto=format&fit=crop&q=80'])
 ON CONFLICT DO NOTHING;
 
 -- 3. Codes Promo JULO Sénégal

@@ -22,9 +22,9 @@ const Footer = () => {
                             />
                         </Link>
                         <p className="mt-4 text-zinc-400 text-xs sm:text-sm leading-relaxed max-w-sm">
-                            Votre destination au Sénégal pour des smartphones, ordinateurs et
-                            accessoires électroniques de qualité, ainsi que pour vos travaux de
-                            sérigraphie et d’infographie personnalisés.
+                            Votre destination de référence au Sénégal pour des smartphones,
+                            ordinateurs, montres connectées et accessoires high-tech 100%
+                            authentiques.
                         </p>
                         <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2B2925] border border-[#3D3A34] text-[10px] text-zinc-300 font-semibold">
                             <span className="text-[#C59A63]">Co-fondateurs :</span>
@@ -42,7 +42,7 @@ const Footer = () => {
                             <ul className="space-y-2.5 text-xs text-zinc-400">
                                 <li>
                                     <Link
-                                        href="/shop?category=telephones"
+                                        href="/shop?category=Smartphones"
                                         className="hover:text-white transition-colors"
                                     >
                                         Smartphones
@@ -50,7 +50,7 @@ const Footer = () => {
                                 </li>
                                 <li>
                                     <Link
-                                        href="/shop?category=ordinateurs"
+                                        href="/shop?category=Ordinateurs"
                                         className="hover:text-white transition-colors"
                                     >
                                         Ordinateurs &amp; PC
@@ -58,18 +58,18 @@ const Footer = () => {
                                 </li>
                                 <li>
                                     <Link
-                                        href="/shop?category=accessoires"
+                                        href="/shop?category=Audio"
                                         className="hover:text-white transition-colors"
                                     >
-                                        Accessoires
+                                        Audio &amp; Écouteurs
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
-                                        href="/shop?category=serigraphie"
+                                        href="/shop?category=Montres"
                                         className="hover:text-white transition-colors"
                                     >
-                                        Sérigraphie
+                                        Montres Connectées
                                     </Link>
                                 </li>
                             </ul>

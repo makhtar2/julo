@@ -2,7 +2,7 @@ import julo_logo from './julo_logo.png';
 import julo_logo_transparent from './julo_logo_transparent.png';
 import julo_logo_white from './julo_logo_white.png';
 
-import { ShieldCheck, Palette, Truck, Zap } from 'lucide-react';
+import { ShieldCheck, Award, Truck, Zap } from 'lucide-react';
 
 export const assets = {
     julo_logo,
@@ -14,15 +14,15 @@ export const ourSpecsData = [
     {
         title: 'Produits 100% Originaux',
         description:
-            'Électronique et accessoires neufs certifiés, testés avant expédition avec garantie constructeur.',
+            'Smartphones, ordinateurs et accessoires neufs certifiés avec garantie constructeur.',
         icon: ShieldCheck,
         accent: '#f59e0b',
     },
     {
-        title: 'Atelier Sérigraphie & Studio',
+        title: 'Garantie & SAV Réactif',
         description:
-            'Personnalisation textile et marquage de haute précision avec encres premium durables.',
-        icon: Palette,
+            'Assistance technique locale et service après-vente dédié à Dakar et dans tout le Sénégal.',
+        icon: Award,
         accent: '#3b82f6',
     },
     {

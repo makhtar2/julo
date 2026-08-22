@@ -9,8 +9,8 @@ const faqData = [
         answer: 'Ajoutez vos articles (smartphones, ordinateurs, accessoires) au panier et finalisez votre commande en toute sécurité. Vous pouvez aussi commander instantanément sur WhatsApp.',
     },
     {
-        question: "Comment fonctionne l'atelier de sérigraphie JULO ?",
-        answer: "Pour vos t-shirts, polos, hoodies, casquettes ou goodies pro, transmettez-nous votre visuel. Nous réalisons un aperçu numérique avant d'imprimer dans notre atelier.",
+        question: 'Les produits vendus par JULO sont-ils 100% authentiques ?',
+        answer: 'Absolument. Tous nos smartphones (Apple, Samsung, Tecno, Infinix, Xiaomi), ordinateurs portables et accessoires audio sont neufs, sous scellé d’origine et certifiés avec garantie constructeur.',
     },
     {
         question: 'Quels sont vos délais et zones de livraison au Sénégal ?',
@@ -22,7 +22,7 @@ const faqData = [
     },
     {
         question: 'Tous les téléphones et ordinateurs sont-ils sous garantie ?',
-        answer: 'Oui, tous nos appareils sont 100% originaux, certifiés neufs et couverts par une garantie officielle avec service après-vente dédié.',
+        answer: 'Oui, tous nos appareils sont couverts par une garantie officielle constructeur avec service après-vente dédié.',
     },
 ];
 
@@ -48,8 +48,8 @@ const Faq = () => {
                         Questions Fréquentes
                     </h2>
                     <p className="text-sm text-[#8C8275] max-w-lg mx-auto">
-                        Tout ce qu&apos;il faut savoir pour commander vos équipements et impressions
-                        textiles.
+                        Tout ce qu&apos;il faut savoir pour commander vos équipements électroniques
+                        en toute sérénité.
                     </p>
                 </div>
 

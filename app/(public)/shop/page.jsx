@@ -13,7 +13,7 @@ export async function generateMetadata({ searchParams }) {
     if (category) {
         return {
             title: `${category} au Sénégal — Boutique JULO`,
-            description: `Achetez vos ${category} au Sénégal chez JULO. Produits 100% originaux, smartphones, ordinateurs et sérigraphie personnalisée. Livraison rapide à Dakar, Thiès et Touba.`,
+            description: `Achetez vos ${category} au Sénégal chez JULO. Produits 100% originaux certifiés avec garantie. Livraison rapide à Dakar, Thiès et Touba.`,
             alternates: {
                 canonical: `${baseUrl}/shop?category=${encodeURIComponent(category)}`,
             },
@@ -26,16 +26,16 @@ export async function generateMetadata({ searchParams }) {
     }
 
     return {
-        title: 'Boutique Tech & Sérigraphie au Sénégal | JULO',
+        title: 'Boutique High-Tech & Smartphones au Sénégal | JULO',
         description:
-            'Découvrez la collection complète JULO : Smartphones Apple & Samsung, MacBook, PC portables, chargeurs GaN et vêtements personnalisés en sérigraphie. Livraison express au Sénégal.',
+            'Découvrez le catalogue officiel JULO : Smartphones Apple, Samsung, Tecno, Xiaomi, MacBook, PC portables, montres connectées et accessoires certifiés. Livraison express au Sénégal.',
         alternates: {
             canonical: `${baseUrl}/shop`,
         },
         openGraph: {
-            title: 'JULO Sénégal — Boutique High-Tech & Studio de Sérigraphie',
+            title: 'JULO Sénégal — Boutique High-Tech Officielle',
             description:
-                'Équipez votre quotidien avec le meilleur de la technologie et du style au Sénégal.',
+                'Équipez votre quotidien avec les meilleurs smartphones, ordinateurs et accessoires certifiés au Sénégal.',
             images: ['/assets/julo_logo_transparent.png'],
         },
     };

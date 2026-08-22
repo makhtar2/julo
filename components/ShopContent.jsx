@@ -5,8 +5,7 @@ import {
     Smartphone,
     Laptop,
     Headphones,
-    Shirt,
-    Palette,
+    Watch,
     Cable,
     LayoutGrid,
     Search,
@@ -61,21 +60,13 @@ const getCategoryIcon = (catName) => {
         return <Cable size={18} strokeWidth={1.5} />;
     }
     if (
-        name.includes('serigraphie') ||
-        name.includes('sérigraphie') ||
-        name.includes('textile') ||
-        name.includes('t-shirt') ||
-        name.includes('polo')
+        name.includes('montre') ||
+        name.includes('watch') ||
+        name.includes('wearable') ||
+        name.includes('bracelet') ||
+        name.includes('band')
     ) {
-        return <Shirt size={18} strokeWidth={1.5} />;
-    }
-    if (
-        name.includes('brand') ||
-        name.includes('graph') ||
-        name.includes('design') ||
-        name.includes('logo')
-    ) {
-        return <Palette size={18} strokeWidth={1.5} />;
+        return <Watch size={18} strokeWidth={1.5} />;
     }
     return <LayoutGrid size={18} strokeWidth={1.5} />;
 };
@@ -148,7 +139,7 @@ export default function ShopContent({ initialProducts, initialCategories }) {
         'Ordinateurs & PC',
         'Audio, Enceintes & Oraimo',
         'Accessoires & Énergie',
-        'Sérigraphie & Goodies',
+        'Montres & Wearables',
     ];
     const categories = juloCategories;
 
@@ -332,11 +323,11 @@ export default function ShopContent({ initialProducts, initialCategories }) {
                             CATALOGUE OFFICIEL JULO
                         </div>
                         <h1 className="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight">
-                            Smartphones, Ordinateurs &amp; Sérigraphie.
+                            Smartphones, Ordinateurs &amp; High-Tech.
                         </h1>
                         <p className="mt-2 text-zinc-400 text-xs sm:text-sm font-normal leading-relaxed">
-                            Équipements certifiés neufs avec garantie et personnalisation textile de
-                            haute précision au Sénégal.
+                            Équipements électroniques certifiés neufs avec garantie constructeur au
+                            Sénégal.
                         </p>
                     </div>
                 </section>
@@ -358,24 +349,25 @@ export default function ShopContent({ initialProducts, initialCategories }) {
                             </button>
                         </div>
 
-                        {/* WhatsApp Custom Order Promo Card */}
+                        {/* WhatsApp Advice Promo Card */}
                         <div className="bg-gradient-to-br from-[#24221E] to-[#1C1B1F] rounded-3xl p-6 text-white border border-[#33302A] shadow-sm">
                             <span className="bg-[#C59A63] text-white text-[9px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full">
-                                Atelier Custom
+                                Conseil VIP
                             </span>
                             <h4 className="font-bold text-base mt-3 mb-1">
-                                Sérigraphie &amp; Goodies
+                                Besoin d&apos;un Conseil ?
                             </h4>
                             <p className="text-zinc-400 text-xs font-normal mb-5 leading-relaxed">
-                                Personnalisez vos t-shirts, polos ou hoodies avec un devis express.
+                                Notre équipe vous guide pour choisir le smartphone ou PC adapté à
+                                vos besoins.
                             </p>
                             <a
-                                href="https://wa.me/221754469097?text=Bonjour%20JULO,%20je%20souhaite%20un%20devis%20pour%20la%20sérigraphie"
+                                href="https://wa.me/221754469097?text=Bonjour%20JULO,%20je%20souhaite%20un%20conseil%20pour%20choisir%20un%20appareil"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-white text-[#1C1B1F] hover:bg-[#C59A63] hover:text-white rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-xs"
                             >
-                                <span>Demander un Devis</span>
+                                <span>Discuter sur WhatsApp</span>
                                 <ArrowRight size={13} />
                             </a>
                         </div>

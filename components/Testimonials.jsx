@@ -16,11 +16,11 @@ const testimonials = [
     {
         id: 2,
         name: 'Aminata Sow',
-        role: 'Fondatrice de Marque',
+        role: 'Client vérifié',
         content:
-            'JULO est devenu notre partenaire de confiance pour la personnalisation textile de nos t-shirts et goodies. Sérigraphie nette et finitions soignées.',
+            'J’ai commandé un Samsung Galaxy S24 Ultra avec des écouteurs Oraimo FreePods. Tout est arrivé sous blister scellé avec garantie constructeur. Très rassurant !',
         rating: 5,
-        location: 'Saint-Louis',
+        location: 'Dakar',
     },
     {
         id: 3,

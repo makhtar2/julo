@@ -17,8 +17,8 @@ const OurSpecs = () => {
                     L&apos;Excellence à Chaque Étape
                 </h2>
                 <p className="mt-1.5 text-[#8C8275] text-xs sm:text-sm">
-                    Une sélection rigoureuse d&apos;appareils électroniques et un atelier
-                    d&apos;impression textile dédié.
+                    Une sélection rigoureuse de smartphones, ordinateurs et équipements high-tech
+                    certifiés.
                 </p>
             </div>
 

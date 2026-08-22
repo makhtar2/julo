@@ -13,7 +13,7 @@ import {
     Laptop,
     Headphones,
     Cable,
-    Shirt,
+    Watch,
 } from 'lucide-react';
 
 const Hero = ({ initialCategories = [] }) => {
@@ -70,17 +70,13 @@ const Hero = ({ initialCategories = [] }) => {
             return Cable;
         }
         if (
-            name.includes('serigraphie') ||
-            name.includes('sérigraphie') ||
-            name.includes('textile') ||
-            name.includes('t-shirt') ||
-            name.includes('polo') ||
-            name.includes('goodies') ||
-            name.includes('hoodie') ||
-            name.includes('casquette') ||
-            name.includes('banner')
+            name.includes('montre') ||
+            name.includes('watch') ||
+            name.includes('wearable') ||
+            name.includes('bracelet') ||
+            name.includes('band')
         ) {
-            return Shirt;
+            return Watch;
         }
         return Smartphone;
     };
@@ -93,7 +89,7 @@ const Hero = ({ initialCategories = [] }) => {
         'Ordinateurs & PC',
         'Audio, Enceintes & Oraimo',
         'Accessoires & Énergie',
-        'Sérigraphie & Goodies',
+        'Montres & Wearables',
     ];
 
     const categoriesList = juloCategories.map((catName) => ({

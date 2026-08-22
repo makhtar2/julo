@@ -18,7 +18,7 @@ const WhatsAppIcon = ({ size = 24, className = '' }) => (
 const WhatsAppButton = () => {
     const phoneNumber = '221754469097';
     const message =
-        'Bonjour Julo, je souhaiterais avoir des informations sur vos produits électroniques ou services de sérigraphie/infographie.';
+        'Bonjour JULO, je souhaiterais avoir des informations sur vos smartphones, ordinateurs et accessoires disponibles.';
 
     const handleClick = () => {
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

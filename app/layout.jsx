@@ -32,19 +32,20 @@ export const viewport = {
 export const metadata = {
     manifest: '/manifest.json',
     title: {
-        default: 'Julo | Smartphones, Ordinateurs & Sérigraphie au Sénégal',
+        default: 'Julo | Boutique High-Tech, Smartphones & Ordinateurs au Sénégal',
         template: '%s | Julo Sénégal',
     },
     description:
-        'Julo : Votre destination de référence pour l’achat de smartphones, ordinateurs et accessoires de qualité ainsi que vos impressions sérigraphiques au Sénégal.',
+        'Julo : Votre boutique en ligne de référence pour l’achat de smartphones, ordinateurs et accessoires high-tech 100% originaux avec garantie au Sénégal.',
     keywords: [
         'julo',
         'julo sénégal',
         'smartphones dakar',
         'ordinateurs dakar',
         'accessoires tech dakar',
-        'sérigraphie textile sénégal',
-        'personnalisation t-shirt dakar',
+        'boutique tech sénégal',
+        'iphone dakar',
+        'samsung dakar',
     ],
     authors: [{ name: 'Julo' }],
     metadataBase: new URL('https://julo.sn'),
@@ -56,22 +57,22 @@ export const metadata = {
         locale: 'fr_SN',
         url: 'https://julo.sn',
         siteName: 'Julo',
-        title: 'Julo | Smartphones, Ordinateurs & Sérigraphie au Sénégal',
+        title: 'Julo | Boutique High-Tech, Smartphones & Ordinateurs au Sénégal',
         description:
-            'Achetez vos équipements high-tech certifiés et commandez vos impressions textiles sur-mesure chez Julo au Sénégal.',
+            'Achetez vos équipements high-tech certifiés avec garantie et livraison rapide chez Julo au Sénégal.',
         images: [
             {
                 url: '/assets/julo_logo_transparent.png',
                 width: 1200,
                 height: 630,
-                alt: 'Julo - Tech & Sérigraphie au Sénégal',
+                alt: 'Julo - Boutique High-Tech au Sénégal',
             },
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Julo | Tech & Sérigraphie au Sénégal',
-        description: 'Vente de smartphones, ordinateurs, accessoires et sérigraphie au Sénégal.',
+        title: 'Julo | Boutique High-Tech au Sénégal',
+        description: 'Vente de smartphones, ordinateurs et accessoires électroniques au Sénégal.',
         images: ['/assets/julo_logo_transparent.png'],
     },
 };
@@ -85,7 +86,7 @@ export default function RootLayout({ children }) {
         logo: 'https://julo.sn/assets/julo_logo_transparent.png',
         image: 'https://julo.sn/assets/julo_logo_transparent.png',
         description:
-            'Vente de smartphones, ordinateurs, accessoires et services de sérigraphie au Sénégal.',
+            'Boutique en ligne officielle de vente de smartphones, ordinateurs et accessoires high-tech au Sénégal.',
         brand: {
             '@type': 'Brand',
             name: 'Julo',

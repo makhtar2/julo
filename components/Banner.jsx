@@ -9,7 +9,7 @@ export default function Banner() {
             icon: ShieldCheckIcon,
         },
         {
-            text: 'JULO.PROD — Atelier de Sérigraphie & Personnalisation Textile de Haute Précision',
+            text: 'Garantie Constructeur & Service Après-Vente Réactif sur Tous Vos Appareils',
             icon: ZapIcon,
         },
         {

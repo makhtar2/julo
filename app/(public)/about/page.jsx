@@ -35,9 +35,8 @@ export default function AboutPage() {
                             À Propos de JULO.
                         </h1>
                         <p className="mt-4 text-zinc-400 text-sm sm:text-base font-normal leading-relaxed">
-                            Votre destination de référence pour des équipements électroniques
-                            authentiques et des travaux de sérigraphie &amp; infographie de haute
-                            précision au Sénégal.
+                            Votre boutique en ligne de référence pour des smartphones, ordinateurs
+                            et accessoires électroniques 100% authentiques au Sénégal.
                         </p>
 
                         <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -85,7 +84,7 @@ export default function AboutPage() {
                             </span>
                         </div>
                         <h2 className="text-2xl sm:text-4xl font-black text-[#1C1B1F] tracking-tight leading-tight">
-                            L&apos;alliance entre technologie &amp; design sur-mesure.
+                            L&apos;excellence High-Tech à portée de main.
                         </h2>
                         <div className="mt-6 space-y-4 text-[#5A564F] text-sm leading-relaxed font-normal">
                             <p>
@@ -93,20 +92,20 @@ export default function AboutPage() {
                                 <strong className="text-[#1C1B1F]">Babacar Diop Gaye</strong> et{' '}
                                 <strong className="text-[#1C1B1F]">Makhtar Wade</strong>,{' '}
                                 <strong className="text-[#1C1B1F]">Julo</strong> est née d&apos;une
-                                ambition claire : offrir au Sénégal un accès direct à des
-                                équipements high-tech 100% originaux, tout en développant un atelier
-                                de sérigraphie et d&apos;infographie créatif pour valoriser
-                                l&apos;image des entreprises et des particuliers.
+                                ambition claire : offrir au Sénégal un accès direct, transparent et
+                                sécurisé aux meilleurs équipements high-tech certifiés
+                                d&apos;origine.
                             </p>
                             <p>
-                                Notre catalogue regroupe les plus grandes marques de smartphones,
-                                ordinateurs portables et accessoires de charge rapide.
+                                Notre catalogue regroupe les plus grandes marques mondiales : Apple,
+                                Samsung, Tecno, Infinix, Itel, Xiaomi, Oraimo, Asus, Lenovo et HP.
+                                Chaque produit est rigoureusement vérifié, neuf sous emballage
+                                d&apos;origine, et bénéficie d&apos;une garantie officielle.
                             </p>
                             <p>
-                                En parallèle, notre studio graphique et notre atelier
-                                d&apos;impression textile réalisent la personnalisation de t-shirts,
-                                polos, hoodies, casquettes et goodies avec une exigence de finition
-                                irréprochable.
+                                Avec un service de livraison express sous 24h à Dakar, Thiès et
+                                Touba, ainsi qu&apos;un support client disponible 7j/7, nous
+                                réinventons l&apos;expérience d&apos;achat high-tech au Sénégal.
                             </p>
                         </div>
                     </div>

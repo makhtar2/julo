@@ -94,7 +94,6 @@ const Navbar = ({ user, isAdmin }) => {
     const navLinks = [
         { name: 'Accueil', href: '/', isHome: true },
         { name: 'Boutique', href: '/shop' },
-        { name: 'Sérigraphie', href: '/shop?category=Sérigraphie' },
         { name: 'À Propos', href: '/about' },
         { name: 'Contact', href: '/contact' },
     ];
@@ -102,10 +101,10 @@ const Navbar = ({ user, isAdmin }) => {
     const categoryLinks = [
         { name: 'Smartphones & Apple', href: '/shop?category=Smartphones' },
         { name: 'Samsung Galaxy', href: '/shop?category=Samsung' },
-        { name: 'Tecno, Infinix & Itel', href: '/shop?category=Tecno' },
+        { name: 'Tecno & Infinix', href: '/shop?category=Tecno' },
         { name: 'Ordinateurs & PC', href: '/shop?category=Ordinateurs' },
         { name: 'Audio & Oraimo', href: '/shop?category=Audio' },
-        { name: 'Accessoires & GaN', href: '/shop?category=Accessoires' },
+        { name: 'Montres Connectées', href: '/shop?category=Montres' },
     ];
 
     return (

@@ -41,8 +41,8 @@ export default function ContactPage() {
                         Contactez l&apos;Équipe JULO.
                     </h1>
                     <p className="mt-3 text-[#5A564F] text-sm sm:text-base">
-                        Une question sur nos smartphones, ordinateurs ou un projet de sérigraphie ?
-                        Nous vous répondons rapidement.
+                        Une question sur nos smartphones, ordinateurs ou accessoires ? Notre équipe
+                        vous répond immédiatement.
                     </p>
                 </div>
 
