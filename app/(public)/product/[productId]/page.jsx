@@ -1,8 +1,9 @@
-﻿import ProductDescription from '@/components/ProductDescription';
+import ProductDescription from '@/components/ProductDescription';
 import ProductDetails from '@/components/ProductDetails';
 import RelatedProducts from '@/components/RelatedProducts';
 import { getProduct, getProducts } from '@/app/actions/product';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 
 export const revalidate = 3600;
 
@@ -19,30 +20,34 @@ export async function generateMetadata({ params }) {
     const { productId } = await params;
     const { product } = await getProduct(productId);
 
-    if (!product) return { title: 'Produit non trouvé | Global Air' };
+    if (!product) return { title: 'Produit non trouvé | Julo' };
 
-    const formattedPrice = product.price.toLocaleString('fr-SN') + ' FCFA';
-    const categoryName = product.Category?.name || product.category || 'Électroménager';
+    const formattedPrice = product.price?.toLocaleString('fr-SN') + ' FCFA';
+    const categoryName = product.Category?.name || product.category || 'High-Tech';
     const cleanDescription = product.description
         ? product.description.substring(0, 155) + '...'
-        : 'Découvrez nos produits premium chez Global Air Sénégal. Qualité et service garantis.';
+        : 'Découvrez ce produit premium chez Julo Sénégal. Authenticité et livraison rapide garanties.';
 
     return {
-        title: `${product.name} — ${formattedPrice} | Global Air Sénégal`,
-        description: `Achetez ${product.name} au meilleur prix au Sénégal (${formattedPrice}). ${categoryName} premium avec livraison express à Dakar. En stock chez Global Air.`,
+        title: `${product.name} — ${formattedPrice} | Julo Sénégal`,
+        description: `Achetez ${product.name} au meilleur prix (${formattedPrice}) chez Julo Sénégal. Livraison 24h à Dakar, Thiès, Touba.`,
         openGraph: {
             title: `${product.name} — ${formattedPrice}`,
-            description: `Découvrez ${product.name} sur Global Air Sénégal. Qualité premium, meilleur prix et livraison rapide au Sénégal.`,
-            images: product.images?.[0] ? [product.images[0]] : ['/assets/gs_logo.jpg'],
+            description: `Découvrez ${product.name} chez Julo Sénégal. Produits 100% originaux.`,
+            images: product.images?.[0]
+                ? [product.images[0]]
+                : ['/assets/julo_logo_transparent.png'],
             type: 'website',
-            siteName: 'Global Air Sénégal',
+            siteName: 'Julo Sénégal',
             locale: 'fr_SN',
         },
         twitter: {
             card: 'summary_large_image',
             title: product.name,
-            description: `Prix : ${formattedPrice} — En stock chez Global Air Sénégal. Livraison partout au Sénégal.`,
-            images: product.images?.[0] ? [product.images[0]] : ['/assets/gs_logo.jpg'],
+            description: `Prix : ${formattedPrice} — En stock chez Julo Sénégal.`,
+            images: product.images?.[0]
+                ? [product.images[0]]
+                : ['/assets/julo_logo_transparent.png'],
         },
     };
 }
@@ -66,11 +71,11 @@ export default async function ProductPage({ params }) {
         mpn: product.id,
         brand: {
             '@type': 'Brand',
-            name: 'Global Air',
+            name: 'Julo',
         },
         offers: {
             '@type': 'Offer',
-            url: `https://globalairsn.com/product/${product.id}`,
+            url: `https://julo.sn/product/${product.id}`,
             priceCurrency: 'XOF',
             price: product.price,
             priceValidUntil: '2026-12-31',
@@ -78,18 +83,6 @@ export default async function ProductPage({ params }) {
                 ? 'https://schema.org/InStock'
                 : 'https://schema.org/OutOfStock',
             itemCondition: 'https://schema.org/NewCondition',
-            shippingDetails: {
-                '@type': 'OfferShippingDetails',
-                shippingRate: {
-                    '@type': 'MonetaryAmount',
-                    value: 2000,
-                    currency: 'XOF',
-                },
-                shippingDestination: {
-                    '@type': 'DefinedRegion',
-                    addressCountry: 'SN',
-                },
-            },
         },
     };
 
@@ -101,30 +94,29 @@ export default async function ProductPage({ params }) {
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Accueil',
-                item: 'https://globalairsn.com',
+                item: 'https://julo.sn',
             },
             {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Boutique',
-                item: 'https://globalairsn.com/shop',
+                item: 'https://julo.sn/shop',
             },
             {
                 '@type': 'ListItem',
                 position: 3,
                 name: product.Category?.name || product.category || 'Général',
-                item: `https://globalairsn.com/shop?category=${encodeURIComponent(product.Category?.name || product.category || 'Général')}`,
+                item: `https://julo.sn/shop?category=${encodeURIComponent(product.Category?.name || product.category || 'Général')}`,
             },
             {
                 '@type': 'ListItem',
                 position: 4,
                 name: product.name,
-                item: `https://globalairsn.com/product/${product.id}`,
+                item: `https://julo.sn/product/${product.id}`,
             },
         ],
     };
 
-    // Filter related products by category
     const relatedProducts =
         allProducts?.filter(
             (p) =>
@@ -133,7 +125,7 @@ export default async function ProductPage({ params }) {
         ) || [];
 
     return (
-        <div className="mx-6">
+        <div className="bg-[#FAF8F5] min-h-screen">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
@@ -142,19 +134,19 @@ export default async function ProductPage({ params }) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
             />
-            <div className="max-w-7xl mx-auto pb-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 pb-20">
                 {/* Breadcrumbs */}
-                <div className="text-slate-400 font-bold text-[10px] uppercase tracking-widest mt-10 mb-6 flex items-center gap-2">
-                    <span className="hover:text-blue-600 cursor-pointer transition-colors">
+                <div className="text-[#8C8275] font-semibold text-xs mb-8 flex items-center gap-2">
+                    <Link href="/" className="hover:text-[#1C1B1F] transition-colors">
                         Accueil
-                    </span>
-                    <span className="text-slate-200">/</span>
-                    <span className="hover:text-blue-600 cursor-pointer transition-colors">
+                    </Link>
+                    <span className="text-[#D6CEBE]">/</span>
+                    <Link href="/shop" className="hover:text-[#1C1B1F] transition-colors">
                         Boutique
-                    </span>
-                    <span className="text-slate-200">/</span>
-                    <span className="text-slate-900">
-                        {product.Category?.name || product.category || 'Général'}
+                    </Link>
+                    <span className="text-[#D6CEBE]">/</span>
+                    <span className="text-[#1C1B1F] font-bold truncate max-w-xs sm:max-w-md">
+                        {product.name}
                     </span>
                 </div>
 

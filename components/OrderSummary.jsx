@@ -229,7 +229,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                             {
                                 id: 'WAVE',
                                 label: 'Paiement Wave',
-                                color: 'text-blue-600',
+                                color: 'text-[#C59A63]',
                                 icon: <Image src={waveIcon} alt="Wave" width={24} height={24} />,
                             },
                         ]
@@ -271,7 +271,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                 id="order-summary"
                 className="bg-white border border-slate-100 rounded-2xl sm:rounded-[2.5rem] p-4 sm:p-8 shadow-xl sm:shadow-2xl shadow-slate-200/60 scroll-mt-20"
             >
-                <p className="lg:hidden text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] mb-4">
+                <p className="lg:hidden text-[10px] font-black text-[#C59A63] uppercase tracking-[0.2em] mb-4">
                     Finaliser la commande
                 </p>
                 <div className="space-y-6 sm:space-y-8">
@@ -286,12 +286,12 @@ const OrderSummary = ({ totalPrice, items }) => {
                                 onClick={() => setDeliveryMethod('DELIVERY')}
                                 className={`relative flex flex-col items-start p-4 sm:p-5 rounded-2xl border-2 transition-all text-left group ${
                                     deliveryMethod === 'DELIVERY'
-                                        ? 'border-blue-600 bg-blue-50/80 shadow-lg shadow-blue-600/10'
+                                        ? 'border-blue-600 bg-[#F5F2EB]/80 shadow-lg shadow-blue-600/10'
                                         : 'border-slate-200 bg-slate-50/50 hover:border-blue-300 hover:bg-slate-50'
                                 }`}
                             >
                                 <div
-                                    className={`p-2 rounded-full mb-3 transition-colors ${deliveryMethod === 'DELIVERY' ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-500 group-hover:bg-blue-100 group-hover:text-blue-500'}`}
+                                    className={`p-2 rounded-full mb-3 transition-colors ${deliveryMethod === 'DELIVERY' ? 'bg-[#C59A63] text-white' : 'bg-slate-200 text-slate-500 group-hover:bg-blue-100 group-hover:text-[#C59A63]'}`}
                                 >
                                     <Truck size={20} />
                                 </div>
@@ -308,7 +308,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                         <CheckCircle2
                                             size={22}
                                             fill="currentColor"
-                                            className="text-blue-600 bg-white rounded-full shadow-sm"
+                                            className="text-[#C59A63] bg-white rounded-full shadow-sm"
                                         />
                                     ) : (
                                         <div className="w-[22px] h-[22px] rounded-full border-2 border-slate-300 bg-white group-hover:border-blue-300" />
@@ -323,12 +323,12 @@ const OrderSummary = ({ totalPrice, items }) => {
                                 }}
                                 className={`relative flex flex-col items-start p-4 sm:p-5 rounded-2xl border-2 transition-all text-left group ${
                                     deliveryMethod === 'PICKUP'
-                                        ? 'border-blue-600 bg-blue-50/80 shadow-lg shadow-blue-600/10'
+                                        ? 'border-blue-600 bg-[#F5F2EB]/80 shadow-lg shadow-blue-600/10'
                                         : 'border-slate-200 bg-slate-50/50 hover:border-blue-300 hover:bg-slate-50'
                                 }`}
                             >
                                 <div
-                                    className={`p-2 rounded-full mb-3 transition-colors ${deliveryMethod === 'PICKUP' ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-500 group-hover:bg-blue-100 group-hover:text-blue-500'}`}
+                                    className={`p-2 rounded-full mb-3 transition-colors ${deliveryMethod === 'PICKUP' ? 'bg-[#C59A63] text-white' : 'bg-slate-200 text-slate-500 group-hover:bg-blue-100 group-hover:text-[#C59A63]'}`}
                                 >
                                     <Store size={20} />
                                 </div>
@@ -345,7 +345,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                         <CheckCircle2
                                             size={22}
                                             fill="currentColor"
-                                            className="text-blue-600 bg-white rounded-full shadow-sm"
+                                            className="text-[#C59A63] bg-white rounded-full shadow-sm"
                                         />
                                     ) : (
                                         <div className="w-[22px] h-[22px] rounded-full border-2 border-slate-300 bg-white group-hover:border-blue-300" />
@@ -371,7 +371,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                     initial={{ opacity: 0, y: 8 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -8 }}
-                                    className="group relative bg-blue-50/50 p-5 rounded-[2rem] border border-blue-100 transition-all"
+                                    className="group relative bg-[#F5F2EB]/50 p-5 rounded-[2rem] border border-blue-100 transition-all"
                                 >
                                     <div className="pr-10">
                                         <p className="font-black text-blue-900 text-sm mb-1">
@@ -380,13 +380,13 @@ const OrderSummary = ({ totalPrice, items }) => {
                                         <p className="text-xs text-blue-700 font-bold">
                                             Tél. {selectedAddress.phone}
                                         </p>
-                                        <p className="text-xs text-blue-600/80 mt-1 leading-relaxed">
+                                        <p className="text-xs text-[#C59A63]/80 mt-1 leading-relaxed">
                                             {selectedAddress.street}, {selectedAddress.city}
                                         </p>
                                     </div>
                                     <button
                                         onClick={() => setSelectedAddress(null)}
-                                        className="absolute top-4 right-4 p-2 bg-white rounded-xl text-blue-600 shadow-sm hover:bg-blue-600 hover:text-white transition-all"
+                                        className="absolute top-4 right-4 p-2 bg-white rounded-xl text-[#C59A63] shadow-sm hover:bg-[#C59A63] hover:text-white transition-all"
                                     >
                                         <SquarePenIcon size={16} />
                                     </button>
@@ -408,7 +408,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                         <div className="space-y-4">
                                             {/* Nom complet */}
                                             <div className="relative group">
-                                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors pointer-events-none">
+                                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#C59A63] transition-colors pointer-events-none">
                                                     <UserIcon size={18} />
                                                 </div>
                                                 <input
@@ -417,13 +417,13 @@ const OrderSummary = ({ totalPrice, items }) => {
                                                     onChange={handleQuickChange}
                                                     type="text"
                                                     placeholder="Votre nom complet"
-                                                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-transparent focus:border-blue-500 focus:bg-white outline-none rounded-2xl text-sm font-bold text-slate-800 transition-all placeholder:font-medium placeholder:text-slate-400 shadow-inner"
+                                                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-transparent focus:border-[#C59A63] focus:bg-white outline-none rounded-2xl text-sm font-bold text-slate-800 transition-all placeholder:font-medium placeholder:text-slate-400 shadow-inner"
                                                 />
                                             </div>
 
                                             {/* Téléphone */}
                                             <div className="relative group">
-                                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors pointer-events-none">
+                                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#C59A63] transition-colors pointer-events-none">
                                                     <PhoneIcon size={18} />
                                                 </div>
                                                 <input
@@ -432,7 +432,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                                     onChange={handleQuickChange}
                                                     type="tel"
                                                     placeholder="Téléphone (ex: 77 783 27 98)"
-                                                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-transparent focus:border-blue-500 focus:bg-white outline-none rounded-2xl text-sm font-bold text-slate-800 transition-all placeholder:font-medium placeholder:text-slate-400 shadow-inner"
+                                                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-transparent focus:border-[#C59A63] focus:bg-white outline-none rounded-2xl text-sm font-bold text-slate-800 transition-all placeholder:font-medium placeholder:text-slate-400 shadow-inner"
                                                 />
                                             </div>
                                         </div>
@@ -447,21 +447,21 @@ const OrderSummary = ({ totalPrice, items }) => {
                                         >
                                             <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 flex items-center justify-between">
                                                 <span>Adresse de livraison</span>
-                                                <span className="text-[9px] text-blue-500 lowercase bg-blue-50 px-2 py-0.5 rounded-full">
+                                                <span className="text-[9px] text-[#C59A63] lowercase bg-[#F5F2EB] px-2 py-0.5 rounded-full">
                                                     obligatoire
                                                 </span>
                                             </p>
                                             <div className="space-y-4">
                                                 {/* Région */}
                                                 <div className="relative group">
-                                                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors pointer-events-none">
+                                                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#C59A63] transition-colors pointer-events-none">
                                                         <Map size={18} />
                                                     </div>
                                                     <select
                                                         name="region"
                                                         value={quickInfo.region}
                                                         onChange={handleRegionChange}
-                                                        className="w-full pl-12 pr-10 py-4 bg-slate-50 border-2 border-transparent focus:border-blue-500 focus:bg-white outline-none rounded-2xl text-sm font-bold text-slate-800 transition-all cursor-pointer appearance-none shadow-inner"
+                                                        className="w-full pl-12 pr-10 py-4 bg-slate-50 border-2 border-transparent focus:border-[#C59A63] focus:bg-white outline-none rounded-2xl text-sm font-bold text-slate-800 transition-all cursor-pointer appearance-none shadow-inner"
                                                     >
                                                         {regions.map((r) => (
                                                             <option key={r} value={r}>
@@ -476,14 +476,14 @@ const OrderSummary = ({ totalPrice, items }) => {
 
                                                 {/* Zone */}
                                                 <div className="relative group">
-                                                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors pointer-events-none">
+                                                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#C59A63] transition-colors pointer-events-none">
                                                         <Building2 size={18} />
                                                     </div>
                                                     <select
                                                         name="zone"
                                                         value={quickInfo.zone}
                                                         onChange={handleQuickChange}
-                                                        className={`w-full pl-12 pr-10 py-4 bg-slate-50 border-2 border-transparent focus:border-blue-500 focus:bg-white outline-none rounded-2xl text-sm font-bold transition-all cursor-pointer appearance-none shadow-inner ${quickInfo.zone === '' ? 'text-slate-400' : 'text-slate-800'}`}
+                                                        className={`w-full pl-12 pr-10 py-4 bg-slate-50 border-2 border-transparent focus:border-[#C59A63] focus:bg-white outline-none rounded-2xl text-sm font-bold transition-all cursor-pointer appearance-none shadow-inner ${quickInfo.zone === '' ? 'text-slate-400' : 'text-slate-800'}`}
                                                     >
                                                         <option value="" disabled hidden>
                                                             Sélectionnez votre quartier/ville...
@@ -511,7 +511,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                     {/* Lien optionnel — adresses enregistrées uniquement */}
                                     {deliveryMethod === 'DELIVERY' && addressList.length > 0 && (
                                         <details className="group/details border border-slate-100 bg-slate-50 rounded-2xl overflow-hidden">
-                                            <summary className="flex items-center justify-between p-4 cursor-pointer list-none text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 transition-colors">
+                                            <summary className="flex items-center justify-between p-4 cursor-pointer list-none text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-[#C59A63] transition-colors">
                                                 <span className="flex items-center gap-2">
                                                     <PlusIcon size={14} />
                                                     Mes adresses enregistrées
@@ -524,7 +524,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                             <div className="p-4 pt-0 flex flex-col gap-3 border-t border-slate-100 mt-2 bg-white">
                                                 <div className="relative">
                                                     <select
-                                                        className="w-full bg-slate-50 border-2 border-transparent p-4 rounded-xl outline-none font-bold text-xs text-slate-700 focus:border-blue-400 transition-all appearance-none cursor-pointer"
+                                                        className="w-full bg-slate-50 border-2 border-transparent p-4 rounded-xl outline-none font-bold text-xs text-slate-700 focus:border-[#C59A63] transition-all appearance-none cursor-pointer"
                                                         onChange={(e) => {
                                                             if (e.target.value !== '')
                                                                 setSelectedAddress(
@@ -565,7 +565,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                     key={option.id}
                                     type="button"
                                     onClick={() => setPaymentMethod(option.id)}
-                                    className={`relative shrink-0 snap-start flex flex-col items-center justify-center gap-2 sm:gap-3 p-4 sm:p-5 rounded-2xl border-2 transition-all duration-300 min-w-[7.5rem] sm:min-w-0 ${effectivePaymentMethod === option.id ? 'bg-white border-blue-500 shadow-lg shadow-blue-100 sm:scale-105' : 'bg-white border-slate-100 opacity-70 hover:opacity-100 hover:border-slate-200'} ${option.unavailable ? 'cursor-not-allowed grayscale opacity-50 hover:opacity-50' : ''}`}
+                                    className={`relative shrink-0 snap-start flex flex-col items-center justify-center gap-2 sm:gap-3 p-4 sm:p-5 rounded-2xl border-2 transition-all duration-300 min-w-[7.5rem] sm:min-w-0 ${effectivePaymentMethod === option.id ? 'bg-white border-[#C59A63] shadow-lg shadow-sm sm:scale-105' : 'bg-white border-slate-100 opacity-70 hover:opacity-100 hover:border-slate-200'} ${option.unavailable ? 'cursor-not-allowed grayscale opacity-50 hover:opacity-50' : ''}`}
                                 >
                                     <div className="flex items-center justify-center h-10 w-full">
                                         {option.icon}
@@ -576,7 +576,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                     {effectivePaymentMethod === option.id && (
                                         <motion.div
                                             layoutId="check"
-                                            className="absolute top-2 right-2 text-blue-500"
+                                            className="absolute top-2 right-2 text-[#C59A63]"
                                         >
                                             <CheckCircle2 size={16} fill="white" />
                                         </motion.div>
@@ -592,7 +592,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                     initial={{ opacity: 0, height: 0 }}
                                     animate={{ opacity: 1, height: 'auto' }}
                                     exit={{ opacity: 0, height: 0 }}
-                                    className="mt-4 p-4 bg-blue-50 border border-blue-100 rounded-2xl"
+                                    className="mt-4 p-4 bg-[#F5F2EB] border border-blue-100 rounded-2xl"
                                 >
                                     <p className="text-[10px] font-bold text-blue-800 leading-relaxed text-center">
                                         Cliquez sur le bouton ci-dessous pour être redirigé vers
@@ -614,14 +614,14 @@ const OrderSummary = ({ totalPrice, items }) => {
                                     e.preventDefault();
                                     setShowCoupon(!showCoupon);
                                 }}
-                                className="flex items-center gap-2 cursor-pointer list-none text-xs font-bold text-slate-500 hover:text-blue-600 transition-colors"
+                                className="flex items-center gap-2 cursor-pointer list-none text-xs font-bold text-slate-500 hover:text-[#C59A63] transition-colors"
                             >
                                 <PlusIcon
                                     size={14}
-                                    className={`transition-transform ${showCoupon || appliedCoupon ? 'rotate-45 text-blue-600' : ''}`}
+                                    className={`transition-transform ${showCoupon || appliedCoupon ? 'rotate-45 text-[#C59A63]' : ''}`}
                                 />
                                 <span
-                                    className={showCoupon || appliedCoupon ? 'text-blue-600' : ''}
+                                    className={showCoupon || appliedCoupon ? 'text-[#C59A63]' : ''}
                                 >
                                     Avez-vous un code promo ?
                                 </span>
@@ -634,7 +634,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                         disabled={appliedCoupon}
                                         type="text"
                                         placeholder="Saisissez votre code"
-                                        className="w-full px-4 py-3 bg-slate-50 border-2 border-transparent focus:border-blue-500 focus:bg-white outline-none rounded-xl text-xs font-bold text-slate-800 transition-all placeholder:font-medium placeholder:text-slate-400 shadow-inner"
+                                        className="w-full px-4 py-3 bg-slate-50 border-2 border-transparent focus:border-[#C59A63] focus:bg-white outline-none rounded-xl text-xs font-bold text-slate-800 transition-all placeholder:font-medium placeholder:text-slate-400 shadow-inner"
                                     />
                                 </div>
                                 <button
@@ -658,7 +658,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                 </button>
                             </div>
                             {appliedCoupon && (
-                                <p className="mt-2 text-[10px] text-blue-600 font-bold flex items-center gap-1">
+                                <p className="mt-2 text-[10px] text-[#C59A63] font-bold flex items-center gap-1">
                                     <CheckCircle2 size={12} /> Réduction de{' '}
                                     {appliedCoupon.discount.toLocaleString('fr-SN')} FCFA appliquée
                                     !
@@ -681,10 +681,10 @@ const OrderSummary = ({ totalPrice, items }) => {
                             </div>
                             {discountAmount > 0 && (
                                 <div className="flex justify-between items-center">
-                                    <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">
+                                    <span className="text-[10px] font-black text-[#C59A63] uppercase tracking-widest">
                                         Réduction ({appliedCoupon.code})
                                     </span>
-                                    <span className="font-bold text-blue-600">
+                                    <span className="font-bold text-[#C59A63]">
                                         -{discountAmount.toLocaleString('fr-SN')}{' '}
                                         <small className="text-[10px]">FCFA</small>
                                     </span>
@@ -696,11 +696,11 @@ const OrderSummary = ({ totalPrice, items }) => {
                                 </span>
                                 <span className="font-bold text-slate-700">
                                     {rawDeliveryFee === 0 ? (
-                                        <span className="text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md text-xs font-black uppercase tracking-widest">
+                                        <span className="text-[#C59A63] bg-[#F5F2EB] px-2 py-0.5 rounded-md text-xs font-black uppercase tracking-widest">
                                             Gratuit
                                         </span>
                                     ) : rawDeliveryFee === -1 ? (
-                                        <span className="text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md text-xs font-black uppercase tracking-widest">
+                                        <span className="text-[#C59A63] bg-[#F5F2EB] px-2 py-0.5 rounded-md text-xs font-black uppercase tracking-widest">
                                             À déterminer
                                         </span>
                                     ) : (
@@ -732,7 +732,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                             whileTap={{ scale: 0.98 }}
                             onClick={handlePlaceOrder}
                             disabled={isLoading}
-                            className="hidden lg:flex w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-sm uppercase tracking-[0.2em] shadow-2xl shadow-blue-600/30 hover:bg-blue-700 transition-all items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed"
+                            className="hidden lg:flex w-full bg-[#C59A63] text-white py-5 rounded-2xl font-black text-sm uppercase tracking-[0.2em] shadow-2xl shadow-[#C59A63]/25 hover:bg-[#B4874F] transition-all items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed"
                         >
                             {isLoading ? (
                                 <span className="flex items-center gap-2">

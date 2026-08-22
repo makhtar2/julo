@@ -17,7 +17,8 @@ const WhatsAppIcon = ({ size = 24, className = '' }) => (
 
 const WhatsAppButton = () => {
     const phoneNumber = '221754469097';
-    const message = 'Bonjour Julo, je souhaiterais avoir des informations sur vos produits électroniques ou services de sérigraphie/infographie.';
+    const message =
+        'Bonjour Julo, je souhaiterais avoir des informations sur vos produits électroniques ou services de sérigraphie/infographie.';
 
     const handleClick = () => {
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
@@ -31,19 +32,19 @@ const WhatsAppButton = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleClick}
-            className="fixed bottom-24 sm:bottom-10 right-6 z-50 flex items-center gap-2 bg-[#25D366] text-white p-3.5 sm:px-6 sm:py-4 rounded-3xl shadow-[0_15px_40_px_-10px_rgba(37,211,102,0.5)] border-2 border-white/20 transition-all active:shadow-inner"
+            className="fixed bottom-20 sm:bottom-8 right-6 z-50 flex items-center gap-2.5 bg-[#25D366] hover:bg-[#128C7E] text-white p-3 sm:px-5 sm:py-3 rounded-full shadow-lg shadow-[#25D366]/25 border border-white/30 transition-all"
             aria-label="Contactez-nous sur WhatsApp"
         >
             <div className="relative">
-                <WhatsAppIcon size={32} className="brightness-0 invert" />
-                <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+                <WhatsAppIcon size={24} className="brightness-0 invert" />
+                <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
                 </span>
             </div>
 
-            <span className="hidden sm:block font-black text-[10px] text-slate-900 uppercase tracking-widest">
-                Besoin d&apos;aide ?
+            <span className="hidden sm:block font-bold text-xs text-white uppercase tracking-wider">
+                WhatsApp
             </span>
         </motion.button>
     );

@@ -46,7 +46,7 @@ export default function CartStickyCheckout({
                         type="button"
                         onClick={onConfirm}
                         disabled={isLoading}
-                        className="shrink-0 flex items-center justify-center gap-2 bg-blue-600 text-white px-5 py-3.5 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-blue-600/25 hover:bg-blue-700 active:scale-[0.98] transition-all disabled:opacity-60"
+                        className="shrink-0 flex items-center justify-center gap-2 bg-[#C59A63] text-white px-5 py-3.5 rounded-full font-bold text-xs uppercase tracking-wider shadow-lg shadow-[#C59A63]/25 hover:bg-[#B4874F] active:scale-[0.98] transition-all disabled:opacity-60"
                     >
                         {isLoading ? '…' : 'Commander'}
                         {!isLoading && <ArrowRight size={16} />}

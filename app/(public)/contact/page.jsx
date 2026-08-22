@@ -1,129 +1,214 @@
-﻿'use client';
+'use client';
 import React, { useState } from 'react';
 import Title from '@/components/Title';
-import { Mail, Phone, MapPin, Send, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageCircle, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
+        phone: '',
         subject: '',
         message: '',
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        toast.success('Merci ! Votre message a été envoyé avec succès.');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        toast.success('Merci ! Votre message a bien été transmis à l’équipe JULO.');
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
     };
 
     const handleWhatsAppClick = () => {
-        const phoneNumber = '221771234567';
-        const message = "Bonjour Global Air, j'ai une question concernant vos produits.";
+        const phoneNumber = '221754469097';
+        const message =
+            'Bonjour JULO, je souhaite avoir des renseignements sur vos produits ou services.';
         window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
     };
 
     return (
-        <div className="mx-6">
-            <div className="max-w-7xl mx-auto my-12">
-                <Title
-                    title="Contactez-nous"
-                    description="Notre équipe basée à Dakar est là pour vous accompagner dans vos choix d'équipement."
-                    visibleButton={false}
-                />
+        <div className="bg-[#FAF8F5] min-h-screen py-8 sm:py-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Header */}
+                <div className="max-w-2xl mb-12">
+                    <div className="flex items-center gap-3 mb-3">
+                        <div className="h-px w-8 bg-[#D6CEBE]" />
+                        <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#8C8275]">
+                            SERVICE CLIENT &amp; SHOWROOM
+                        </span>
+                    </div>
+                    <h1 className="text-3xl sm:text-5xl font-black text-[#1C1B1F] tracking-tight">
+                        Contactez l&apos;Équipe JULO.
+                    </h1>
+                    <p className="mt-3 text-[#5A564F] text-sm sm:text-base">
+                        Une question sur nos smartphones, ordinateurs ou un projet de sérigraphie ?
+                        Nous vous répondons rapidement.
+                    </p>
+                </div>
 
-                <div className="flex flex-col lg:flex-row gap-12 mt-16">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
                     {/* Left: Contact Form */}
-                    <div className="flex-1">
-                        <form
-                            onSubmit={handleSubmit}
-                            className="flex flex-col gap-6 text-slate-600"
-                        >
-                            <div className="flex flex-col sm:flex-row gap-6">
-                                <input
-                                    type="text"
-                                    placeholder="Nom Complet"
-                                    className="p-3 px-4 border border-slate-200 outline-none rounded w-full focus:border-slate-400 transition"
-                                    required
-                                />
-                                <input
-                                    type="email"
-                                    placeholder="Email address"
-                                    className="p-3 px-4 border border-slate-200 outline-none rounded w-full focus:border-slate-400 transition"
+                    <div className="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 border border-[#EAE6DF] shadow-xs">
+                        <h2 className="text-xl font-black text-[#1C1B1F] mb-6">
+                            Envoyez-nous un Message
+                        </h2>
+
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-[11px] font-bold text-[#8C8275] uppercase tracking-wider mb-1.5">
+                                        Nom &amp; Prénom
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="Ex: Amadou Diallo"
+                                        value={formData.name}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, name: e.target.value })
+                                        }
+                                        className="w-full bg-[#F5F2EB] border border-[#EAE6DF] rounded-xl px-4 py-3 text-xs font-semibold text-[#1C1B1F] outline-none focus:border-[#C59A63]"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-[11px] font-bold text-[#8C8275] uppercase tracking-wider mb-1.5">
+                                        Adresse E-mail
+                                    </label>
+                                    <input
+                                        type="email"
+                                        placeholder="amadou@example.com"
+                                        value={formData.email}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, email: e.target.value })
+                                        }
+                                        className="w-full bg-[#F5F2EB] border border-[#EAE6DF] rounded-xl px-4 py-3 text-xs font-semibold text-[#1C1B1F] outline-none focus:border-[#C59A63]"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-[11px] font-bold text-[#8C8275] uppercase tracking-wider mb-1.5">
+                                        Téléphone (WhatsApp)
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        placeholder="+221 77 000 00 00"
+                                        value={formData.phone}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, phone: e.target.value })
+                                        }
+                                        className="w-full bg-[#F5F2EB] border border-[#EAE6DF] rounded-xl px-4 py-3 text-xs font-semibold text-[#1C1B1F] outline-none focus:border-[#C59A63]"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-[11px] font-bold text-[#8C8275] uppercase tracking-wider mb-1.5">
+                                        Objet de la demande
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="Ex: Devis Sérigraphie / Info Produit"
+                                        value={formData.subject}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, subject: e.target.value })
+                                        }
+                                        className="w-full bg-[#F5F2EB] border border-[#EAE6DF] rounded-xl px-4 py-3 text-xs font-semibold text-[#1C1B1F] outline-none focus:border-[#C59A63]"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label className="block text-[11px] font-bold text-[#8C8275] uppercase tracking-wider mb-1.5">
+                                    Votre Message
+                                </label>
+                                <textarea
+                                    rows="5"
+                                    placeholder="Détaillez votre demande ou votre projet..."
+                                    value={formData.message}
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, message: e.target.value })
+                                    }
+                                    className="w-full bg-[#F5F2EB] border border-[#EAE6DF] rounded-xl px-4 py-3 text-xs font-semibold text-[#1C1B1F] outline-none focus:border-[#C59A63] resize-none"
                                     required
                                 />
                             </div>
-                            <input
-                                type="text"
-                                placeholder="Sujet"
-                                className="p-3 px-4 border border-slate-200 outline-none rounded w-full focus:border-slate-400 transition"
-                                required
-                            />
-                            <textarea
-                                rows="6"
-                                placeholder="Votre Message"
-                                className="p-3 px-4 border border-slate-200 outline-none rounded w-full focus:border-slate-400 transition resize-none"
-                                required
-                            ></textarea>
-                            <button className="bg-slate-800 text-white text-sm font-medium py-3.5 rounded hover:bg-slate-900 active:scale-95 transition-all w-full sm:w-max px-12">
-                                ENVOYER
+
+                            <button
+                                type="submit"
+                                className="bg-[#1C1B1F] hover:bg-[#C59A63] text-white px-8 py-3.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-sm active:scale-95 flex items-center gap-2"
+                            >
+                                <Send size={14} />
+                                <span>Envoyer le Message</span>
                             </button>
                         </form>
                     </div>
 
-                    {/* Right: Info Cards */}
-                    <div className="lg:w-[400px] flex flex-col gap-6">
-                        <div className="border border-slate-200 p-8 rounded-lg flex flex-col gap-4">
-                            <h3 className="text-xl font-semibold text-slate-800">
-                                Nos Coordonnées
+                    {/* Right: Contact Cards */}
+                    <div className="lg:col-span-5 space-y-6">
+                        {/* WhatsApp Direct Card */}
+                        <div className="bg-[#1C1B1F] text-white rounded-3xl p-8 border border-[#33302A] shadow-sm relative overflow-hidden">
+                            <div className="absolute -right-6 -bottom-6 size-44 rounded-full border border-[#D4AF37]/20 pointer-events-none" />
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#25D366]/20 text-[#25D366] text-[10px] font-bold uppercase tracking-wider mb-4">
+                                <span className="size-2 rounded-full bg-[#25D366] animate-pulse" />
+                                Support Instantané
+                            </span>
+                            <h3 className="text-xl font-bold mb-2">
+                                Échangez directement sur WhatsApp
                             </h3>
-
-                            <div className="flex items-center gap-4 text-slate-600">
-                                <Phone size={20} className="text-blue-600" />
-                                <div>
-                                    <p className="text-sm font-bold">Téléphone</p>
-                                    <p className="text-sm">+221 77 783 27 98</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center gap-4 text-slate-600 border-t border-slate-100 pt-4">
-                                <Mail size={20} className="text-blue-600" />
-                                <div>
-                                    <p className="text-sm font-bold">Email</p>
-                                    <p className="text-sm">contact@globalairsn.com</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center gap-4 text-slate-600 border-t border-slate-100 pt-4">
-                                <MapPin size={20} className="text-blue-600" />
-                                <div>
-                                    <p className="text-sm font-bold">Showroom</p>
-                                    <p className="text-sm">Avenue Cheikh Anta Diop, Dakar</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="bg-slate-50 p-8 rounded-lg flex flex-col gap-4">
-                            <h3 className="text-lg font-semibold text-slate-800">
-                                Horaires & Support
-                            </h3>
-                            <p className="text-sm text-slate-600">
-                                <b>Lundi - Samedi :</b> 08h30 - 19h00
-                                <br />
-                                <b>Dimanche :</b> Fermé
-                            </p>
-                            <p className="text-sm text-slate-500 italic border-t border-slate-200 pt-4">
-                                &quot;Support technique local et SAV réactif pour tous vos
-                                équipements.&quot;
+                            <p className="text-xs text-zinc-400 font-normal leading-relaxed mb-6">
+                                Conseils d&apos;achat en direct, vérification de stock ou devis de
+                                sérigraphie en temps réel.
                             </p>
                             <button
                                 onClick={handleWhatsAppClick}
-                                className="mt-4 flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded font-bold text-sm hover:bg-blue-700 transition-all"
+                                className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-3.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md active:scale-95"
                             >
-                                <MessageCircle size={18} fill="currentColor" />
-                                WHATSAPP
+                                <MessageCircle size={16} />
+                                <span>Ouvrir WhatsApp (+221 75 446 90 97)</span>
                             </button>
+                        </div>
+
+                        {/* Direct Info Card */}
+                        <div className="bg-white rounded-3xl p-8 border border-[#EAE6DF] shadow-xs space-y-6">
+                            <h3 className="text-lg font-black text-[#1C1B1F]">Nos Coordonnées</h3>
+
+                            <div className="flex items-start gap-4 text-xs">
+                                <div className="size-10 rounded-xl bg-[#F5F2EB] flex items-center justify-center text-[#C59A63] shrink-0">
+                                    <Phone size={18} />
+                                </div>
+                                <div>
+                                    <p className="font-bold text-[#1C1B1F]">
+                                        Téléphone &amp; WhatsApp
+                                    </p>
+                                    <p className="text-[#5A564F] mt-0.5">+221 75 446 90 97</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-start gap-4 text-xs pt-4 border-t border-[#EAE6DF]">
+                                <div className="size-10 rounded-xl bg-[#F5F2EB] flex items-center justify-center text-[#C59A63] shrink-0">
+                                    <Mail size={18} />
+                                </div>
+                                <div>
+                                    <p className="font-bold text-[#1C1B1F]">
+                                        Courrier Électronique
+                                    </p>
+                                    <p className="text-[#5A564F] mt-0.5">contact@julo.sn</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-start gap-4 text-xs pt-4 border-t border-[#EAE6DF]">
+                                <div className="size-10 rounded-xl bg-[#F5F2EB] flex items-center justify-center text-[#C59A63] shrink-0">
+                                    <MapPin size={18} />
+                                </div>
+                                <div>
+                                    <p className="font-bold text-[#1C1B1F]">Localisation</p>
+                                    <p className="text-[#5A564F] mt-0.5">
+                                        Dakar &amp; Touba, Sénégal
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
