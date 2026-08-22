@@ -470,6 +470,43 @@ export default function ShopContent({ initialProducts, initialCategories }) {
                         </div>
                     </div>
 
+                    {/* Mobile Horizontal Category Pills Carousel */}
+                    <div className="flex md:hidden items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-4 -mx-4 px-4">
+                        <button
+                            type="button"
+                            onClick={() => selectCategory(null)}
+                            className={`shrink-0 px-4 py-2 rounded-full text-xs font-bold transition-all border ${
+                                !categoryParam
+                                    ? 'bg-[#1C1B1F] text-white border-[#1C1B1F] shadow-xs'
+                                    : 'bg-white text-[#4A4742] border-[#EAE6DF] hover:bg-[#FAF8F5]'
+                            }`}
+                        >
+                            Tous ({products.length})
+                        </button>
+                        {categories.map((cat) => {
+                            const isSelected = categoryParam === cat;
+                            return (
+                                <button
+                                    key={cat}
+                                    type="button"
+                                    onClick={() => selectCategory(cat)}
+                                    className={`shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-bold transition-all border ${
+                                        isSelected
+                                            ? 'bg-[#1C1B1F] text-white border-[#1C1B1F] shadow-xs'
+                                            : 'bg-white text-[#4A4742] border-[#EAE6DF] hover:bg-[#FAF8F5]'
+                                    }`}
+                                >
+                                    <span
+                                        className={isSelected ? 'text-[#C59A63]' : 'text-[#8C8275]'}
+                                    >
+                                        {getCategoryIcon(cat)}
+                                    </span>
+                                    <span>{cat}</span>
+                                </button>
+                            );
+                        })}
+                    </div>
+
                     {/* Results Count */}
                     <div className="mb-4 flex items-center justify-between text-xs text-[#8C8275]">
                         <span>

@@ -149,8 +149,34 @@ const Footer = () => {
                     </div>
                 </div>
 
+                {/* Payment Methods & Reassurance */}
+                <div className="py-8 border-b border-[#33302A] flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="flex items-center gap-2">
+                        <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">
+                            Paiements sécurisés :
+                        </span>
+                        <div className="flex items-center gap-2 flex-wrap">
+                            <span className="px-2.5 py-1 rounded-md bg-[#1B6CA8]/20 border border-[#1B6CA8]/40 text-[#4BB3FF] text-[10px] font-black tracking-wider">
+                                WAVE
+                            </span>
+                            <span className="px-2.5 py-1 rounded-md bg-[#FF6600]/20 border border-[#FF6600]/40 text-[#FF8533] text-[10px] font-black tracking-wider">
+                                ORANGE MONEY
+                            </span>
+                            <span className="px-2.5 py-1 rounded-md bg-[#FAF8F5]/10 border border-[#FAF8F5]/20 text-zinc-200 text-[10px] font-bold tracking-wider">
+                                À LA LIVRAISON
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="text-center sm:text-right">
+                        <p className="text-[11px] text-zinc-400">
+                            Expédition rapide 24h/48h partout au Sénégal 🇸🇳
+                        </p>
+                    </div>
+                </div>
+
                 {/* Bottom Bar */}
-                <div className="py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-500 font-medium">
+                <div className="py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-500 font-medium">
                     <p>© 2026 JULO. TOUS DROITS RÉSERVÉS.</p>
                     <div className="flex items-center gap-6">
                         <Link
