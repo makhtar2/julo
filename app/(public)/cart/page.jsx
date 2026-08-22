@@ -27,7 +27,8 @@ export default function Cart() {
     const mounted = useHasMounted();
     const router = useRouter();
 
-    if (!mounted) return null;
+    const displayCart = mounted ? cart : [];
+    const hasItems = mounted && cart.length > 0;
 
     return (
         <div className="min-h-screen bg-[#FAF8F5] px-4 sm:px-6 pt-3 sm:pt-6 pb-48 sm:pb-16 lg:pb-16">
@@ -55,7 +56,16 @@ export default function Cart() {
                     </div>
                 </div>
 
-                {cart.length > 0 ? (
+                {!mounted ? (
+                    <div className="space-y-4">
+                        {[1, 2].map((i) => (
+                            <div
+                                key={i}
+                                className="bg-white border border-[#EAE6DF] rounded-2xl p-4 h-28 animate-pulse"
+                            />
+                        ))}
+                    </div>
+                ) : cart.length > 0 ? (
                     <>
                         <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 xl:gap-16">
                             {/* Articles List */}

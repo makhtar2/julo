@@ -1,9 +1,9 @@
-﻿'use client';
+'use client';
 
 const Loading = () => {
     return (
         <div className="flex items-center justify-center h-screen">
-            <div className="w-11 h-11 rounded-full border-3 border-gray-300 border-t-blue-500 animate-spin"></div>
+            <div className="size-10 rounded-full border-3 border-[#EAE6DF] border-t-[#10B981] animate-spin"></div>
         </div>
     );
 };

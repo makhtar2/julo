@@ -8,8 +8,8 @@ const bundleAnalyzer = withBundleAnalyzer({
 
 const withPWA = withPWAInit({
     dest: 'public',
-    disable: process.env.NODE_ENV === 'development',
-    register: true,
+    disable: true, // Disable SW caching in App Router to avoid stale chunk errors on refresh
+    register: false,
     skipWaiting: true,
 });
 

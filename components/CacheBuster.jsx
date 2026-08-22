@@ -1,62 +1,33 @@
 'use client';
 import { useEffect } from 'react';
 
-// ─── Version de l'application ──────────────────────────────────────────────
-// ⚠️ Incrémenté pour forcer le nettoyage du cache et des anciennes données
-const APP_VERSION = '2.0.0';
-
 export default function CacheBuster() {
     useEffect(() => {
-        // ── 1. Nettoyer le SW à chaque chargement (mode proactif) ──────────
-        const clearSWCache = async () => {
-            try {
-                // Supprimer TOUTES les caches (Workbox, next-static, etc.)
-                if ('caches' in window) {
-                    const cacheNames = await caches.keys();
-                    await Promise.all(cacheNames.map((name) => caches.delete(name)));
-                }
-            } catch (e) {
-                // silencieux
-            }
-        };
-
-        // ── 2. Détection de version et reset complet ────────────────────────
-        const lastVersion = localStorage.getItem('julo_app_version');
-        const isNewVersion = !lastVersion || lastVersion !== APP_VERSION;
-        const urlParams = new URLSearchParams(window.location.search);
-        const forceClear = urlParams.get('clearCache') === 'true';
-
-        if (isNewVersion || forceClear) {
-            console.log('[CacheBuster] Version JULO 2.0.0 détectée. Nettoyage du cache…');
-
-            localStorage.clear();
-            sessionStorage.clear();
-            localStorage.setItem('julo_app_version', APP_VERSION);
-
-            // Désinscrire le Service Worker pour forcer une réinstallation propre
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.getRegistrations().then((regs) => {
-                    Promise.all(regs.map((r) => r.unregister())).then(() => {
-                        clearSWCache().then(() => {
-                            const cleanUrl = forceClear
-                                ? window.location.origin + window.location.pathname
-                                : window.location.href;
-                            setTimeout(() => window.location.replace(cleanUrl), 300);
-                        });
-                    });
-                });
-            } else {
-                clearSWCache().then(() => setTimeout(() => window.location.reload(), 300));
-            }
-            return;
+        // Silently unregister any old/broken service workers without page reloads
+        if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .getRegistrations()
+                .then((registrations) => {
+                    for (const registration of registrations) {
+                        registration.unregister();
+                    }
+                })
+                .catch(() => {});
         }
 
-        // Enregistrer la version actuelle si pas encore fait
-        localStorage.setItem('julo_app_version', APP_VERSION);
+        // Silently clean up stale caches
+        if (typeof window !== 'undefined' && 'caches' in window) {
+            caches
+                .keys()
+                .then((names) => {
+                    for (const name of names) {
+                        caches.delete(name);
+                    }
+                })
+                .catch(() => {});
+        }
 
-        // ── 3. Gérer les erreurs de chunks (déploiement interrompu) ────────
-        const reloadCount = parseInt(sessionStorage.getItem('julo_reload_count') || '0');
-
+        // Handle chunk load errors gracefully after new deployment
         const handleChunkError = (error) => {
             const msg = error?.message || error?.reason?.message || '';
             const src = error?.target?.src || '';
@@ -66,36 +37,20 @@ export default function CacheBuster() {
                 msg.includes('Failed to fetch') ||
                 src.includes('/_next/static/chunks/');
 
-            if (isChunkError && reloadCount < 2) {
-                console.warn('[CacheBuster] Chunk introuvable — rechargement…');
-                sessionStorage.setItem('ks_reload_count', (reloadCount + 1).toString());
-                clearSWCache().then(() => window.location.reload());
+            if (isChunkError) {
+                const reloadCount = parseInt(sessionStorage.getItem('julo_reload_count') || '0');
+                if (reloadCount < 1) {
+                    sessionStorage.setItem('julo_reload_count', '1');
+                    window.location.reload();
+                }
             }
         };
 
         window.addEventListener('error', handleChunkError, true);
         window.addEventListener('unhandledrejection', (e) => handleChunkError(e.reason));
 
-        // Réinitialiser le compteur de rechargements après succès
-        if (reloadCount > 0) {
-            sessionStorage.setItem('ks_reload_count', '0');
-        }
-
-        // ── 4. Détection de page blanche (hydration échouée) ───────────────
-        const hydrationTimer = setTimeout(() => {
-            const isBlankPage =
-                document.body.innerHTML.length < 300 &&
-                !window.location.pathname.startsWith('/admin');
-
-            if (isBlankPage) {
-                console.error('[CacheBuster] Page blanche détectée — rechargement forcé…');
-                clearSWCache().then(() => window.location.reload());
-            }
-        }, 2500);
-
         return () => {
             window.removeEventListener('error', handleChunkError, true);
-            clearTimeout(hydrationTimer);
         };
     }, []);
 
