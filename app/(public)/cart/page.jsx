@@ -32,28 +32,6 @@ export default function Cart() {
     return (
         <div className="min-h-screen bg-[#FAF8F5] px-4 sm:px-6 pt-3 sm:pt-6 pb-48 sm:pb-16 lg:pb-16">
             <div className="max-w-7xl mx-auto">
-                {/* Mobile Header Matching Screen 3 ("My Cart") */}
-                <div className="sm:hidden flex items-center justify-between mb-4 pt-1">
-                    <button
-                        onClick={() => router.back()}
-                        aria-label="Retour"
-                        className="size-10 rounded-full bg-white border border-[#EAE6DF] shadow-xs flex items-center justify-center text-[#1C1B1F] active:scale-95 transition-all"
-                    >
-                        <ArrowLeft size={18} strokeWidth={2.2} />
-                    </button>
-
-                    <h1 className="text-base font-black text-[#1C1B1F] tracking-tight">My Cart</h1>
-
-                    <Link
-                        href="/shop?sort=newest"
-                        aria-label="Notifications"
-                        className="size-10 rounded-full bg-white border border-[#EAE6DF] shadow-xs flex items-center justify-center text-[#1C1B1F] relative active:scale-95 transition-all"
-                    >
-                        <Bell size={18} strokeWidth={2.2} />
-                        <span className="absolute top-2.5 right-2.5 size-2 bg-[#10B981] rounded-full ring-2 ring-white" />
-                    </Link>
-                </div>
-
                 {/* Desktop Header */}
                 <div className="hidden sm:block mb-6 sm:mb-10">
                     <div className="flex items-center justify-between gap-3">

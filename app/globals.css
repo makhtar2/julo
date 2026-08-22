@@ -26,12 +26,25 @@
         scroll-behavior: smooth;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
     }
-    button {
+    button,
+    a {
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
     }
 }
 
 .no-scrollbar::-webkit-scrollbar {
     display: none;
+}
+
+.pb-safe {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+.pt-safe {
+    padding-top: max(0.75rem, env(safe-area-inset-top));
 }

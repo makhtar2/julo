@@ -14,30 +14,6 @@ export default function WishlistPage() {
     return (
         <div className="min-h-screen bg-[#FAF8F5] px-4 sm:px-6 lg:px-8 py-4 sm:py-10 pb-28 sm:pb-16">
             <div className="max-w-7xl mx-auto">
-                {/* Mobile Header Matching Screen 2 ("Saved Items") */}
-                <div className="sm:hidden flex items-center justify-between mb-5 pt-1">
-                    <button
-                        onClick={() => router.back()}
-                        aria-label="Retour"
-                        className="size-10 rounded-full bg-white border border-[#EAE6DF] shadow-xs flex items-center justify-center text-[#1C1B1F] active:scale-95 transition-all"
-                    >
-                        <ArrowLeft size={18} strokeWidth={2.2} />
-                    </button>
-
-                    <h1 className="text-base font-black text-[#1C1B1F] tracking-tight">
-                        Saved Items
-                    </h1>
-
-                    <Link
-                        href="/shop?sort=newest"
-                        aria-label="Notifications"
-                        className="size-10 rounded-full bg-white border border-[#EAE6DF] shadow-xs flex items-center justify-center text-[#1C1B1F] relative active:scale-95 transition-all"
-                    >
-                        <Bell size={18} strokeWidth={2.2} />
-                        <span className="absolute top-2.5 right-2.5 size-2 bg-[#10B981] rounded-full ring-2 ring-white" />
-                    </Link>
-                </div>
-
                 {/* Desktop Header */}
                 <div className="hidden sm:flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
                     <div>
