@@ -29,7 +29,12 @@ const Hero = ({ initialCategories = [] }) => {
             name.includes('apple') ||
             name.includes('samsung') ||
             name.includes('mobile') ||
-            name.includes('iphone')
+            name.includes('iphone') ||
+            name.includes('tecno') ||
+            name.includes('infinix') ||
+            name.includes('itel') ||
+            name.includes('xiaomi') ||
+            name.includes('redmi')
         ) {
             return Smartphone;
         }
@@ -45,7 +50,10 @@ const Hero = ({ initialCategories = [] }) => {
             name.includes('audio') ||
             name.includes('casque') ||
             name.includes('écouteur') ||
-            name.includes('airpod')
+            name.includes('airpod') ||
+            name.includes('oraimo') ||
+            name.includes('enceinte') ||
+            name.includes('jbl')
         ) {
             return Headphones;
         }
@@ -53,7 +61,10 @@ const Hero = ({ initialCategories = [] }) => {
             name.includes('charge') ||
             name.includes('cable') ||
             name.includes('accessoire') ||
-            name.includes('gan')
+            name.includes('gan') ||
+            name.includes('énergie') ||
+            name.includes('batterie') ||
+            name.includes('ringlight')
         ) {
             return Cable;
         }
@@ -62,7 +73,11 @@ const Hero = ({ initialCategories = [] }) => {
             name.includes('sérigraphie') ||
             name.includes('textile') ||
             name.includes('t-shirt') ||
-            name.includes('polo')
+            name.includes('polo') ||
+            name.includes('goodies') ||
+            name.includes('hoodie') ||
+            name.includes('casquette') ||
+            name.includes('banner')
         ) {
             return Shirt;
         }
@@ -72,10 +87,12 @@ const Hero = ({ initialCategories = [] }) => {
     const juloCategories = [
         'Smartphones & Apple',
         'Samsung Galaxy',
+        'Tecno, Infinix & Itel',
+        'Xiaomi & Redmi',
         'Ordinateurs & PC',
-        'Audio & Écouteurs',
-        'Accessoires & GaN',
-        'Sérigraphie & Textile',
+        'Audio, Enceintes & Oraimo',
+        'Accessoires & Énergie',
+        'Sérigraphie & Goodies',
     ];
 
     const categoriesList = juloCategories.map((catName) => ({
@@ -300,8 +317,8 @@ const Hero = ({ initialCategories = [] }) => {
                     </Link>
                 </div>
 
-                {/* 6 Clean White Cards in Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                {/* 8 Clean White Cards in Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-8 gap-3 sm:gap-4">
                     {categoriesList.map((cat, idx) => {
                         const Icon = cat.fallbackIcon;
                         return (

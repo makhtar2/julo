@@ -84,10 +84,11 @@ const Navbar = ({ user, isAdmin }) => {
     const navLinks = [
         { name: 'Accueil', href: '/', isHome: true },
         { name: 'Boutique', href: '/shop' },
-        { name: 'Smartphones', href: '/shop?category=telephones' },
-        { name: 'Ordinateurs', href: '/shop?category=ordinateurs' },
-        { name: 'Accessoires', href: '/shop?category=accessoires' },
-        { name: 'Sérigraphie', href: '/shop?category=serigraphie' },
+        { name: 'Apple & Samsung', href: '/shop?category=Smartphones' },
+        { name: 'Tecno & Infinix', href: '/shop?category=Tecno' },
+        { name: 'Ordinateurs', href: '/shop?category=Ordinateurs' },
+        { name: 'Audio & Oraimo', href: '/shop?category=Audio' },
+        { name: 'Sérigraphie', href: '/shop?category=Sérigraphie' },
         { name: 'À Propos', href: '/about' },
         { name: 'Contact', href: '/contact' },
     ];

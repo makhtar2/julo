@@ -143,10 +143,12 @@ export default function ShopContent({ initialProducts, initialCategories }) {
     const juloCategories = [
         'Smartphones & Apple',
         'Samsung Galaxy',
+        'Tecno, Infinix & Itel',
+        'Xiaomi & Redmi',
         'Ordinateurs & PC',
-        'Audio & Écouteurs',
-        'Accessoires & GaN',
-        'Sérigraphie & Textile',
+        'Audio, Enceintes & Oraimo',
+        'Accessoires & Énergie',
+        'Sérigraphie & Goodies',
     ];
     const categories = juloCategories;
 
