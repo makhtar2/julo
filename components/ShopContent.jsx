@@ -14,59 +14,85 @@ import {
     Check,
     ArrowRight,
     Sparkles,
+    Smartphone,
+    Laptop,
+    Headphones,
+    Watch,
+    Zap,
+    Flame,
+    Cpu,
+    Globe,
+    LayoutGrid,
+    ShoppingBag,
 } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
-/* ─── Category definitions with emoji icons ─── */
+/* ─── Real Vector Icon Helper for Categories ─── */
+const getCatIcon = (slug, size = 15) => {
+    switch (slug) {
+        case 'Smartphones & Apple':
+            return <Smartphone size={size} strokeWidth={2.2} />;
+        case 'Samsung Galaxy':
+            return <Globe size={size} strokeWidth={2.2} />;
+        case 'Tecno, Infinix & Itel':
+            return <Cpu size={size} strokeWidth={2.2} />;
+        case 'Xiaomi & Redmi':
+            return <Flame size={size} strokeWidth={2.2} />;
+        case 'Ordinateurs & PC':
+            return <Laptop size={size} strokeWidth={2.2} />;
+        case 'Audio, Enceintes & Oraimo':
+            return <Headphones size={size} strokeWidth={2.2} />;
+        case 'Montres & Wearables':
+            return <Watch size={size} strokeWidth={2.2} />;
+        case 'Accessoires & Énergie':
+            return <Zap size={size} strokeWidth={2.2} />;
+        default:
+            return <LayoutGrid size={size} strokeWidth={2.2} />;
+    }
+};
+
+/* ─── Category definitions ─── */
 const JULO_CATEGORIES = [
     {
         slug: 'Smartphones & Apple',
         label: 'Smartphones',
-        emoji: '📱',
-        color: 'bg-blue-50 border-blue-100',
+        color: 'bg-blue-50 text-blue-600 border-blue-100',
     },
     {
         slug: 'Samsung Galaxy',
         label: 'Samsung',
-        emoji: '🌐',
-        color: 'bg-indigo-50 border-indigo-100',
+        color: 'bg-indigo-50 text-indigo-600 border-indigo-100',
     },
     {
         slug: 'Tecno, Infinix & Itel',
         label: 'Tecno & Infinix',
-        emoji: '🤖',
-        color: 'bg-orange-50 border-orange-100',
+        color: 'bg-orange-50 text-orange-600 border-orange-100',
     },
     {
         slug: 'Xiaomi & Redmi',
         label: 'Xiaomi',
-        emoji: '🔶',
-        color: 'bg-amber-50 border-amber-100',
+        color: 'bg-amber-50 text-amber-600 border-amber-100',
     },
     {
         slug: 'Ordinateurs & PC',
         label: 'PC & MacBook',
-        emoji: '💻',
-        color: 'bg-slate-50 border-slate-100',
+        color: 'bg-slate-100 text-slate-700 border-slate-200',
     },
     {
         slug: 'Audio, Enceintes & Oraimo',
         label: 'Audio & AirPods',
-        emoji: '🎧',
-        color: 'bg-purple-50 border-purple-100',
+        color: 'bg-purple-50 text-purple-600 border-purple-100',
     },
     {
         slug: 'Montres & Wearables',
         label: 'Montres',
-        emoji: '⌚',
-        color: 'bg-rose-50 border-rose-100',
+        color: 'bg-rose-50 text-rose-600 border-rose-100',
     },
     {
         slug: 'Accessoires & Énergie',
         label: 'Accessoires',
-        emoji: '🔌',
-        color: 'bg-green-50 border-green-100',
+        color: 'bg-emerald-50 text-emerald-600 border-emerald-100',
     },
 ];
 
@@ -231,7 +257,10 @@ export default function ShopContent({ initialProducts }) {
                                     : 'bg-[#F5F2EB] border-transparent text-[#4A4742] hover:bg-white hover:border-[#EAE6DF]')
                             }
                         >
-                            <span>Toutes catégories</span>
+                            <div className="flex items-center gap-2.5">
+                                <LayoutGrid size={15} strokeWidth={2} />
+                                <span>Toutes catégories</span>
+                            </div>
                             {!categoryParam && (
                                 <div className="size-1.5 bg-[#10B981] rounded-full" />
                             )}
@@ -249,7 +278,15 @@ export default function ShopContent({ initialProducts }) {
                                 }
                             >
                                 <div className="flex items-center gap-2.5">
-                                    <span>{cat.emoji}</span>
+                                    <span
+                                        className={
+                                            categoryParam === cat.slug
+                                                ? 'text-[#10B981]'
+                                                : 'text-zinc-500'
+                                        }
+                                    >
+                                        {getCatIcon(cat.slug, 15)}
+                                    </span>
                                     <span className="line-clamp-1 text-left">{cat.label}</span>
                                 </div>
                                 {categoryParam === cat.slug && (
@@ -354,9 +391,9 @@ export default function ShopContent({ initialProducts }) {
             </div>
 
             {/* ══════════════════════════════════════════════════
-                MOBILE STICKY HEADER
+                MOBILE SEARCH & CATEGORY CHIPS
             ══════════════════════════════════════════════════ */}
-            <div className="md:hidden sticky top-0 z-40 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#EAE6DF] px-4 pt-3 pb-3 space-y-2.5">
+            <div className="md:hidden bg-[#FAF8F5] px-4 pt-3 pb-3 space-y-2.5">
                 {/* Search */}
                 <div className="relative">
                     <Search
@@ -381,19 +418,20 @@ export default function ShopContent({ initialProducts }) {
                     )}
                 </div>
 
-                {/* Category chips */}
+                {/* Real Vector Category Chips */}
                 <div className="flex items-center gap-2 overflow-x-auto no-scrollbar -mx-4 px-4 pb-0.5">
                     <button
                         type="button"
                         onClick={() => selectCategory(null)}
                         className={
-                            'shrink-0 px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all border ' +
+                            'shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all border ' +
                             (!categoryParam
                                 ? 'bg-[#1C1B1F] text-white border-[#1C1B1F]'
                                 : 'bg-white text-[#4A4742] border-[#EAE6DF]')
                         }
                     >
-                        Tous
+                        <LayoutGrid size={13} strokeWidth={2.2} />
+                        <span>Tous</span>
                     </button>
                     {JULO_CATEGORIES.map((cat) => {
                         const active = categoryParam === cat.slug;
@@ -409,7 +447,9 @@ export default function ShopContent({ initialProducts }) {
                                         : 'bg-white text-[#4A4742] border-[#EAE6DF]')
                                 }
                             >
-                                <span>{cat.emoji}</span>
+                                <span className={active ? 'text-[#10B981]' : 'text-zinc-500'}>
+                                    {getCatIcon(cat.slug, 13)}
+                                </span>
                                 <span>{cat.label}</span>
                                 {active && <XIcon size={10} className="ml-0.5 opacity-60" />}
                             </button>
@@ -419,13 +459,12 @@ export default function ShopContent({ initialProducts }) {
 
                 {/* Count + Sort + Filter */}
                 <div className="flex items-center justify-between gap-2">
-                    <span className="text-[11px] text-[#8C8275] font-medium">
+                    <span className="text-[11px] text-[#8C8275] font-medium flex items-center gap-1">
                         <strong className="text-[#1C1B1F]">{filteredProducts.length}</strong>{' '}
                         produits
                         {activeCategoryDef && (
-                            <span className="text-[#10B981]">
-                                {' '}
-                                · {activeCategoryDef.emoji} {activeCategoryDef.label}
+                            <span className="text-[#10B981] font-bold flex items-center gap-1">
+                                · {getCatIcon(activeCategoryDef.slug, 12)} {activeCategoryDef.label}
                             </span>
                         )}
                     </span>
@@ -605,9 +644,8 @@ export default function ShopContent({ initialProducts }) {
                             produit{filteredProducts.length !== 1 ? 's' : ''} trouvé
                             {filteredProducts.length !== 1 ? 's' : ''}
                             {categoryParam && (
-                                <span className="text-[#10B981] font-semibold">
-                                    {' '}
-                                    · {activeCategoryDef?.emoji}{' '}
+                                <span className="text-[#10B981] font-semibold flex items-center gap-1 inline-flex ml-1">
+                                    · {getCatIcon(activeCategoryDef?.slug, 14)}{' '}
                                     {activeCategoryDef?.label || categoryParam}
                                 </span>
                             )}
@@ -714,8 +752,17 @@ export default function ShopContent({ initialProducts }) {
                                                     : 'border-[#EAE6DF] bg-[#F5F2EB] text-[#4A4742]')
                                             }
                                         >
-                                            <span className="text-xl">🛍️</span>
-                                            <div className="text-left">
+                                            <div
+                                                className={
+                                                    'size-8 rounded-xl flex items-center justify-center shrink-0 ' +
+                                                    (!categoryParam
+                                                        ? 'bg-white/20 text-white'
+                                                        : 'bg-white text-zinc-700 shadow-2xs')
+                                                }
+                                            >
+                                                <LayoutGrid size={16} strokeWidth={2.2} />
+                                            </div>
+                                            <div className="text-left min-w-0">
                                                 <p className="text-xs font-bold leading-tight">
                                                     Toutes
                                                 </p>
@@ -761,14 +808,19 @@ export default function ShopContent({ initialProducts }) {
                                                         'flex items-center gap-2.5 p-3 rounded-2xl border-2 transition-all ' +
                                                         (active
                                                             ? 'border-[#1C1B1F] bg-[#1C1B1F] text-white'
-                                                            : 'border-transparent ' +
-                                                              cat.color +
-                                                              ' text-[#1C1B1F]')
+                                                            : 'border-transparent ' + cat.color)
                                                     }
                                                 >
-                                                    <span className="text-xl shrink-0">
-                                                        {cat.emoji}
-                                                    </span>
+                                                    <div
+                                                        className={
+                                                            'size-8 rounded-xl flex items-center justify-center shrink-0 ' +
+                                                            (active
+                                                                ? 'bg-white/20 text-white'
+                                                                : 'bg-white shadow-2xs')
+                                                        }
+                                                    >
+                                                        {getCatIcon(cat.slug, 16)}
+                                                    </div>
                                                     <div className="text-left min-w-0">
                                                         <p className="text-xs font-bold leading-tight truncate">
                                                             {cat.label}

@@ -2,17 +2,40 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Search, SlidersHorizontal, Bell, Sparkles, ArrowRight, Mic } from 'lucide-react';
+import {
+    Search,
+    SlidersHorizontal,
+    Bell,
+    Sparkles,
+    ArrowRight,
+    LayoutGrid,
+    Smartphone,
+    Laptop,
+    Headphones,
+    Watch,
+    Zap,
+    Globe,
+} from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 const mobileCategories = [
-    { name: 'Tous', slug: 'all', label: 'Tous' },
-    { name: 'Smartphones', slug: 'Smartphones & Apple', label: 'Smartphones' },
-    { name: 'Samsung', slug: 'Samsung Galaxy', label: 'Samsung Galaxy' },
-    { name: 'Ordinateurs', slug: 'Ordinateurs & PC', label: 'PC & Mac' },
-    { name: 'AirPods & Audio', slug: 'Audio, Enceintes & Oraimo', label: 'Audio & AirPods' },
-    { name: 'Montres', slug: 'Montres & Wearables', label: 'Montres Connectées' },
-    { name: 'Accessoires', slug: 'Accessoires & Énergie', label: 'Accessoires & Charge' },
+    { name: 'Tous', slug: 'all', label: 'Tous', icon: LayoutGrid },
+    { name: 'Smartphones', slug: 'Smartphones & Apple', label: 'Smartphones', icon: Smartphone },
+    { name: 'Samsung', slug: 'Samsung Galaxy', label: 'Samsung Galaxy', icon: Globe },
+    { name: 'Ordinateurs', slug: 'Ordinateurs & PC', label: 'PC & Mac', icon: Laptop },
+    {
+        name: 'AirPods & Audio',
+        slug: 'Audio, Enceintes & Oraimo',
+        label: 'Audio & AirPods',
+        icon: Headphones,
+    },
+    { name: 'Montres', slug: 'Montres & Wearables', label: 'Montres Connectées', icon: Watch },
+    {
+        name: 'Accessoires',
+        slug: 'Accessoires & Énergie',
+        label: 'Accessoires & Charge',
+        icon: Zap,
+    },
 ];
 
 export default function MobileHomeHero({ selectedCategory, onSelectCategory }) {
@@ -61,7 +84,7 @@ export default function MobileHomeHero({ selectedCategory, onSelectCategory }) {
                 </Link>
             </div>
 
-            {/* 2. Search Bar + Emerald Square Filter Button */}
+            {/* 2. Search Bar + Emerald Filter Button */}
             <form onSubmit={handleSearchSubmit} className="flex items-center gap-2.5">
                 <div className="flex-1 bg-[#F4F4F6] border border-[#EAE6DF] rounded-2xl flex items-center px-3.5 py-2.5 gap-2.5 shadow-2xs focus-within:border-[#10B981] focus-within:bg-white transition-all">
                     <Search size={17} className="text-zinc-400 shrink-0" strokeWidth={2.2} />
@@ -70,34 +93,24 @@ export default function MobileHomeHero({ selectedCategory, onSelectCategory }) {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Rechercher iPhone, Samsung, PC, AirPods..."
-                        className="w-full bg-transparent outline-none text-xs font-semibold text-[#1C1B1F] placeholder:text-zinc-400 placeholder:font-normal"
+                        className="w-full bg-transparent outline-none text-xs font-semibold text-[#1C1B1F] placeholder-zinc-400"
                     />
-                    <button
-                        type="button"
-                        onClick={() => router.push('/shop')}
-                        className="text-zinc-400 hover:text-[#1C1B1F] transition-colors"
-                        aria-label="Recherche rapide"
-                    >
-                        <Mic size={15} />
-                    </button>
                 </div>
 
-                <button
-                    type="button"
-                    onClick={() => router.push('/shop')}
-                    aria-label="Filtrer les produits"
-                    className="size-11 rounded-2xl bg-[#10B981] hover:bg-[#059669] text-white flex items-center justify-center shadow-md shadow-[#10B981]/25 active:scale-95 transition-all shrink-0"
+                <Link
+                    href="/shop"
+                    aria-label="Filtres boutique"
+                    className="size-11 rounded-2xl bg-[#10B981] text-white flex items-center justify-center shadow-md shadow-[#10B981]/20 active:scale-95 transition-all shrink-0"
                 >
-                    <SlidersHorizontal size={17} strokeWidth={2.2} />
-                </button>
+                    <SlidersHorizontal size={18} strokeWidth={2.4} />
+                </Link>
             </form>
 
-            {/* 3. Clearance Sales Banner Card */}
+            {/* 3. Promo Banner Card */}
             <Link
                 href="/shop?sort=newest"
-                className="block group relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#10B981] via-[#059669] to-[#047857] p-5 text-white shadow-lg shadow-[#10B981]/20 active:scale-[0.98] transition-all"
+                className="block relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0F766E] via-[#059669] to-[#10B981] p-5 shadow-lg text-white group"
             >
-                {/* Background decorative glowing circles */}
                 <div className="absolute -right-8 -bottom-8 size-40 rounded-full bg-white/10 blur-xl pointer-events-none" />
                 <div className="absolute top-2 left-1/3 size-24 rounded-full bg-emerald-300/15 blur-lg pointer-events-none" />
 
@@ -128,7 +141,7 @@ export default function MobileHomeHero({ selectedCategory, onSelectCategory }) {
                 </div>
             </Link>
 
-            {/* 4. Categories Section with Horizontal Scroll */}
+            {/* 4. Categories Section with Horizontal Scroll & Vector Icons */}
             <div className="space-y-2.5 pt-1">
                 <div className="flex items-center justify-between">
                     <h3 className="text-sm font-black text-[#1C1B1F] tracking-tight">Rayons</h3>
@@ -140,17 +153,21 @@ export default function MobileHomeHero({ selectedCategory, onSelectCategory }) {
                 <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 -mx-4 px-4 scroll-smooth">
                     {mobileCategories.map((cat) => {
                         const isActive = activePill === cat.slug;
+                        const Icon = cat.icon;
                         return (
                             <button
                                 key={cat.slug}
                                 onClick={() => handleCategoryClick(cat)}
-                                className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-200 shrink-0 ${
+                                className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-200 shrink-0 ${
                                     isActive
                                         ? 'bg-[#1C1B1F] text-white shadow-xs scale-100'
                                         : 'bg-white border border-[#EAE6DF] text-[#5A564F] hover:text-[#1C1B1F] hover:border-zinc-400'
                                 }`}
                             >
-                                {cat.label}
+                                <span className={isActive ? 'text-[#10B981]' : 'text-zinc-400'}>
+                                    <Icon size={14} strokeWidth={2.2} />
+                                </span>
+                                <span>{cat.label}</span>
                             </button>
                         );
                     })}
