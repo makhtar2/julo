@@ -56,24 +56,25 @@ export const metadata = {
         type: 'website',
         locale: 'fr_SN',
         url: 'https://julo.sn',
-        siteName: 'Julo',
-        title: 'Julo | Boutique High-Tech, Smartphones & Ordinateurs au Sénégal',
+        siteName: 'JULO Sénégal',
+        title: 'JULO — L’Excellence High-Tech au Sénégal',
         description:
-            'Achetez vos équipements high-tech certifiés avec garantie et livraison rapide chez Julo au Sénégal.',
+            'Smartphones, Ordinateurs & Accessoires Certifiés 100% Originaux avec Garantie et Livraison Express 24h au Sénégal.',
         images: [
             {
-                url: '/assets/julo_logo_transparent.png',
+                url: '/og-image.jpg',
                 width: 1200,
                 height: 630,
-                alt: 'Julo - Boutique High-Tech au Sénégal',
+                alt: 'JULO Sénégal — Boutique High-Tech Officielle',
             },
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Julo | Boutique High-Tech au Sénégal',
-        description: 'Vente de smartphones, ordinateurs et accessoires électroniques au Sénégal.',
-        images: ['/assets/julo_logo_transparent.png'],
+        title: 'JULO — L’Excellence High-Tech au Sénégal',
+        description:
+            'Smartphones, Ordinateurs & Accessoires Certifiés 100% Originaux avec Garantie et Livraison Express 24h au Sénégal.',
+        images: ['/og-image.jpg'],
     },
 };
 
