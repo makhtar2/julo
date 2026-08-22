@@ -183,7 +183,7 @@ const OrderSummary = ({ totalPrice, items }) => {
             const waveBase =
                 process.env.NEXT_PUBLIC_WAVE_MERCHANT_URL ||
                 'https://pay.wave.com/m/M_sn_mqjmXRyGEW2i/c/sn/';
-            const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://globalairsn.com';
+            const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://julo.sn';
             const callbackUrl = `${baseUrl}/order-confirmed/${res.orderId}`;
 
             // Redirection immédiate vers Wave — callback_url ramène vers order-confirmed

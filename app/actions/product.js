@@ -32,7 +32,7 @@ export async function uploadProductImage(file) {
         const base64Image = `data:${file.type};base64,${buffer.toString('base64')}`;
 
         const result = await cloudinary.uploader.upload(base64Image, {
-            folder: 'globalair-products',
+            folder: 'julo-products',
         });
 
         return { success: true, url: result.secure_url };

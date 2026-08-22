@@ -11,6 +11,7 @@
         "dev:webpack": "next dev --webpack",
         "build": "next build --webpack",
         "start": "next start",
+        "setup:julo": "node scripts/setup-julo-supabase.js",
         "lint": "eslint .",
         "test": "vitest",
         "test:run": "vitest run",
