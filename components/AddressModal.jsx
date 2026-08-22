@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { XIcon, MapPinIcon, TargetIcon, Loader2Icon } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
@@ -84,11 +84,11 @@ const AddressModal = ({ setShowAddressModal, onSuccess }) => {
             >
                 <div className="flex items-center justify-between mb-10">
                     <div className="flex items-center gap-4">
-                        <div className="size-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center">
+                        <div className="size-12 bg-[#F0FDF4] text-[#10B981] rounded-2xl flex items-center justify-center">
                             <MapPinIcon size={24} />
                         </div>
-                        <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                            Nouvelle <span className="text-blue-600">Adresse</span>
+                        <h2 className="text-2xl sm:text-3xl font-black text-[#1C1B1F] tracking-tight">
+                            Nouvelle <span className="text-[#10B981]">Adresse</span>
                         </h2>
                     </div>
                     <button
@@ -102,12 +102,12 @@ const AddressModal = ({ setShowAddressModal, onSuccess }) => {
 
                 <div className="space-y-4">
                     {/* Geolocation Button */}
-                    <div className="mb-6 p-4 bg-blue-50 rounded-2xl border border-blue-100 flex items-center justify-between">
+                    <div className="mb-6 p-4 bg-[#F0FDF4] rounded-2xl border border-[#10B981]/20 flex items-center justify-between">
                         <div>
-                            <p className="text-xs font-black text-blue-700 uppercase tracking-widest mb-1">
+                            <p className="text-xs font-black text-[#065F46] uppercase tracking-widest mb-1">
                                 Position GPS
                             </p>
-                            <p className="text-[10px] text-blue-600 font-medium">
+                            <p className="text-[10px] text-[#047857] font-medium">
                                 {address.latitude
                                     ? `Coordonnées capturées : ${address.latitude.toFixed(4)}, ${address.longitude.toFixed(4)}`
                                     : 'Précisez votre emplacement exact pour la livraison.'}
@@ -117,7 +117,7 @@ const AddressModal = ({ setShowAddressModal, onSuccess }) => {
                             type="button"
                             onClick={handleGeolocate}
                             disabled={isLocating}
-                            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 disabled:opacity-50"
+                            className="flex items-center gap-2 px-4 py-2 bg-[#10B981] text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-[#059669] transition-all shadow-md shadow-[#10B981]/20 disabled:opacity-50"
                         >
                             {isLocating ? (
                                 <Loader2Icon size={14} className="animate-spin" />
@@ -137,7 +137,7 @@ const AddressModal = ({ setShowAddressModal, onSuccess }) => {
                                 name="name"
                                 onChange={handleAddressChange}
                                 value={address.name}
-                                className="p-4 bg-slate-50 border border-transparent focus:border-blue-400 focus:bg-white outline-none rounded-2xl w-full text-sm font-bold transition-all"
+                                className="p-4 bg-slate-50 border border-transparent focus:border-[#10B981] focus:bg-white outline-none rounded-2xl w-full text-sm font-bold transition-all"
                                 type="text"
                                 placeholder="Mamadou Diop"
                                 required
@@ -151,7 +151,7 @@ const AddressModal = ({ setShowAddressModal, onSuccess }) => {
                                 name="phone"
                                 onChange={handleAddressChange}
                                 value={address.phone}
-                                className="p-4 bg-slate-50 border border-transparent focus:border-blue-400 focus:bg-white outline-none rounded-2xl w-full text-sm font-bold transition-all"
+                                className="p-4 bg-slate-50 border border-transparent focus:border-[#10B981] focus:bg-white outline-none rounded-2xl w-full text-sm font-bold transition-all"
                                 type="text"
                                 placeholder="77 783 27 98"
                                 required
@@ -167,7 +167,7 @@ const AddressModal = ({ setShowAddressModal, onSuccess }) => {
                             name="email"
                             onChange={handleAddressChange}
                             value={address.email}
-                            className="p-4 bg-slate-50 border border-transparent focus:border-blue-400 focus:bg-white outline-none rounded-2xl w-full text-sm font-bold transition-all"
+                            className="p-4 bg-slate-50 border border-transparent focus:border-[#10B981] focus:bg-white outline-none rounded-2xl w-full text-sm font-bold transition-all"
                             type="email"
                             placeholder="client@exemple.sn"
                             required
@@ -182,7 +182,7 @@ const AddressModal = ({ setShowAddressModal, onSuccess }) => {
                             name="street"
                             onChange={handleAddressChange}
                             value={address.street}
-                            className="p-4 bg-slate-50 border border-transparent focus:border-blue-400 focus:bg-white outline-none rounded-2xl w-full text-sm font-bold transition-all"
+                            className="p-4 bg-slate-50 border border-transparent focus:border-[#10B981] focus:bg-white outline-none rounded-2xl w-full text-sm font-bold transition-all"
                             type="text"
                             placeholder="Rue 10 x 12, Médina"
                             required
@@ -198,7 +198,7 @@ const AddressModal = ({ setShowAddressModal, onSuccess }) => {
                                 name="city"
                                 onChange={handleAddressChange}
                                 value={address.city}
-                                className="p-4 bg-slate-50 border border-transparent focus:border-blue-400 focus:bg-white outline-none rounded-2xl w-full text-sm font-bold transition-all"
+                                className="p-4 bg-slate-50 border border-transparent focus:border-[#10B981] focus:bg-white outline-none rounded-2xl w-full text-sm font-bold transition-all"
                                 type="text"
                                 placeholder="Dakar"
                                 required
@@ -212,7 +212,7 @@ const AddressModal = ({ setShowAddressModal, onSuccess }) => {
                                 name="state"
                                 onChange={handleAddressChange}
                                 value={address.state}
-                                className="p-4 bg-slate-50 border border-transparent focus:border-blue-400 focus:bg-white outline-none rounded-2xl w-full text-sm font-bold transition-all"
+                                className="p-4 bg-slate-50 border border-transparent focus:border-[#10B981] focus:bg-white outline-none rounded-2xl w-full text-sm font-bold transition-all"
                                 type="text"
                                 placeholder="Dakar"
                                 required
@@ -223,7 +223,7 @@ const AddressModal = ({ setShowAddressModal, onSuccess }) => {
 
                 <button
                     type="submit"
-                    className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-sm uppercase tracking-widest mt-10 hover:bg-black active:scale-95 transition-all shadow-xl shadow-slate-900/20"
+                    className="w-full bg-[#1C1B1F] hover:bg-[#10B981] text-white py-5 rounded-2xl font-black text-sm uppercase tracking-widest mt-10 active:scale-95 transition-all shadow-xl shadow-black/10"
                 >
                     ENREGISTRER L&apos;ADRESSE
                 </button>

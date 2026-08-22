@@ -76,7 +76,7 @@ export default function OrderConfirmedPage() {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center">
                 <h1 className="text-2xl font-black text-slate-900 mb-4">Commande introuvable</h1>
-                <Link href="/shop" className="text-blue-600 font-bold hover:underline">
+                <Link href="/shop" className="text-[#10B981] font-bold hover:underline">
                     Retourner à la boutique
                 </Link>
             </div>
@@ -99,7 +99,7 @@ export default function OrderConfirmedPage() {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ type: 'spring', damping: 12, stiffness: 200 }}
-                        className="inline-flex items-center justify-center size-24 bg-blue-100 text-blue-600 rounded-full mb-6"
+                        className="inline-flex items-center justify-center size-24 bg-[#F0FDF4] text-[#10B981] rounded-full mb-6 shadow-md shadow-[#10B981]/15"
                     >
                         <CheckCircle2 size={48} />
                     </motion.div>
@@ -272,7 +272,7 @@ export default function OrderConfirmedPage() {
                 >
                     <div className="p-8 sm:p-10">
                         <h2 className="text-xl font-black text-slate-900 mb-8 flex items-center gap-3">
-                            <Package className="text-blue-600" /> Détails de la commande
+                            <Package className="text-[#10B981]" /> Détails de la commande
                         </h2>
 
                         {/* Articles */}
@@ -281,8 +281,12 @@ export default function OrderConfirmedPage() {
                                 <div key={index} className="flex items-center gap-4">
                                     <div className="size-16 bg-slate-50 rounded-2xl flex items-center justify-center p-2 border border-slate-100 shrink-0">
                                         <Image
-                                            src={item.product.images[0]}
-                                            alt={item.product.name}
+                                            src={
+                                                item.product?.images?.[0] ||
+                                                item.product?.images ||
+                                                '/placeholder-image.png'
+                                            }
+                                            alt={item.product?.name || 'Produit'}
                                             width={50}
                                             height={50}
                                             className="object-contain"
@@ -290,11 +294,11 @@ export default function OrderConfirmedPage() {
                                     </div>
                                     <div className="flex-1 min-w-0">
                                         <p className="font-black text-slate-800 text-sm truncate">
-                                            {item.product.name}
+                                            {item.product?.name || 'Produit JULO'}
                                         </p>
                                         <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mt-0.5">
-                                            Qté: {item.quantity} Ã—{' '}
-                                            {item.price.toLocaleString('fr-SN')} F
+                                            Qté: {item.quantity} ×{' '}
+                                            {item.price?.toLocaleString('fr-SN')} F
                                         </p>
                                     </div>
                                     <p className="font-black text-slate-900 text-sm">
@@ -308,20 +312,20 @@ export default function OrderConfirmedPage() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-8 border-t border-slate-50">
                             <div>
                                 <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
-                                    <Truck size={12} /> Mode de réception
+                                    <Truck size={12} className="text-[#10B981]" /> Mode de réception
                                 </h3>
                                 <p className="font-black text-slate-900 text-sm">
-                                    {order.address.name === 'Global Air Dakar'
-                                        ? 'ðŸª Retrait en magasin'
-                                        : 'ðŸ  Livraison à domicile'}
+                                    {order.deliveryMethod === 'PICKUP'
+                                        ? 'Retrait en boutique'
+                                        : 'Livraison à domicile'}
                                 </p>
                             </div>
                             <div>
                                 <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
-                                    ðŸ“ Adresse
+                                    Adresse
                                 </h3>
                                 <p className="text-slate-600 text-sm font-medium leading-relaxed">
-                                    {order.address.street}, {order.address.city}
+                                    {order.address?.street}, {order.address?.city}
                                 </p>
                             </div>
                         </div>
@@ -333,7 +337,7 @@ export default function OrderConfirmedPage() {
                             Total Payé
                         </span>
                         <span className="text-3xl font-black text-slate-900 tracking-tighter">
-                            {order.total.toLocaleString('fr-SN')}{' '}
+                            {order.total?.toLocaleString('fr-SN')}{' '}
                             <small className="text-sm font-bold text-slate-400 ml-1">FCFA</small>
                         </span>
                     </div>
@@ -349,7 +353,7 @@ export default function OrderConfirmedPage() {
                     </Link>
                     <Link
                         href="/track"
-                        className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-black text-xs uppercase tracking-widest transition-colors"
+                        className="flex items-center gap-2 text-[#10B981] hover:text-[#059669] font-black text-xs uppercase tracking-widest transition-colors"
                     >
                         Suivre ma commande <ArrowRight size={16} />
                     </Link>

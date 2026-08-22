@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -178,7 +178,7 @@ export default function AuthPage() {
                                             placeholder="Téléphone (ex: 77...)"
                                             value={formData.phone}
                                             onChange={handleChange}
-                                            className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all font-medium"
+                                            className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#10B981]/10 focus:border-[#10B981] transition-all font-medium"
                                         />
                                     </div>
                                 </motion.div>
@@ -187,7 +187,7 @@ export default function AuthPage() {
 
                         <div className="relative group">
                             <MailIcon
-                                className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors"
+                                className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#10B981] transition-colors"
                                 size={20}
                             />
                             <input
@@ -199,7 +199,7 @@ export default function AuthPage() {
                                 onChange={handleChange}
                                 autoCapitalize="none"
                                 autoComplete="email"
-                                className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all font-medium"
+                                className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#10B981]/10 focus:border-[#10B981] transition-all font-medium"
                             />
                         </div>
 
@@ -211,7 +211,7 @@ export default function AuthPage() {
                                 className="relative group"
                             >
                                 <LockIcon
-                                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors"
+                                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#10B981] transition-colors"
                                     size={20}
                                 />
                                 <input
@@ -221,7 +221,7 @@ export default function AuthPage() {
                                     placeholder="Mot de passe"
                                     value={formData.password}
                                     onChange={handleChange}
-                                    className="w-full pl-12 pr-12 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all font-medium"
+                                    className="w-full pl-12 pr-12 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#10B981]/10 focus:border-[#10B981] transition-all font-medium"
                                 />
                                 <button
                                     type="button"
@@ -240,7 +240,7 @@ export default function AuthPage() {
                         {!isLogin && (
                             <div className="relative group">
                                 <LockIcon
-                                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors"
+                                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#10B981] transition-colors"
                                     size={20}
                                 />
                                 <input
@@ -250,7 +250,7 @@ export default function AuthPage() {
                                     placeholder="Mot de passe"
                                     value={formData.password}
                                     onChange={handleChange}
-                                    className="w-full pl-12 pr-12 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all font-medium"
+                                    className="w-full pl-12 pr-12 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-[#10B981]/10 focus:border-[#10B981] transition-all font-medium"
                                 />
                                 <button
                                     type="button"
@@ -271,7 +271,7 @@ export default function AuthPage() {
                                 <button
                                     type="button"
                                     onClick={() => setUseMagicLink(!useMagicLink)}
-                                    className="text-xs font-black text-blue-600 hover:text-blue-700 transition-colors"
+                                    className="text-xs font-black text-[#10B981] hover:text-[#059669] transition-colors"
                                 >
                                     {useMagicLink
                                         ? 'Utiliser un mot de passe'
@@ -285,8 +285,7 @@ export default function AuthPage() {
                             whileTap={{ scale: 0.98 }}
                             disabled={loading}
                             type="submit"
-                            className={`w-full py-4 mt-4 text-white rounded-2xl font-black text-lg shadow-xl transition-all duration-300 flex items-center justify-center gap-2 
-                                ${isLogin ? 'bg-slate-900 shadow-slate-900/20 hover:bg-black' : 'bg-blue-600 shadow-blue-600/20 hover:bg-blue-700'}`}
+                            className="w-full py-4 mt-4 text-white rounded-2xl font-black text-lg shadow-xl transition-all duration-300 flex items-center justify-center gap-2 bg-[#1C1B1F] hover:bg-[#10B981] shadow-black/10"
                         >
                             {loading
                                 ? isLogin
@@ -333,7 +332,7 @@ export default function AuthPage() {
                             {isLogin ? 'Pas encore de compte ?' : 'Déjà membre ?'}
                             <button
                                 onClick={() => setIsLogin(!isLogin)}
-                                className="ml-2 text-blue-600 font-black hover:underline focus:outline-none"
+                                className="ml-2 text-[#10B981] font-black hover:underline focus:outline-none"
                             >
                                 {isLogin ? "S'inscrire" : 'Se connecter'}
                             </button>

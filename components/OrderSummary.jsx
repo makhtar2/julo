@@ -286,21 +286,29 @@ const OrderSummary = ({ totalPrice, items }) => {
                                 onClick={() => setDeliveryMethod('DELIVERY')}
                                 className={`relative flex flex-col items-start p-4 sm:p-5 rounded-2xl border-2 transition-all text-left group ${
                                     deliveryMethod === 'DELIVERY'
-                                        ? 'border-blue-600 bg-[#F5F2EB]/80 shadow-lg shadow-blue-600/10'
-                                        : 'border-slate-200 bg-slate-50/50 hover:border-blue-300 hover:bg-slate-50'
+                                        ? 'border-[#10B981] bg-[#F0FDF4] shadow-md shadow-[#10B981]/10'
+                                        : 'border-[#EAE6DF] bg-white hover:border-[#10B981]/50 hover:bg-[#FAF8F5]'
                                 }`}
                             >
                                 <div
-                                    className={`p-2 rounded-full mb-3 transition-colors ${deliveryMethod === 'DELIVERY' ? 'bg-[#C59A63] text-white' : 'bg-slate-200 text-slate-500 group-hover:bg-blue-100 group-hover:text-[#C59A63]'}`}
+                                    className={`p-2 rounded-full mb-3 transition-colors ${
+                                        deliveryMethod === 'DELIVERY'
+                                            ? 'bg-[#10B981] text-white'
+                                            : 'bg-zinc-100 text-zinc-500 group-hover:bg-[#10B981]/10 group-hover:text-[#10B981]'
+                                    }`}
                                 >
                                     <Truck size={20} />
                                 </div>
                                 <span
-                                    className={`font-black text-xs sm:text-sm uppercase tracking-widest mb-1 ${deliveryMethod === 'DELIVERY' ? 'text-blue-900' : 'text-slate-700'}`}
+                                    className={`font-black text-xs sm:text-sm uppercase tracking-widest mb-1 ${
+                                        deliveryMethod === 'DELIVERY'
+                                            ? 'text-[#1C1B1F]'
+                                            : 'text-zinc-600'
+                                    }`}
                                 >
                                     Livraison
                                 </span>
-                                <span className="text-[10px] sm:text-xs font-medium text-slate-500 leading-snug">
+                                <span className="text-[10px] sm:text-xs font-medium text-zinc-500 leading-snug">
                                     À domicile ou bureau
                                 </span>
                                 <div className="absolute top-4 right-4 transition-all">
@@ -308,10 +316,10 @@ const OrderSummary = ({ totalPrice, items }) => {
                                         <CheckCircle2
                                             size={22}
                                             fill="currentColor"
-                                            className="text-[#C59A63] bg-white rounded-full shadow-sm"
+                                            className="text-[#10B981] bg-white rounded-full shadow-xs"
                                         />
                                     ) : (
-                                        <div className="w-[22px] h-[22px] rounded-full border-2 border-slate-300 bg-white group-hover:border-blue-300" />
+                                        <div className="w-[22px] h-[22px] rounded-full border-2 border-zinc-300 bg-white group-hover:border-[#10B981]/50" />
                                     )}
                                 </div>
                             </button>
@@ -323,21 +331,29 @@ const OrderSummary = ({ totalPrice, items }) => {
                                 }}
                                 className={`relative flex flex-col items-start p-4 sm:p-5 rounded-2xl border-2 transition-all text-left group ${
                                     deliveryMethod === 'PICKUP'
-                                        ? 'border-blue-600 bg-[#F5F2EB]/80 shadow-lg shadow-blue-600/10'
-                                        : 'border-slate-200 bg-slate-50/50 hover:border-blue-300 hover:bg-slate-50'
+                                        ? 'border-[#10B981] bg-[#F0FDF4] shadow-md shadow-[#10B981]/10'
+                                        : 'border-[#EAE6DF] bg-white hover:border-[#10B981]/50 hover:bg-[#FAF8F5]'
                                 }`}
                             >
                                 <div
-                                    className={`p-2 rounded-full mb-3 transition-colors ${deliveryMethod === 'PICKUP' ? 'bg-[#C59A63] text-white' : 'bg-slate-200 text-slate-500 group-hover:bg-blue-100 group-hover:text-[#C59A63]'}`}
+                                    className={`p-2 rounded-full mb-3 transition-colors ${
+                                        deliveryMethod === 'PICKUP'
+                                            ? 'bg-[#10B981] text-white'
+                                            : 'bg-zinc-100 text-zinc-500 group-hover:bg-[#10B981]/10 group-hover:text-[#10B981]'
+                                    }`}
                                 >
                                     <Store size={20} />
                                 </div>
                                 <span
-                                    className={`font-black text-xs sm:text-sm uppercase tracking-widest mb-1 ${deliveryMethod === 'PICKUP' ? 'text-blue-900' : 'text-slate-700'}`}
+                                    className={`font-black text-xs sm:text-sm uppercase tracking-widest mb-1 ${
+                                        deliveryMethod === 'PICKUP'
+                                            ? 'text-[#1C1B1F]'
+                                            : 'text-zinc-600'
+                                    }`}
                                 >
                                     Retrait
                                 </span>
-                                <span className="text-[10px] sm:text-xs font-medium text-slate-500 leading-snug">
+                                <span className="text-[10px] sm:text-xs font-medium text-zinc-500 leading-snug">
                                     En boutique (Gratuit)
                                 </span>
                                 <div className="absolute top-4 right-4 transition-all">
@@ -345,10 +361,10 @@ const OrderSummary = ({ totalPrice, items }) => {
                                         <CheckCircle2
                                             size={22}
                                             fill="currentColor"
-                                            className="text-[#C59A63] bg-white rounded-full shadow-sm"
+                                            className="text-[#10B981] bg-white rounded-full shadow-xs"
                                         />
                                     ) : (
-                                        <div className="w-[22px] h-[22px] rounded-full border-2 border-slate-300 bg-white group-hover:border-blue-300" />
+                                        <div className="w-[22px] h-[22px] rounded-full border-2 border-zinc-300 bg-white group-hover:border-[#10B981]/50" />
                                     )}
                                 </div>
                             </button>
@@ -371,22 +387,22 @@ const OrderSummary = ({ totalPrice, items }) => {
                                     initial={{ opacity: 0, y: 8 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -8 }}
-                                    className="group relative bg-[#F5F2EB]/50 p-5 rounded-[2rem] border border-blue-100 transition-all"
+                                    className="group relative bg-white p-5 rounded-2xl border border-[#10B981]/40 shadow-xs transition-all"
                                 >
                                     <div className="pr-10">
-                                        <p className="font-black text-blue-900 text-sm mb-1">
+                                        <p className="font-black text-[#1C1B1F] text-sm mb-1">
                                             {selectedAddress.name}
                                         </p>
-                                        <p className="text-xs text-blue-700 font-bold">
+                                        <p className="text-xs text-[#10B981] font-bold">
                                             Tél. {selectedAddress.phone}
                                         </p>
-                                        <p className="text-xs text-[#C59A63]/80 mt-1 leading-relaxed">
+                                        <p className="text-xs text-[#8C8275] mt-1 leading-relaxed">
                                             {selectedAddress.street}, {selectedAddress.city}
                                         </p>
                                     </div>
                                     <button
                                         onClick={() => setSelectedAddress(null)}
-                                        className="absolute top-4 right-4 p-2 bg-white rounded-xl text-[#C59A63] shadow-sm hover:bg-[#C59A63] hover:text-white transition-all"
+                                        className="absolute top-4 right-4 p-2 bg-[#FAF8F5] rounded-xl text-[#1C1B1F] shadow-xs hover:bg-[#10B981] hover:text-white transition-all"
                                     >
                                         <SquarePenIcon size={16} />
                                     </button>
@@ -592,11 +608,11 @@ const OrderSummary = ({ totalPrice, items }) => {
                                     initial={{ opacity: 0, height: 0 }}
                                     animate={{ opacity: 1, height: 'auto' }}
                                     exit={{ opacity: 0, height: 0 }}
-                                    className="mt-4 p-4 bg-[#F5F2EB] border border-blue-100 rounded-2xl"
+                                    className="mt-4 p-4 bg-[#F0FDF4] border border-[#10B981]/30 rounded-2xl"
                                 >
-                                    <p className="text-[10px] font-bold text-blue-800 leading-relaxed text-center">
+                                    <p className="text-[11px] font-bold text-[#065F46] leading-relaxed text-center">
                                         Cliquez sur le bouton ci-dessous pour être redirigé vers
-                                        Wave et finaliser votre paiement.
+                                        Wave et finaliser votre paiement instantanément.
                                     </p>
                                 </motion.div>
                             )}
@@ -614,14 +630,14 @@ const OrderSummary = ({ totalPrice, items }) => {
                                     e.preventDefault();
                                     setShowCoupon(!showCoupon);
                                 }}
-                                className="flex items-center gap-2 cursor-pointer list-none text-xs font-bold text-slate-500 hover:text-[#C59A63] transition-colors"
+                                className="flex items-center gap-2 cursor-pointer list-none text-xs font-bold text-slate-500 hover:text-[#10B981] transition-colors"
                             >
                                 <PlusIcon
                                     size={14}
-                                    className={`transition-transform ${showCoupon || appliedCoupon ? 'rotate-45 text-[#C59A63]' : ''}`}
+                                    className={`transition-transform ${showCoupon || appliedCoupon ? 'rotate-45 text-[#10B981]' : ''}`}
                                 />
                                 <span
-                                    className={showCoupon || appliedCoupon ? 'text-[#C59A63]' : ''}
+                                    className={showCoupon || appliedCoupon ? 'text-[#10B981]' : ''}
                                 >
                                     Avez-vous un code promo ?
                                 </span>
@@ -634,7 +650,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                         disabled={appliedCoupon}
                                         type="text"
                                         placeholder="Saisissez votre code"
-                                        className="w-full px-4 py-3 bg-slate-50 border-2 border-transparent focus:border-[#C59A63] focus:bg-white outline-none rounded-xl text-xs font-bold text-slate-800 transition-all placeholder:font-medium placeholder:text-slate-400 shadow-inner"
+                                        className="w-full px-4 py-3 bg-slate-50 border-2 border-transparent focus:border-[#10B981] focus:bg-white outline-none rounded-xl text-xs font-bold text-slate-800 transition-all placeholder:font-medium placeholder:text-slate-400 shadow-inner"
                                     />
                                 </div>
                                 <button
@@ -648,7 +664,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                             : handleApplyCoupon
                                     }
                                     disabled={isValidatingCoupon || (!couponCode && !appliedCoupon)}
-                                    className={`px-6 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all disabled:opacity-50 ${appliedCoupon ? 'bg-red-50 text-red-600 hover:bg-red-600 hover:text-white' : 'bg-slate-900 text-white hover:bg-black shadow-lg shadow-slate-900/10'}`}
+                                    className={`px-6 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all disabled:opacity-50 ${appliedCoupon ? 'bg-red-50 text-red-600 hover:bg-red-600 hover:text-white' : 'bg-[#1C1B1F] text-white hover:bg-black shadow-lg shadow-black/10'}`}
                                 >
                                     {isValidatingCoupon
                                         ? '...'
@@ -658,7 +674,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                                 </button>
                             </div>
                             {appliedCoupon && (
-                                <p className="mt-2 text-[10px] text-[#C59A63] font-bold flex items-center gap-1">
+                                <p className="mt-2 text-[10px] text-[#10B981] font-bold flex items-center gap-1">
                                     <CheckCircle2 size={12} /> Réduction de{' '}
                                     {appliedCoupon.discount.toLocaleString('fr-SN')} FCFA appliquée
                                     !
@@ -681,10 +697,10 @@ const OrderSummary = ({ totalPrice, items }) => {
                             </div>
                             {discountAmount > 0 && (
                                 <div className="flex justify-between items-center">
-                                    <span className="text-[10px] font-black text-[#C59A63] uppercase tracking-widest">
+                                    <span className="text-[10px] font-black text-[#10B981] uppercase tracking-widest">
                                         Réduction ({appliedCoupon.code})
                                     </span>
-                                    <span className="font-bold text-[#C59A63]">
+                                    <span className="font-bold text-[#10B981]">
                                         -{discountAmount.toLocaleString('fr-SN')}{' '}
                                         <small className="text-[10px]">FCFA</small>
                                     </span>
@@ -696,11 +712,11 @@ const OrderSummary = ({ totalPrice, items }) => {
                                 </span>
                                 <span className="font-bold text-slate-700">
                                     {rawDeliveryFee === 0 ? (
-                                        <span className="text-[#C59A63] bg-[#F5F2EB] px-2 py-0.5 rounded-md text-xs font-black uppercase tracking-widest">
+                                        <span className="text-[#10B981] bg-[#F0FDF4] px-2 py-0.5 rounded-md text-xs font-black uppercase tracking-widest">
                                             Gratuit
                                         </span>
                                     ) : rawDeliveryFee === -1 ? (
-                                        <span className="text-[#C59A63] bg-[#F5F2EB] px-2 py-0.5 rounded-md text-xs font-black uppercase tracking-widest">
+                                        <span className="text-[#10B981] bg-[#F0FDF4] px-2 py-0.5 rounded-md text-xs font-black uppercase tracking-widest">
                                             À déterminer
                                         </span>
                                     ) : (
@@ -732,7 +748,7 @@ const OrderSummary = ({ totalPrice, items }) => {
                             whileTap={{ scale: 0.98 }}
                             onClick={handlePlaceOrder}
                             disabled={isLoading}
-                            className="hidden lg:flex w-full bg-[#C59A63] text-white py-5 rounded-2xl font-black text-sm uppercase tracking-[0.2em] shadow-2xl shadow-[#C59A63]/25 hover:bg-[#B4874F] transition-all items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed"
+                            className="hidden lg:flex w-full bg-[#10B981] text-white py-5 rounded-2xl font-black text-sm uppercase tracking-[0.2em] shadow-xl shadow-[#10B981]/25 hover:bg-[#059669] transition-all items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed"
                         >
                             {isLoading ? (
                                 <span className="flex items-center gap-2">

@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { useCartStore } from '@/lib/store';
 import { Minus, Plus } from 'lucide-react';
 
@@ -33,7 +33,7 @@ const Counter = ({ productId }) => {
             </span>
             <button
                 onClick={increment}
-                className="size-9 sm:size-10 flex items-center justify-center text-slate-500 hover:bg-blue-100 hover:text-blue-600 active:scale-90 transition-all"
+                className="size-9 sm:size-10 flex items-center justify-center text-slate-500 hover:bg-[#10B981]/15 hover:text-[#10B981] active:scale-90 transition-all"
             >
                 <Plus size={14} />
             </button>

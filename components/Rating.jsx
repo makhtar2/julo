@@ -1,4 +1,4 @@
-﻿import { Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 import React from 'react';
 
 const Rating = ({ value = 4 }) => {
@@ -7,7 +7,7 @@ const Rating = ({ value = 4 }) => {
             {Array.from({ length: 5 }, (_, i) => (
                 <Star
                     key={i}
-                    className={`shrink-0 size-4 fill-current ${value > i ? 'text-blue-400' : 'text-gray-300'}`}
+                    className={`shrink-0 size-4 fill-current ${value > i ? 'text-[#F59E0B]' : 'text-gray-300'}`}
                 />
             ))}
         </div>

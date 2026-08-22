@@ -122,7 +122,7 @@ export default function Orders() {
                     </p>
                     <Link
                         href="/shop"
-                        className="px-10 py-5 bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl shadow-blue-600/20 hover:bg-blue-700 transition-all"
+                        className="px-10 py-5 bg-[#1C1B1F] text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl shadow-black/10 hover:bg-[#10B981] active:scale-95 transition-all"
                     >
                         Commencer mes achats
                     </Link>

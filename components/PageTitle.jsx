@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { ArrowLeftIcon } from 'lucide-react';
 import Link from 'next/link';
 
@@ -8,7 +8,7 @@ const PageTitle = ({ heading, text, path = '/', linkText }) => {
             {linkText && (
                 <Link
                     href={path}
-                    className="inline-flex items-center gap-2 text-slate-400 hover:text-blue-600 font-bold text-xs uppercase tracking-widest transition-colors mb-6 group"
+                    className="inline-flex items-center gap-2 text-zinc-400 hover:text-[#10B981] font-bold text-xs uppercase tracking-widest transition-colors mb-6 group"
                 >
                     <ArrowLeftIcon
                         size={14}

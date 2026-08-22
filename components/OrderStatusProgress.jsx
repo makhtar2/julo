@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import React from 'react';
 import { CheckCircle2, Clock, Package, Truck, Home } from 'lucide-react';
 
@@ -23,7 +23,7 @@ const OrderStatusProgress = ({ currentStatus }) => {
 
                 {/* Active Progress Line */}
                 <div
-                    className="absolute top-5 left-0 h-0.5 bg-blue-500 transition-all duration-1000 -z-10"
+                    className="absolute top-5 left-0 h-0.5 bg-[#10B981] transition-all duration-1000 -z-10"
                     style={{ width: `${(currentIndex / (statuses.length - 1)) * 100}%` }}
                 />
 
@@ -39,9 +39,9 @@ const OrderStatusProgress = ({ currentStatus }) => {
                                 className={`size-10 rounded-xl flex items-center justify-center border-2 transition-all duration-500 shadow-sm
                   ${
                       isCompleted
-                          ? 'bg-blue-500 border-blue-500 text-white'
+                          ? 'bg-[#10B981] border-[#10B981] text-white'
                           : isCurrent
-                            ? 'bg-white border-blue-500 text-blue-500 scale-110 shadow-blue-200'
+                            ? 'bg-white border-[#10B981] text-[#10B981] scale-110 shadow-md shadow-[#10B981]/20'
                             : 'bg-white border-slate-100 text-slate-300'
                   }
                 `}
@@ -49,7 +49,7 @@ const OrderStatusProgress = ({ currentStatus }) => {
                                 {isCompleted ? <CheckCircle2 size={18} /> : <Icon size={18} />}
                             </div>
                             <span
-                                className={`text-[9px] font-black uppercase tracking-widest ${isCurrent ? 'text-blue-600' : 'text-slate-400'}`}
+                                className={`text-[9px] font-black uppercase tracking-widest ${isCurrent ? 'text-[#10B981]' : 'text-slate-400'}`}
                             >
                                 {status.label}
                             </span>

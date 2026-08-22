@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import { useState } from 'react';
 import { trackPublicOrder } from '@/app/actions/order';
 import { Package, Search, Clock, CheckCircle2, Truck, AlertCircle, RefreshCw } from 'lucide-react';
@@ -162,9 +162,9 @@ export default function TrackOrderPage() {
                                                     <div
                                                         className={`size-12 rounded-2xl flex items-center justify-center shrink-0 transition-all ${
                                                             isCompleted
-                                                                ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/30'
+                                                                ? 'bg-[#10B981] text-white shadow-lg shadow-[#10B981]/25'
                                                                 : 'bg-slate-100 text-slate-400'
-                                                        } ${isActive ? 'scale-110 ring-4 ring-blue-100' : ''}`}
+                                                        } ${isActive ? 'scale-110 ring-4 ring-[#10B981]/20' : ''}`}
                                                     >
                                                         <Icon
                                                             size={20}
@@ -182,7 +182,7 @@ export default function TrackOrderPage() {
                                                             {status.label}
                                                         </p>
                                                         {isActive && (
-                                                            <p className="text-xs text-blue-600 font-bold mt-1">
+                                                            <p className="text-xs text-[#10B981] font-bold mt-1">
                                                                 Statut actuel de votre colis
                                                             </p>
                                                         )}
