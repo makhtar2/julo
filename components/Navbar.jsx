@@ -126,8 +126,8 @@ const Navbar = () => {
     };
 
     const navLinks = [
-        { name: 'julo.store', href: '/shop', isStore: true },
-        { name: 'julo.prod', href: '/#studio', isProd: true },
+        { name: 'Accueil', href: '/' },
+        { name: 'Boutique', href: '/shop' },
         { name: 'À Propos', href: '/about' },
         { name: 'Contact', href: '/contact' },
     ];
@@ -240,16 +240,11 @@ const Navbar = () => {
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className={`px-3.5 py-2 rounded-xl text-[11px] transition-all duration-200 relative group
-                                        ${
-                                            link.isStore
-                                                ? 'bg-zinc-950 text-white font-blanka tracking-wider hover:bg-zinc-800 shadow-sm'
-                                                : link.isProd
-                                                  ? 'bg-amber-500 text-zinc-950 font-blanka tracking-wider hover:bg-amber-400 shadow-sm'
-                                                  : isActive
-                                                    ? 'bg-zinc-100 text-zinc-900 font-bold'
-                                                    : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 font-bold'
-                                        }`}
+                                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
+                                        isActive
+                                            ? 'bg-zinc-950 text-white shadow-sm'
+                                            : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950'
+                                    }`}
                                 >
                                     {link.name}
                                 </Link>
@@ -274,7 +269,7 @@ const Navbar = () => {
                         <Link
                             href="/"
                             aria-label="JULO - Retour à l'accueil"
-                            className="flex items-center gap-2.5 group"
+                            className="flex items-center group"
                         >
                             <Image
                                 src={assets.julo_logo_transparent}
@@ -282,13 +277,8 @@ const Navbar = () => {
                                 width={130}
                                 height={45}
                                 priority
-                                className="h-7 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105"
+                                className="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
                             />
-                            <div className="hidden xl:flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-zinc-100 border border-zinc-200">
-                                <span className="font-blanka text-[9px] text-zinc-900">STORE</span>
-                                <span className="text-zinc-400 text-[10px]">/</span>
-                                <span className="font-blanka text-[9px] text-amber-600">PROD</span>
-                            </div>
                         </Link>
                     </div>
 

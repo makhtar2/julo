@@ -10,7 +10,11 @@ import CacheBuster from '@/components/CacheBuster';
 import ScrollToTop from '@/components/ScrollToTop';
 import './globals.css';
 
-const outfit = Outfit({ subsets: ['latin'], weight: ['400', '500', '600'] });
+const outfit = Outfit({
+    subsets: ['latin'],
+    weight: ['300', '400', '500', '600', '700', '800', '900'],
+    display: 'swap',
+});
 
 export const viewport = {
     width: 'device-width',

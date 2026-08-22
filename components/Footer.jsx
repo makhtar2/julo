@@ -1,15 +1,6 @@
 'use client';
 import Link from 'next/link';
-import {
-    Facebook,
-    Instagram,
-    Twitter,
-    Linkedin,
-    Phone,
-    Mail,
-    MapPin,
-    ArrowUpRight,
-} from 'lucide-react';
+import { Facebook, Instagram, Twitter, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
 import { assets } from '@/assets/assets';
 import Image from 'next/image';
 
@@ -17,11 +8,11 @@ const Footer = () => {
     return (
         <footer className="bg-zinc-950 text-white border-t border-zinc-800 mt-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Top Section */}
+                {/* Main Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 py-16 border-b border-zinc-800">
-                    {/* Brand Info */}
-                    <div className="lg:col-span-4">
-                        <Link href="/" className="inline-flex items-center gap-2">
+                    {/* Brand Column */}
+                    <div className="lg:col-span-5">
+                        <Link href="/" className="inline-flex items-center">
                             <Image
                                 src={assets.julo_logo_white}
                                 alt="JULO."
@@ -30,40 +21,36 @@ const Footer = () => {
                                 className="h-8 w-auto object-contain"
                             />
                         </Link>
-                        <p className="mt-4 text-zinc-400 font-medium text-xs sm:text-sm leading-relaxed max-w-sm">
-                            Plateforme unifiée d&apos;équipements high-tech certifiés (
-                            <strong className="text-white">julo.store</strong>) et atelier de
-                            sérigraphie &amp; branding sur-mesure au Sénégal (
-                            <strong className="text-amber-400">julo.prod</strong>).
+                        <p className="mt-4 text-zinc-400 text-xs sm:text-sm leading-relaxed max-w-sm">
+                            Votre destination au Sénégal pour des smartphones, ordinateurs et
+                            accessoires électroniques de qualité, ainsi que pour vos travaux de
+                            sérigraphie et d’infographie personnalisés.
                         </p>
-                        <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 font-bold">
-                            <span>Co-fondateurs :</span>
-                            <span className="text-zinc-200">
-                                Babacar Diop Gaye &amp; Makhtar Wade
-                            </span>
-                        </div>
+                        <p className="mt-3 text-xs font-semibold text-zinc-500">
+                            Co-fondateurs : Babacar Diop Gaye &amp; Makhtar Wade
+                        </p>
                     </div>
 
-                    {/* Sub-Brands Columns */}
-                    <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-8">
-                        {/* Store Hub */}
+                    {/* Links Columns */}
+                    <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
+                        {/* Categories */}
                         <div>
-                            <h3 className="font-blanka text-xs text-white uppercase tracking-widest mb-4 text-amber-400">
-                                ⚡ JULO.STORE
+                            <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-4">
+                                PRODUITS
                             </h3>
-                            <ul className="space-y-3">
+                            <ul className="space-y-2.5 text-xs text-zinc-400">
                                 <li>
                                     <Link
                                         href="/shop?category=telephones"
-                                        className="text-xs font-bold text-zinc-400 hover:text-white transition-colors"
+                                        className="hover:text-white transition-colors"
                                     >
-                                        Smartphones &amp; Mobiles
+                                        Smartphones
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
                                         href="/shop?category=ordinateurs"
-                                        className="text-xs font-bold text-zinc-400 hover:text-white transition-colors"
+                                        className="hover:text-white transition-colors"
                                     >
                                         Ordinateurs &amp; PC
                                     </Link>
@@ -71,74 +58,71 @@ const Footer = () => {
                                 <li>
                                     <Link
                                         href="/shop?category=accessoires"
-                                        className="text-xs font-bold text-zinc-400 hover:text-white transition-colors"
+                                        className="hover:text-white transition-colors"
                                     >
-                                        Accessoires &amp; Magsafe
+                                        Accessoires
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
-                                        href="/shop"
-                                        className="text-xs font-bold text-zinc-400 hover:text-white transition-colors"
+                                        href="/shop?category=serigraphie"
+                                        className="hover:text-white transition-colors"
                                     >
-                                        Tous les Produits
+                                        Sérigraphie
                                     </Link>
                                 </li>
                             </ul>
                         </div>
 
-                        {/* Prod Hub */}
+                        {/* Useful Links */}
                         <div>
-                            <h3 className="font-blanka text-xs text-white uppercase tracking-widest mb-4 text-amber-400">
-                                🎨 JULO.PROD
+                            <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-4">
+                                NAVIGATION
                             </h3>
-                            <ul className="space-y-3">
+                            <ul className="space-y-2.5 text-xs text-zinc-400">
                                 <li>
-                                    <a
-                                        href="/#studio"
-                                        className="text-xs font-bold text-zinc-400 hover:text-white transition-colors"
+                                    <Link
+                                        href="/shop"
+                                        className="hover:text-white transition-colors"
                                     >
-                                        Sérigraphie Textile
-                                    </a>
+                                        Boutique
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a
-                                        href="/#studio"
-                                        className="text-xs font-bold text-zinc-400 hover:text-white transition-colors"
+                                    <Link
+                                        href="/about"
+                                        className="hover:text-white transition-colors"
                                     >
-                                        T-shirts &amp; Hoodies Custom
-                                    </a>
+                                        À Propos
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a
-                                        href="/#studio"
-                                        className="text-xs font-bold text-zinc-400 hover:text-white transition-colors"
+                                    <Link
+                                        href="/contact"
+                                        className="hover:text-white transition-colors"
                                     >
-                                        Packs Goodies Entreprise
-                                    </a>
+                                        Contact
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a
-                                        href="https://wa.me/221754469097?text=Bonjour%20Julo,%20je%20souhaite%20un%20devis"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1"
+                                    <Link
+                                        href="/track"
+                                        className="hover:text-white transition-colors"
                                     >
-                                        <span>Demander un Devis</span>
-                                        <ArrowUpRight size={12} />
-                                    </a>
+                                        Suivi de Commande
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
 
-                        {/* Contact & Localisation */}
+                        {/* Contact */}
                         <div>
-                            <h3 className="font-blanka text-xs text-white uppercase tracking-widest mb-4">
+                            <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-4">
                                 CONTACT
                             </h3>
-                            <ul className="space-y-3 text-xs text-zinc-400">
+                            <ul className="space-y-2.5 text-xs text-zinc-400">
                                 <li className="flex items-center gap-2">
-                                    <Phone size={14} className="text-amber-400 shrink-0" />
+                                    <Phone size={13} className="text-amber-400 shrink-0" />
                                     <a
                                         href="tel:+221754469097"
                                         className="hover:text-white transition-colors"
@@ -147,7 +131,7 @@ const Footer = () => {
                                     </a>
                                 </li>
                                 <li className="flex items-center gap-2">
-                                    <Mail size={14} className="text-amber-400 shrink-0" />
+                                    <Mail size={13} className="text-amber-400 shrink-0" />
                                     <a
                                         href="mailto:contact@julo.sn"
                                         className="hover:text-white transition-colors"
@@ -156,7 +140,7 @@ const Footer = () => {
                                     </a>
                                 </li>
                                 <li className="flex items-center gap-2">
-                                    <MapPin size={14} className="text-amber-400 shrink-0" />
+                                    <MapPin size={13} className="text-amber-400 shrink-0" />
                                     <span>Dakar &amp; Touba, Sénégal</span>
                                 </li>
                             </ul>
@@ -165,8 +149,8 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-zinc-500 font-bold">
-                    <p className="font-blanka tracking-wider">© 2026 JULO. TOUS DROITS RÉSERVÉS.</p>
+                <div className="py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-500 font-medium">
+                    <p>© 2026 JULO. TOUS DROITS RÉSERVÉS.</p>
                     <div className="flex items-center gap-6">
                         <Link
                             href="/mentions-legales"

@@ -3,7 +3,6 @@ import Hero from '@/components/Hero';
 import Newsletter from '@/components/Newsletter';
 import OurSpecs from '@/components/OurSpec';
 import LatestProducts from '@/components/LatestProducts';
-import StudioShowcase from '@/components/StudioShowcase';
 import Faq from '@/components/Faq';
 import { getProducts } from '@/app/actions/product';
 import { getCategories } from '@/app/actions/category';
@@ -24,7 +23,6 @@ export default async function Home() {
         <div className="bg-white text-zinc-900">
             <Hero initialCategories={categoriesList} initialBanners={banners || []} />
             <LatestProducts products={products} />
-            <StudioShowcase />
             <BestSelling products={products} />
             <OurSpecs />
             <Faq />
