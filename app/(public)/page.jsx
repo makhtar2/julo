@@ -3,8 +3,8 @@ import Hero from '@/components/Hero';
 import Newsletter from '@/components/Newsletter';
 import OurSpecs from '@/components/OurSpec';
 import LatestProducts from '@/components/LatestProducts';
-import Testimonials from '@/components/Testimonials';
-import AIFaq from '@/components/AIFaq';
+import StudioShowcase from '@/components/StudioShowcase';
+import Faq from '@/components/Faq';
 import { getProducts } from '@/app/actions/product';
 import { getCategories } from '@/app/actions/category';
 import { getActiveBanners } from '@/app/actions/banner';
@@ -21,13 +21,13 @@ export default async function Home() {
     const categoriesList = categories?.map((c) => c.name) || [];
 
     return (
-        <div>
+        <div className="bg-white text-zinc-900">
             <Hero initialCategories={categoriesList} initialBanners={banners || []} />
             <LatestProducts products={products} />
+            <StudioShowcase />
             <BestSelling products={products} />
             <OurSpecs />
-            {/* <Testimonials /> */}
-            <AIFaq />
+            <Faq />
             <Newsletter />
         </div>
     );

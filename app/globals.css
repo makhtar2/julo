@@ -1,5 +1,22 @@
 @import 'tailwindcss';
 
+@font-face {
+    font-family: 'Blanka';
+    src: url('/fonts/Blanka.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@theme {
+    --font-blanka: 'Blanka', sans-serif;
+}
+
+.font-blanka {
+    font-family: 'Blanka', sans-serif;
+    letter-spacing: 0.05em;
+}
+
 @layer components {
     @keyframes marqueeScroll {
         0% {

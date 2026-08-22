@@ -5,23 +5,26 @@ import { ZapIcon, TruckIcon, ShieldCheckIcon } from 'lucide-react';
 export default function Banner() {
     const messages = [
         {
-            text: "Bienvenue chez Global Air - L'Excellence pour votre Foyer au Sénégal",
+            text: 'JULO.STORE — Smartphones, Ordinateurs & Accessoires Originaux au Sénégal',
             icon: ShieldCheckIcon,
         },
         {
-            text: 'Profitez de nos offres exceptionnelles sur la Climatisation',
+            text: 'JULO.PROD — Atelier de Sérigraphie & Personnalisation Textile de Haute Précision',
             icon: ZapIcon,
         },
-        { text: 'Livraison rapide et Service Client dédié à votre satisfaction', icon: TruckIcon },
+        {
+            text: 'Livraison Express Dakar, Thiès, Touba & Partout au Sénégal • Paiement Wave / OM',
+            icon: TruckIcon,
+        },
     ];
 
     return (
-        <div className="bg-slate-900 text-white py-2.5 overflow-hidden relative">
-            <div className="flex whitespace-nowrap gap-20 items-center px-10 animate-[marqueeScroll_30s_linear_infinite]">
+        <div className="bg-zinc-950 text-white py-2 overflow-hidden relative border-b border-zinc-800">
+            <div className="flex whitespace-nowrap gap-16 items-center px-10 animate-[marqueeScroll_30s_linear_infinite]">
                 {[...messages, ...messages, ...messages, ...messages].map((msg, index) => (
-                    <div key={index} className="flex items-center gap-3 shrink-0">
-                        <msg.icon size={14} className="text-blue-500" />
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em]">
+                    <div key={index} className="flex items-center gap-2.5 shrink-0">
+                        <msg.icon size={13} className="text-amber-400" />
+                        <span className="text-[10px] font-bold tracking-wider text-zinc-300">
                             {msg.text}
                         </span>
                     </div>

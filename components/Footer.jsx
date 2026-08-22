@@ -8,154 +8,176 @@ import {
     Phone,
     Mail,
     MapPin,
-    ArrowRight,
+    ArrowUpRight,
 } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { assets } from '@/assets/assets';
 import Image from 'next/image';
 
 const Footer = () => {
-    const linkSections = [
-        {
-            title: 'PRODUITS & SERVICES',
-            links: [
-                { text: 'Accessoires Téléphone', path: '/shop?category=accessoires' },
-                { text: 'Smartphones & Téléphones', path: '/shop?category=telephones' },
-                { text: 'Ordinateurs & PC', path: '/shop?category=ordinateurs' },
-                { text: 'Sérigraphie & Infographie', path: '/shop?category=serigraphie' },
-            ],
-        },
-        {
-            title: 'LIENS UTILES',
-            links: [
-                { text: 'Boutique', path: '/shop' },
-                { text: 'À propos de Julo', path: '/about' },
-                { text: 'Contactez-nous', path: '/contact' },
-                { text: 'Mentions Légales', path: '/mentions-legales' },
-                { text: 'Conditions Générales', path: '/terms' },
-            ],
-        },
-        {
-            title: 'CONTACT & SHOWROOM',
-            links: [
-                { text: '+221 75 446 90 97', path: 'tel:+221754469097', icon: Phone },
-                {
-                    text: 'contact@julo.sn',
-                    path: 'mailto:contact@julo.sn',
-                    icon: Mail,
-                },
-                { text: 'Dakar & Touba, Sénégal', path: '/contact', icon: MapPin },
-            ],
-        },
-    ];
-
-    const socialIcons = [
-        {
-            icon: Facebook,
-            link: 'https://facebook.com',
-            color: 'hover:text-blue-600',
-        },
-        {
-            icon: Instagram,
-            link: 'https://instagram.com',
-            color: 'hover:text-pink-600',
-        },
-        { icon: Twitter, link: 'https://twitter.com', color: 'hover:text-blue-400' },
-        {
-            icon: Linkedin,
-            link: 'https://linkedin.com',
-            color: 'hover:text-blue-700',
-        },
-    ];
-
     return (
-        <footer className="bg-white border-t border-slate-100 mt-24">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 py-16">
+        <footer className="bg-zinc-950 text-white border-t border-zinc-800 mt-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Top Section */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 py-16 border-b border-zinc-800">
                     {/* Brand Info */}
-                    <div className="lg:col-span-5">
-                        <Link href="/" className="flex items-center gap-2">
+                    <div className="lg:col-span-4">
+                        <Link href="/" className="inline-flex items-center gap-2">
                             <Image
-                                src={assets.julo_logo_transparent}
+                                src={assets.julo_logo_white}
                                 alt="JULO."
-                                width={140}
-                                height={50}
-                                className="h-9 w-auto object-contain"
+                                width={130}
+                                height={45}
+                                className="h-8 w-auto object-contain"
                             />
-                            <span className="text-[9px] font-black uppercase tracking-widest bg-amber-500 text-slate-950 px-2.5 py-0.5 rounded-full">
-                                PROD
-                            </span>
                         </Link>
-                        <p className="mt-6 text-slate-700 font-medium text-sm leading-relaxed max-w-sm">
-                            Votre destination complète pour l’achat de produits électroniques de
-                            qualité et pour vos besoins de sérigraphie et d’infographie sur-mesure
-                            au Sénégal.
+                        <p className="mt-4 text-zinc-400 font-medium text-xs sm:text-sm leading-relaxed max-w-sm">
+                            Plateforme unifiée d&apos;équipements high-tech certifiés (
+                            <strong className="text-white">julo.store</strong>) et atelier de
+                            sérigraphie &amp; branding sur-mesure au Sénégal (
+                            <strong className="text-amber-400">julo.prod</strong>).
                         </p>
-                        <p className="mt-3 text-xs font-bold text-slate-500">
-                            Co-fondateurs : Babacar Diop Gaye & Makhtar Wade
-                        </p>
-                        <div className="flex items-center gap-4 mt-8">
-                            {socialIcons.map((item, i) => (
-                                <a
-                                    href={item.link}
-                                    key={i}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`group flex items-center justify-center size-10 bg-slate-50 rounded-xl transition-all hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 ${item.color}`}
-                                >
-                                    <span className="sr-only">Réseau social</span>
-                                    <item.icon size={18} aria-hidden="true" />
-                                </a>
-                            ))}
+                        <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-[10px] text-zinc-400 font-bold">
+                            <span>Co-fondateurs :</span>
+                            <span className="text-zinc-200">
+                                Babacar Diop Gaye &amp; Makhtar Wade
+                            </span>
                         </div>
                     </div>
 
-                    {/* Links */}
-                    <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
-                        {linkSections.map((section, index) => (
-                            <div key={index}>
-                                <h3 className="text-[10px] font-black text-slate-900 mb-6 uppercase tracking-widest">
-                                    {section.title}
-                                </h3>
-                                <ul className="space-y-4">
-                                    {section.links.map((link, i) => (
-                                        <li key={i}>
-                                            <Link
-                                                href={link.path}
-                                                className="flex items-center gap-2 text-sm font-bold text-slate-700 hover:text-amber-600 transition-all group"
-                                            >
-                                                {link.icon && (
-                                                    <link.icon
-                                                        size={14}
-                                                        className="text-slate-600 group-hover:text-amber-600 transition-colors"
-                                                    />
-                                                )}
-                                                {link.text}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
+                    {/* Sub-Brands Columns */}
+                    <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-8">
+                        {/* Store Hub */}
+                        <div>
+                            <h3 className="font-blanka text-xs text-white uppercase tracking-widest mb-4 text-amber-400">
+                                ⚡ JULO.STORE
+                            </h3>
+                            <ul className="space-y-3">
+                                <li>
+                                    <Link
+                                        href="/shop?category=telephones"
+                                        className="text-xs font-bold text-zinc-400 hover:text-white transition-colors"
+                                    >
+                                        Smartphones &amp; Mobiles
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/shop?category=ordinateurs"
+                                        className="text-xs font-bold text-zinc-400 hover:text-white transition-colors"
+                                    >
+                                        Ordinateurs &amp; PC
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/shop?category=accessoires"
+                                        className="text-xs font-bold text-zinc-400 hover:text-white transition-colors"
+                                    >
+                                        Accessoires &amp; Magsafe
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/shop"
+                                        className="text-xs font-bold text-zinc-400 hover:text-white transition-colors"
+                                    >
+                                        Tous les Produits
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {/* Prod Hub */}
+                        <div>
+                            <h3 className="font-blanka text-xs text-white uppercase tracking-widest mb-4 text-amber-400">
+                                🎨 JULO.PROD
+                            </h3>
+                            <ul className="space-y-3">
+                                <li>
+                                    <a
+                                        href="/#studio"
+                                        className="text-xs font-bold text-zinc-400 hover:text-white transition-colors"
+                                    >
+                                        Sérigraphie Textile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="/#studio"
+                                        className="text-xs font-bold text-zinc-400 hover:text-white transition-colors"
+                                    >
+                                        T-shirts &amp; Hoodies Custom
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="/#studio"
+                                        className="text-xs font-bold text-zinc-400 hover:text-white transition-colors"
+                                    >
+                                        Packs Goodies Entreprise
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="https://wa.me/221754469097?text=Bonjour%20Julo,%20je%20souhaite%20un%20devis"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1"
+                                    >
+                                        <span>Demander un Devis</span>
+                                        <ArrowUpRight size={12} />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {/* Contact & Localisation */}
+                        <div>
+                            <h3 className="font-blanka text-xs text-white uppercase tracking-widest mb-4">
+                                CONTACT
+                            </h3>
+                            <ul className="space-y-3 text-xs text-zinc-400">
+                                <li className="flex items-center gap-2">
+                                    <Phone size={14} className="text-amber-400 shrink-0" />
+                                    <a
+                                        href="tel:+221754469097"
+                                        className="hover:text-white transition-colors"
+                                    >
+                                        +221 75 446 90 97
+                                    </a>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <Mail size={14} className="text-amber-400 shrink-0" />
+                                    <a
+                                        href="mailto:contact@julo.sn"
+                                        className="hover:text-white transition-colors"
+                                    >
+                                        contact@julo.sn
+                                    </a>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <MapPin size={14} className="text-amber-400 shrink-0" />
+                                    <span>Dakar &amp; Touba, Sénégal</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                {/* Bottom Footer */}
-                <div className="py-10 border-t border-slate-50 flex flex-col sm:flex-row justify-between items-center gap-6">
-                    <p className="text-[11px] font-black text-slate-700 tracking-tight uppercase tracking-[0.2em]">
-                        © 2026 Julo. TOUS DROITS RÉSERVÉS.
-                    </p>
-                    <div className="flex items-center gap-8 text-[11px] font-black text-slate-700 uppercase tracking-widest">
+                {/* Bottom Bar */}
+                <div className="py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-zinc-500 font-bold">
+                    <p className="font-blanka tracking-wider">© 2026 JULO. TOUS DROITS RÉSERVÉS.</p>
+                    <div className="flex items-center gap-6">
                         <Link
                             href="/mentions-legales"
-                            className="hover:text-amber-600 transition-colors"
+                            className="hover:text-zinc-300 transition-colors"
                         >
                             Mentions Légales
                         </Link>
-                        <Link href="/privacy" className="hover:text-amber-600 transition-colors">
+                        <Link href="/privacy" className="hover:text-zinc-300 transition-colors">
                             Confidentialité
                         </Link>
-                        <Link href="/terms" className="hover:text-amber-600 transition-colors">
+                        <Link href="/terms" className="hover:text-zinc-300 transition-colors">
                             Conditions
                         </Link>
                     </div>

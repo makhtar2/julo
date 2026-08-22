@@ -48,10 +48,10 @@ const ProductCard = ({ product, priority = false }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="group relative flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-xl hover:border-blue-200 transition-all duration-300 h-full"
+            className="group relative flex flex-col bg-white border border-zinc-200 rounded-3xl overflow-hidden hover:shadow-xl hover:border-zinc-900 transition-all duration-300 h-full"
         >
-            {/* 1. IMAGE AREA - EDGE TO EDGE FOR MAX VISIBILITY */}
-            <div className="relative aspect-square bg-slate-50 w-full flex items-center justify-center p-2 sm:p-4 overflow-hidden group-hover:bg-slate-100/50 transition-colors">
+            {/* 1. IMAGE AREA */}
+            <div className="relative aspect-square bg-zinc-50 w-full flex items-center justify-center p-3 sm:p-5 overflow-hidden group-hover:bg-zinc-100/60 transition-colors">
                 <Link
                     href={`/product/${product.id}`}
                     className={`block w-full h-full ${isOutOfStock ? 'opacity-50 grayscale' : ''}`}
@@ -68,15 +68,15 @@ const ProductCard = ({ product, priority = false }) => {
                 </Link>
 
                 {/* Badges */}
-                <div className="absolute top-2 left-2 flex flex-col gap-1 z-10">
+                <div className="absolute top-3 left-3 flex flex-col gap-1 z-10">
                     {isOutOfStock ? (
-                        <div className="bg-slate-900 text-white text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                        <div className="bg-zinc-950 text-white text-[9px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">
                             Épuisé
                         </div>
                     ) : (
                         <>
                             {product.mrp > product.price && (
-                                <div className="bg-red-600 text-white text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                                <div className="bg-amber-500 text-zinc-950 text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-wider shadow-sm">
                                     -
                                     {Math.round(
                                         ((product.mrp - product.price) / product.mrp) * 100
@@ -85,8 +85,8 @@ const ProductCard = ({ product, priority = false }) => {
                                 </div>
                             )}
                             {isNew && (
-                                <div className="bg-blue-600 text-white text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
-                                    New
+                                <div className="bg-zinc-950 text-white text-[9px] font-blanka px-2 py-0.5 rounded-md uppercase tracking-wider">
+                                    NEW
                                 </div>
                             )}
                         </>
@@ -106,7 +106,7 @@ const ProductCard = ({ product, priority = false }) => {
                         toast.success(added ? 'Ajouté aux favoris' : 'Retiré des favoris');
                     }}
                     aria-label={isInWishlist ? 'Retirer des favoris' : 'Ajouter aux favoris'}
-                    className={`absolute top-2 right-2 size-7 sm:size-8 bg-white/90 rounded-full flex items-center justify-center z-20 shadow-sm border ${isInWishlist ? 'text-red-500 border-red-200' : 'text-slate-400 border-slate-100 hover:text-red-500'}`}
+                    className={`absolute top-3 right-3 size-8 bg-white/95 rounded-full flex items-center justify-center z-20 shadow-sm border ${isInWishlist ? 'text-red-500 border-red-200' : 'text-zinc-400 border-zinc-100 hover:text-red-500'}`}
                 >
                     <HeartIcon
                         className="size-3.5 sm:size-4"
@@ -129,48 +129,45 @@ const ProductCard = ({ product, priority = false }) => {
                             });
                             toast.success('Ajouté au panier');
                         }}
-                        className="absolute bottom-2 right-2 size-8 sm:size-10 bg-slate-900/95 backdrop-blur-md text-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-600 hover:scale-110 transition-all z-20 group/cartbtn"
+                        className="absolute bottom-3 right-3 size-9 sm:size-10 bg-zinc-950 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-amber-500 hover:text-zinc-950 hover:scale-110 transition-all z-20 group/cartbtn"
                         aria-label="Ajouter au panier"
                     >
-                        <ShoppingCart
-                            className="size-4 sm:size-[18px] group-hover/cartbtn:animate-bounce"
-                            strokeWidth={2.5}
-                        />
+                        <ShoppingCart className="size-4 sm:size-[18px]" strokeWidth={2.5} />
                     </button>
                 )}
             </div>
 
             {/* 2. INFORMATION AREA */}
-            <div className="flex flex-col flex-1 p-2.5 sm:p-4">
+            <div className="flex flex-col flex-1 p-3.5 sm:p-5">
                 <Link href={`/product/${product.id}`} className="block flex-1 mb-2">
-                    <div className="flex items-center justify-between gap-1 mb-1">
-                        <p className="text-[9px] sm:text-[10px] font-bold text-slate-700 uppercase tracking-wider truncate">
-                            {product.Category?.name || product.category || 'Général'}
+                    <div className="flex items-center justify-between gap-1 mb-1.5">
+                        <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider truncate">
+                            {product.Category?.name || product.category || 'JULO STORE'}
                         </p>
                         <div className="flex items-center gap-0.5">
-                            <StarIcon size={10} className="fill-amber-400 text-amber-400" />
-                            <span className="text-[9px] font-bold text-slate-700">
+                            <StarIcon size={11} className="fill-amber-400 text-amber-400" />
+                            <span className="text-[10px] font-bold text-zinc-700">
                                 {rating > 0 ? rating : '5.0'}
                             </span>
                         </div>
                     </div>
 
-                    <h3 className="text-slate-900 font-bold text-[11px] sm:text-sm line-clamp-2 leading-snug group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-zinc-950 font-bold text-xs sm:text-sm line-clamp-2 leading-snug group-hover:text-amber-600 transition-colors">
                         {product.name}
                     </h3>
                 </Link>
 
                 {/* Price & Action Area */}
-                <div className="mt-auto pt-2 border-t border-slate-100 flex items-end justify-between gap-1 sm:gap-2">
+                <div className="mt-auto pt-3 border-t border-zinc-100 flex items-end justify-between gap-2">
                     <div className="flex flex-col">
                         {product.mrp > product.price && (
-                            <span className="text-slate-400 text-[9px] sm:text-[10px] line-through font-medium leading-none mb-0.5">
-                                {product.mrp?.toLocaleString('fr-SN')}
+                            <span className="text-zinc-400 text-[10px] line-through font-medium leading-none mb-1">
+                                {product.mrp?.toLocaleString('fr-SN')} F
                             </span>
                         )}
-                        <span className="text-blue-600 font-black text-xs sm:text-base leading-none tracking-tight">
+                        <span className="text-zinc-950 font-black text-sm sm:text-lg leading-none tracking-tight">
                             {product.price?.toLocaleString('fr-SN')}
-                            <span className="text-[8px] sm:text-[10px] ml-0.5 text-blue-600/70 font-bold">
+                            <span className="text-[9px] sm:text-[11px] ml-1 text-zinc-500 font-bold">
                                 FCFA
                             </span>
                         </span>
@@ -180,7 +177,7 @@ const ProductCard = ({ product, priority = false }) => {
                         <button
                             onClick={handleBuyNow}
                             aria-label={`Acheter ${product.name}`}
-                            className="bg-slate-900 text-white px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-[8px] sm:text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 transition-all active:scale-95 shadow-md shadow-slate-900/10 shrink-0"
+                            className="bg-zinc-950 text-white px-3 sm:px-4 py-2 rounded-xl text-[9px] sm:text-[10px] font-black uppercase tracking-wider hover:bg-amber-500 hover:text-zinc-950 transition-all active:scale-95 shadow-sm shrink-0"
                         >
                             Acheter
                         </button>
