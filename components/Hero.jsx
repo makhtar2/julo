@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import {
     ArrowRight,
     Play,
@@ -13,10 +12,8 @@ import {
     Laptop,
     Headphones,
     Cable,
-    Watch,
     Shirt,
 } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const Hero = ({ initialCategories = [] }) => {
     const handleWhatsAppShowcase = () => {
@@ -27,44 +24,38 @@ const Hero = ({ initialCategories = [] }) => {
     const categoriesList = [
         {
             title: 'iPhone & Apple',
-            subtitle: 'Shop Now',
+            subtitle: 'Découvrir',
             href: '/shop?category=telephones',
-            image: 'https://res.cloudinary.com/mpgjgsojeezqiovtkepz/image/upload/v1740000000/iphone_card_mockup.png',
             fallbackIcon: Smartphone,
         },
         {
             title: 'Samsung Galaxy',
-            subtitle: 'Shop Now',
+            subtitle: 'Découvrir',
             href: '/shop?category=telephones',
-            image: 'https://res.cloudinary.com/mpgjgsojeezqiovtkepz/image/upload/v1740000000/samsung_card_mockup.png',
             fallbackIcon: Smartphone,
         },
         {
-            title: 'PC & Laptops',
-            subtitle: 'Shop Now',
+            title: 'Ordinateurs & PC',
+            subtitle: 'Découvrir',
             href: '/shop?category=ordinateurs',
-            image: 'https://res.cloudinary.com/mpgjgsojeezqiovtkepz/image/upload/v1740000000/laptop_card_mockup.png',
             fallbackIcon: Laptop,
         },
         {
-            title: 'Audio & Casques',
-            subtitle: 'Shop Now',
+            title: 'Audio & Écouteurs',
+            subtitle: 'Découvrir',
             href: '/shop?category=accessoires',
-            image: 'https://res.cloudinary.com/mpgjgsojeezqiovtkepz/image/upload/v1740000000/audio_card_mockup.png',
             fallbackIcon: Headphones,
         },
         {
-            title: 'Accessoires GaN',
-            subtitle: 'Shop Now',
+            title: 'Accessoires & GaN',
+            subtitle: 'Découvrir',
             href: '/shop?category=accessoires',
-            image: 'https://res.cloudinary.com/mpgjgsojeezqiovtkepz/image/upload/v1740000000/charger_card_mockup.png',
             fallbackIcon: Cable,
         },
         {
-            title: 'Sérigraphie & Tech',
-            subtitle: 'Shop Now',
+            title: 'Sérigraphie & Textile',
+            subtitle: 'Découvrir',
             href: '/shop?category=serigraphie',
-            image: 'https://res.cloudinary.com/mpgjgsojeezqiovtkepz/image/upload/v1740000000/watch_card_mockup.png',
             fallbackIcon: Shirt,
         },
     ];
@@ -78,15 +69,15 @@ const Hero = ({ initialCategories = [] }) => {
                     {/* Small Subtitle Header with fine lines */}
                     <div className="flex items-center gap-3 mb-6">
                         <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#8C8275]">
-                            PREMIUM TECH. PREMIUM LIFE.
+                            TECHNOLOGIE PREMIUM. STYLE DE VIE.
                         </span>
                         <div className="h-px w-12 bg-[#D6CEBE]" />
                     </div>
 
                     {/* Headline with golden script signature */}
                     <h1 className="text-4xl sm:text-6xl lg:text-6xl font-black text-[#1C1B1F] tracking-tight leading-[1.08]">
-                        Upgrade Your <br className="hidden sm:inline" />
-                        Everyday{' '}
+                        Équipez Votre <br className="hidden sm:inline" />
+                        Quotidien{' '}
                         <span className="font-script text-[#C59A63] text-5xl sm:text-7xl font-normal italic inline-block ml-1">
                             Tech.
                         </span>
@@ -104,7 +95,7 @@ const Hero = ({ initialCategories = [] }) => {
                             href="/shop"
                             className="inline-flex items-center gap-3 bg-[#C59A63] hover:bg-[#B4874F] text-white px-8 py-4 rounded-full font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-[#C59A63]/25 active:scale-95"
                         >
-                            <span>SHOP NOW</span>
+                            <span>VOIR LA BOUTIQUE</span>
                             <ArrowRight size={16} />
                         </Link>
 
@@ -116,7 +107,7 @@ const Hero = ({ initialCategories = [] }) => {
                                 <Play size={14} className="fill-[#1C1B1F] ml-0.5" />
                             </div>
                             <div className="text-left">
-                                <p className="text-xs font-bold leading-tight">Watch Showcase</p>
+                                <p className="text-xs font-bold leading-tight">Découvrir Julo</p>
                                 <p className="text-[10px] text-zinc-400 font-medium">
                                     WhatsApp Direct
                                 </p>
@@ -132,7 +123,7 @@ const Hero = ({ initialCategories = [] }) => {
                             </div>
                             <div>
                                 <p className="text-[11px] font-bold text-[#1C1B1F] leading-tight">
-                                    100% Original
+                                    100% Authentique
                                 </p>
                                 <p className="text-[9px] text-[#8C8275]">Certifié Neuf</p>
                             </div>
@@ -269,18 +260,18 @@ const Hero = ({ initialCategories = [] }) => {
                 </div>
             </div>
 
-            {/* "Shop By Category" Section (Matching Exact Screenshot Layout) */}
+            {/* "Shop By Category" Section */}
             <div className="mt-20 pt-10 border-t border-[#EAE6DF]">
                 {/* Category Header */}
                 <div className="flex items-center justify-between mb-8">
                     <h2 className="text-2xl sm:text-3xl font-black text-[#1C1B1F] tracking-tight">
-                        Shop By Category
+                        Parcourir par Catégorie
                     </h2>
                     <Link
                         href="/shop"
                         className="text-xs font-bold text-[#1C1B1F] hover:text-[#C59A63] transition-colors underline underline-offset-4"
                     >
-                        View All Categories
+                        Voir Toutes les Catégories
                     </Link>
                 </div>
 
@@ -294,7 +285,6 @@ const Hero = ({ initialCategories = [] }) => {
                                 href={cat.href}
                                 className="group bg-white rounded-2xl p-4 border border-[#EAE6DF] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-xl hover:-translate-y-1 hover:border-[#C59A63] transition-all duration-300 flex flex-col justify-between"
                             >
-                                {/* Soft Gray Image Placeholder Container */}
                                 <div className="bg-[#F5F2EB] rounded-xl aspect-square flex items-center justify-center mb-4 group-hover:bg-[#FAF8F5] transition-colors p-4">
                                     <Icon
                                         size={38}

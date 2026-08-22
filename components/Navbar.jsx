@@ -82,13 +82,13 @@ const Navbar = ({ user, isAdmin }) => {
     };
 
     const navLinks = [
-        { name: 'Home', href: '/', isHome: true },
-        { name: 'Shop', href: '/shop' },
+        { name: 'Accueil', href: '/', isHome: true },
+        { name: 'Boutique', href: '/shop' },
         { name: 'Smartphones', href: '/shop?category=telephones' },
         { name: 'Ordinateurs', href: '/shop?category=ordinateurs' },
         { name: 'Accessoires', href: '/shop?category=accessoires' },
         { name: 'Sérigraphie', href: '/shop?category=serigraphie' },
-        { name: 'About', href: '/about' },
+        { name: 'À Propos', href: '/about' },
         { name: 'Contact', href: '/contact' },
     ];
 

@@ -57,8 +57,8 @@ const BottomNav = () => {
     }, []);
 
     const navLinks = [
-        { name: 'Home', href: '/', icon: <Home size={20} /> },
-        { name: 'Shop', href: '/shop', icon: <ShoppingBag size={20} /> },
+        { name: 'Accueil', href: '/', icon: <Home size={20} /> },
+        { name: 'Boutique', href: '/shop', icon: <ShoppingBag size={20} /> },
         { name: 'Panier', href: '/cart', icon: <ShoppingCart size={20} />, isCart: true },
         { name: 'Compte', href: '/profile', icon: <User size={20} /> },
     ];

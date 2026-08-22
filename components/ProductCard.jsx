@@ -84,7 +84,7 @@ const ProductCard = ({ product, priority = false }) => {
                             )}
                             {isNew && (
                                 <div className="bg-[#1C1B1F] text-white text-[9px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                                    NEW
+                                    NOUVEAU
                                 </div>
                             )}
                         </>
