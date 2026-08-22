@@ -2,12 +2,12 @@
 import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import ProductCard from '@/components/ProductCard';
 import {
-    Fan,
-    AirVent,
-    Tv,
-    Coffee,
-    Luggage,
-    PlugZap,
+    Smartphone,
+    Laptop,
+    Headphones,
+    Shirt,
+    Palette,
+    Cable,
     LayoutGrid,
     Search,
     ChevronDown,
@@ -25,13 +25,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
 const categoryIcons = {
-    Ventilateurs: <Fan size={24} strokeWidth={1.5} />,
-    Climatisation: <AirVent size={24} strokeWidth={1.5} />,
-    Téléviseurs: <Tv size={24} strokeWidth={1.5} />,
-    Bouilloires: <Coffee size={24} strokeWidth={1.5} />,
-    Valises: <Luggage size={24} strokeWidth={1.5} />,
-    Accessoires: <PlugZap size={24} strokeWidth={1.5} />,
-    default: <LayoutGrid size={24} strokeWidth={1.5} />,
+    Smartphones: <Smartphone size={22} strokeWidth={1.5} />,
+    Téléphones: <Smartphone size={22} strokeWidth={1.5} />,
+    Ordinateurs: <Laptop size={22} strokeWidth={1.5} />,
+    PC: <Laptop size={22} strokeWidth={1.5} />,
+    Accessoires: <Headphones size={22} strokeWidth={1.5} />,
+    'Câbles & Chargeurs': <Cable size={22} strokeWidth={1.5} />,
+    Sérigraphie: <Shirt size={22} strokeWidth={1.5} />,
+    'Branding & Infographie': <Palette size={22} strokeWidth={1.5} />,
+    default: <LayoutGrid size={22} strokeWidth={1.5} />,
 };
 
 const sortOptions = [

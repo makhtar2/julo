@@ -126,10 +126,12 @@ const Navbar = () => {
     };
 
     const navLinks = [
-        { name: 'Accueil', href: '/' },
         { name: 'Boutique', href: '/shop' },
+        { name: 'Smartphones', href: '/shop?category=telephones' },
+        { name: 'Ordinateurs', href: '/shop?category=ordinateurs' },
+        { name: 'Accessoires', href: '/shop?category=accessoires' },
+        { name: 'Sérigraphie', href: '/shop?category=serigraphie' },
         { name: 'À Propos', href: '/about' },
-        { name: 'Contact', href: '/contact' },
     ];
 
     return (
@@ -144,17 +146,17 @@ const Navbar = () => {
                         className="fixed inset-0 bg-white z-[200] flex flex-col sm:hidden"
                     >
                         {/* Mobile Search Header */}
-                        <div className="p-4 border-b border-slate-100 flex items-center gap-4">
+                        <div className="p-4 border-b border-zinc-100 flex items-center gap-4">
                             <form
                                 onSubmit={handleSearch}
-                                className="flex-1 flex items-center gap-3 bg-slate-100 px-4 py-3 rounded-2xl"
+                                className="flex-1 flex items-center gap-3 bg-zinc-100 px-4 py-3 rounded-2xl"
                             >
-                                <Search size={20} className="text-slate-400" />
+                                <Search size={20} className="text-zinc-400" />
                                 <input
                                     autoFocus
-                                    className="w-full bg-transparent outline-none placeholder-slate-400 font-bold text-sm"
+                                    className="w-full bg-transparent outline-none placeholder-zinc-400 font-bold text-sm"
                                     type="text"
-                                    placeholder="Que cherchez-vous ?"
+                                    placeholder="Rechercher un smartphone, PC, t-shirt..."
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
                                     required
@@ -166,7 +168,7 @@ const Navbar = () => {
                                     setSearch('');
                                     setSuggestions([]);
                                 }}
-                                className="text-slate-500 font-black text-xs uppercase tracking-widest px-2"
+                                className="text-zinc-500 font-bold text-xs uppercase tracking-wider px-2"
                             >
                                 <X size={20} />
                             </button>
@@ -176,7 +178,7 @@ const Navbar = () => {
                         <div className="flex-1 overflow-y-auto p-4">
                             {suggestions.length > 0 ? (
                                 <div className="space-y-2">
-                                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3 px-2">
+                                    <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 mb-3 px-2">
                                         Suggestions
                                     </p>
                                     {suggestions.map((item) => (
@@ -188,9 +190,9 @@ const Navbar = () => {
                                                 setSearch('');
                                                 setSuggestions([]);
                                             }}
-                                            className="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-2xl transition-colors"
+                                            className="flex items-center gap-3 p-3 hover:bg-zinc-50 rounded-2xl transition-colors"
                                         >
-                                            <div className="size-12 bg-slate-100 rounded-xl flex items-center justify-center p-2">
+                                            <div className="size-12 bg-zinc-100 rounded-xl flex items-center justify-center p-2">
                                                 <Image
                                                     src={item.images[0]}
                                                     alt=""
@@ -200,27 +202,27 @@ const Navbar = () => {
                                                 />
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <p className="text-xs font-black text-slate-900 truncate">
+                                                <p className="text-xs font-bold text-zinc-900 truncate">
                                                     {item.name}
                                                 </p>
-                                                <p className="text-[11px] font-bold text-blue-600 mt-0.5">
+                                                <p className="text-[11px] font-bold text-amber-600 mt-0.5">
                                                     {item.price.toLocaleString('fr-SN')} FCFA
                                                 </p>
                                             </div>
-                                            <ArrowRight size={14} className="text-slate-300" />
+                                            <ArrowRight size={14} className="text-zinc-300" />
                                         </Link>
                                     ))}
                                 </div>
                             ) : search.length >= 2 ? (
                                 <div className="text-center py-20">
-                                    <Search size={40} className="mx-auto text-slate-200 mb-4" />
-                                    <p className="text-sm font-bold text-slate-400">
-                                        Aucun résultat trouvé pour &quot;{search}&quot;
+                                    <Search size={40} className="mx-auto text-zinc-300 mb-4" />
+                                    <p className="text-sm font-medium text-zinc-400">
+                                        Aucun résultat pour &quot;{search}&quot;
                                     </p>
                                 </div>
                             ) : (
                                 <div className="text-center py-20 opacity-40">
-                                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                                    <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
                                         Commencez à taper pour rechercher
                                     </p>
                                 </div>
@@ -232,18 +234,36 @@ const Navbar = () => {
 
             <div className="px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between max-w-7xl mx-auto h-16 sm:h-20 gap-4">
-                    {/* Desktop: Navigation Links */}
-                    <div className="hidden sm:flex items-center gap-2 lg:gap-3 flex-1">
+                    {/* Left: Brand Logo */}
+                    <div className="flex items-center gap-3">
+                        <Link
+                            href="/"
+                            aria-label="JULO - Accueil"
+                            className="flex items-center group"
+                        >
+                            <Image
+                                src={assets.julo_logo_transparent}
+                                alt="JULO."
+                                width={120}
+                                height={40}
+                                priority
+                                className="h-7 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105"
+                            />
+                        </Link>
+                    </div>
+
+                    {/* Center: Desktop Navigation Links */}
+                    <div className="hidden lg:flex items-center gap-1 xl:gap-2">
                         {navLinks.map((link) => {
                             const isActive = pathname === link.href;
                             return (
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
+                                    className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150 ${
                                         isActive
                                             ? 'bg-zinc-950 text-white shadow-sm'
-                                            : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-950'
+                                            : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
                                     }`}
                                 >
                                     {link.name}
@@ -253,33 +273,15 @@ const Navbar = () => {
                     </div>
 
                     {/* Mobile: Search Toggle */}
-                    <div className="flex sm:hidden items-center flex-1">
+                    <div className="flex lg:hidden items-center">
                         <motion.button
                             whileTap={{ scale: 0.9 }}
                             onClick={() => setIsSearchOpen(true)}
                             aria-label="Ouvrir la recherche"
-                            className="p-2 text-slate-600 hover:bg-slate-50 rounded-xl transition-colors"
+                            className="p-2 text-zinc-600 hover:bg-zinc-100 rounded-xl transition-colors"
                         >
-                            <Search size={22} strokeWidth={2.5} />
+                            <Search size={20} strokeWidth={2} />
                         </motion.button>
-                    </div>
-
-                    {/* Logo (Centered) */}
-                    <div className="absolute left-1/2 -translate-x-1/2 sm:static sm:translate-x-0 shrink-0">
-                        <Link
-                            href="/"
-                            aria-label="JULO - Retour à l'accueil"
-                            className="flex items-center group"
-                        >
-                            <Image
-                                src={assets.julo_logo_transparent}
-                                alt="JULO."
-                                width={130}
-                                height={45}
-                                priority
-                                className="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
-                            />
-                        </Link>
                     </div>
 
                     {/* Actions */}
@@ -288,11 +290,11 @@ const Navbar = () => {
                         <div className="hidden xl:block relative" ref={searchRef}>
                             <form
                                 onSubmit={handleSearch}
-                                className="flex items-center w-64 text-sm gap-2 bg-slate-100 px-4 py-2.5 rounded-2xl border border-transparent focus-within:border-blue-200 transition-all"
+                                className="flex items-center w-60 text-sm gap-2 bg-zinc-100 px-4 py-2 rounded-xl border border-transparent focus-within:border-zinc-300 transition-all"
                             >
-                                <Search size={18} className="text-slate-400" />
+                                <Search size={16} className="text-zinc-400" />
                                 <input
-                                    className="w-full bg-transparent outline-none placeholder-slate-400 font-bold"
+                                    className="w-full bg-transparent outline-none placeholder-zinc-400 font-medium text-xs text-zinc-900"
                                     type="text"
                                     placeholder="Rechercher..."
                                     value={search}
@@ -306,7 +308,7 @@ const Navbar = () => {
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: 10 }}
-                                        className="absolute top-full mt-2 left-0 right-0 bg-white rounded-3xl border border-slate-100 shadow-2xl overflow-hidden p-2 z-[999]"
+                                        className="absolute top-full mt-2 left-0 right-0 bg-white rounded-2xl border border-zinc-200 shadow-2xl overflow-hidden p-2 z-[999]"
                                     >
                                         {suggestions.map((item) => (
                                             <Link
@@ -316,9 +318,9 @@ const Navbar = () => {
                                                     setSuggestions([]);
                                                     setSearch('');
                                                 }}
-                                                className="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-2xl transition-colors group"
+                                                className="flex items-center gap-3 p-2 hover:bg-zinc-50 rounded-xl transition-colors group"
                                             >
-                                                <div className="size-10 bg-slate-100 rounded-xl flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
+                                                <div className="size-10 bg-zinc-100 rounded-lg flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
                                                     <Image
                                                         src={item.images[0]}
                                                         alt=""
@@ -328,16 +330,16 @@ const Navbar = () => {
                                                     />
                                                 </div>
                                                 <div className="flex-1 min-w-0">
-                                                    <p className="text-[10px] font-black text-slate-900 truncate">
+                                                    <p className="text-xs font-bold text-zinc-900 truncate">
                                                         {item.name}
                                                     </p>
-                                                    <p className="text-[9px] font-bold text-blue-600">
-                                                        {item.price.toLocaleString('fr-SN')} F
+                                                    <p className="text-[10px] font-bold text-amber-600">
+                                                        {item.price.toLocaleString('fr-SN')} FCFA
                                                     </p>
                                                 </div>
                                                 <ArrowRight
                                                     size={12}
-                                                    className="text-slate-300 group-hover:text-blue-600 group-hover:translate-x-1 transition-all"
+                                                    className="text-zinc-300 group-hover:text-zinc-900 group-hover:translate-x-1 transition-all"
                                                 />
                                             </Link>
                                         ))}
@@ -346,20 +348,20 @@ const Navbar = () => {
                             </AnimatePresence>
                         </div>
 
-                        <div className="flex items-center gap-1 sm:gap-3">
+                        <div className="flex items-center gap-1 sm:gap-2">
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="relative hidden lg:block"
+                                className="relative hidden sm:block"
                             >
                                 <Link
                                     href="/wishlist"
                                     aria-label="Voir mes favoris"
-                                    className="flex items-center justify-center size-10 sm:size-12 bg-slate-50 text-slate-700 hover:text-red-500 rounded-2xl transition-all group"
+                                    className="flex items-center justify-center size-9 sm:size-10 bg-zinc-100 text-zinc-700 hover:text-red-500 rounded-xl transition-all group"
                                 >
-                                    <Heart size={20} strokeWidth={2.5} />
+                                    <Heart size={18} strokeWidth={2} />
                                     {mounted && wishlistCount > 0 && (
-                                        <span className="absolute -top-1 -right-1 text-[9px] font-black text-white bg-red-500 size-4.5 rounded-full flex items-center justify-center border-2 border-white">
+                                        <span className="absolute -top-1 -right-1 text-[9px] font-black text-white bg-red-500 size-4 rounded-full flex items-center justify-center border-2 border-white">
                                             {wishlistCount}
                                         </span>
                                     )}
@@ -376,11 +378,11 @@ const Navbar = () => {
                                 <Link
                                     href="/cart"
                                     aria-label="Voir mon panier"
-                                    className="flex items-center justify-center size-10 sm:size-12 bg-slate-50 text-slate-700 hover:text-blue-600 rounded-2xl transition-all group"
+                                    className="flex items-center justify-center size-9 sm:size-10 bg-zinc-950 text-white hover:bg-amber-500 hover:text-zinc-950 rounded-xl transition-all group"
                                 >
-                                    <ShoppingCart size={20} strokeWidth={2.5} />
+                                    <ShoppingCart size={18} strokeWidth={2} />
                                     {mounted && cartCount > 0 && (
-                                        <span className="absolute -top-1 -right-1 text-[9px] font-black text-white bg-blue-600 size-4.5 rounded-full flex items-center justify-center border-2 border-white">
+                                        <span className="absolute -top-1 -right-1 text-[9px] font-black text-zinc-950 bg-amber-400 size-4 rounded-full flex items-center justify-center border-2 border-white">
                                             {cartCount}
                                         </span>
                                     )}
