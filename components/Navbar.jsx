@@ -43,10 +43,6 @@ const Navbar = ({ user, isAdmin }) => {
     const dropdownRef = useRef(null);
 
     useEffect(() => {
-        setIsMobileMenuOpen(false);
-    }, [pathname]);
-
-    useEffect(() => {
         setMounted(true);
         const handleClickOutside = (event) => {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
