@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Smartphone, X, Download } from 'lucide-react';
@@ -64,38 +64,37 @@ const PWAInstallPrompt = () => {
                     exit={{ y: 100, opacity: 0 }}
                     className="fixed bottom-24 left-4 right-4 z-[90] sm:left-auto sm:right-6 sm:w-80"
                 >
-                    <div className="bg-slate-900 text-white p-5 rounded-[2rem] shadow-2xl border border-white/10 backdrop-blur-xl bg-slate-900/95 relative overflow-hidden group">
+                    <div className="bg-[#1C1B1F] text-white p-5 rounded-3xl shadow-2xl border border-[#33302A] backdrop-blur-xl relative overflow-hidden group">
                         {/* Background Decoration */}
-                        <div className="absolute -top-10 -right-10 size-32 bg-blue-600/20 rounded-full blur-3xl group-hover:bg-blue-600/30 transition-all duration-700" />
+                        <div className="absolute -top-10 -right-10 size-32 bg-[#C59A63]/20 rounded-full blur-3xl group-hover:bg-[#C59A63]/30 transition-all duration-700" />
 
                         <button
                             onClick={handleClose}
-                            className="absolute top-3 right-3 p-1 text-slate-400 hover:text-white transition-colors"
+                            className="absolute top-3 right-3 p-1 text-zinc-400 hover:text-white transition-colors"
                         >
                             <X size={16} />
                         </button>
 
                         <div className="flex items-start gap-4">
-                            <div className="size-12 bg-blue-600 rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-blue-600/20">
+                            <div className="size-12 bg-[#C59A63] rounded-2xl flex items-center justify-center shrink-0 shadow-md">
                                 <Smartphone size={24} className="text-white" />
                             </div>
                             <div className="flex-1 pr-4">
-                                <h3 className="font-black text-sm uppercase tracking-tight mb-1">
-                                    Installer l&apos;App
+                                <h3 className="font-bold text-sm uppercase tracking-wider mb-1">
+                                    Installer l&apos;Application
                                 </h3>
-                                <p className="text-[10px] text-slate-400 font-bold leading-relaxed">
-                                    Accédez à Global Air en un clic depuis votre écran
-                                    d&apos;accueil.
+                                <p className="text-xs text-zinc-400 font-normal leading-relaxed">
+                                    Accédez à JULO en un clic depuis votre écran d&apos;accueil.
                                 </p>
                             </div>
                         </div>
 
                         <button
                             onClick={handleInstall}
-                            className="w-full mt-4 bg-white text-slate-900 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-blue-500 hover:text-white transition-all active:scale-95"
+                            className="w-full mt-4 bg-white text-[#1C1B1F] py-3 rounded-full font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-[#C59A63] hover:text-white transition-all active:scale-95"
                         >
                             <Download size={14} />
-                            Ajouter maintenant
+                            Ajouter à l&apos;écran d&apos;accueil
                         </button>
                     </div>
                 </motion.div>

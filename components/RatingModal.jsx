@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { Star, XIcon } from 'lucide-react';
 import React, { useState } from 'react';
@@ -58,19 +58,19 @@ const RatingModal = ({ ratingModal, setRatingModal }) => {
                     </button>
                 )}
 
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-2">
-                    Évaluer ce <span className="text-blue-600">Produit</span>
+                <h2 className="text-2xl sm:text-3xl font-black text-[#1C1B1F] tracking-tight mb-2">
+                    Évaluer ce <span className="text-[#C59A63]">Produit</span>
                 </h2>
-                <p className="text-slate-400 text-sm font-medium mb-8">
-                    Votre avis compte pour la communauté Global Air.
+                <p className="text-[#8C8275] text-xs sm:text-sm font-normal mb-8">
+                    Votre avis compte pour la communauté JULO.
                 </p>
 
                 <div className="flex items-center justify-center gap-2 mb-8">
                     {Array.from({ length: 5 }, (_, i) => (
                         <Star
                             key={i}
-                            size={32}
-                            className={`cursor-pointer transition-all duration-300 hover:scale-110 ${rating > i ? 'text-blue-500 fill-blue-500' : 'text-slate-200'}`}
+                            size={30}
+                            className={`cursor-pointer transition-all duration-200 hover:scale-110 ${rating > i ? 'text-[#C59A63] fill-[#C59A63]' : 'text-zinc-200'}`}
                             onClick={() => !submitting && setRating(i + 1)}
                         />
                     ))}
@@ -78,7 +78,7 @@ const RatingModal = ({ ratingModal, setRatingModal }) => {
 
                 <textarea
                     disabled={submitting}
-                    className="w-full p-4 bg-slate-50 border border-transparent focus:border-blue-400 focus:bg-white outline-none rounded-2xl text-sm font-medium transition-all mb-6 disabled:opacity-50"
+                    className="w-full p-4 bg-[#F5F2EB] border border-[#EAE6DF] focus:border-[#C59A63] focus:bg-white outline-none rounded-2xl text-xs font-medium transition-all mb-6 disabled:opacity-50 text-[#1C1B1F] resize-none"
                     placeholder="Partagez votre expérience avec ce produit..."
                     rows="4"
                     value={review}
@@ -88,9 +88,9 @@ const RatingModal = ({ ratingModal, setRatingModal }) => {
                 <button
                     disabled={submitting}
                     onClick={handleSubmit}
-                    className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-black active:scale-95 transition-all shadow-xl shadow-slate-900/10 disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-[#1C1B1F] hover:bg-[#C59A63] text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md transition-all active:scale-95 disabled:opacity-50"
                 >
-                    {submitting ? 'ENVOI EN COURS...' : 'ENVOYER MON AVIS'}
+                    {submitting ? 'Envoi en cours...' : 'Publier mon avis'}
                 </button>
             </div>
         </div>
