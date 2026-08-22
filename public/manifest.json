@@ -1,11 +1,11 @@
 {
-    "name": "Global Air",
-    "short_name": "Global Air",
-    "description": "L'excellence pour votre foyer au Sénégal - Climatisation, Électroménager",
+    "name": "JULO Sénégal",
+    "short_name": "JULO",
+    "description": "High-Tech, Smartphones, Ordinateurs & Atelier Sérigraphie au Sénégal",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#2563eb",
+    "background_color": "#FAF8F5",
+    "theme_color": "#C59A63",
     "orientation": "portrait",
     "scope": "/",
     "icons": [

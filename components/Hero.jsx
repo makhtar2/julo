@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
     ArrowRight,
     Play,
@@ -216,77 +217,115 @@ const Hero = ({ initialCategories = [] }) => {
 
                     {/* Podium Platform Card */}
                     <div className="relative z-10 w-full max-w-lg bg-gradient-to-b from-white/90 to-[#FAF8F5]/90 backdrop-blur-md rounded-[2.5rem] p-6 sm:p-8 border border-[#EAE6DF] shadow-[0_20px_50px_rgba(0,0,0,0.06)] overflow-hidden">
-                        {/* Device Grid Showcase */}
-                        <div className="grid grid-cols-2 gap-4">
-                            {/* Device 1: iPhone Pro */}
-                            <div className="bg-[#F5F2EB] rounded-2xl p-4 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/70 hover:scale-102 transition-transform">
-                                <div className="text-right w-full">
-                                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#8C8275]">
+                        {/* Device Grid Showcase with Real Product Images */}
+                        <div className="grid grid-cols-2 gap-3.5">
+                            {/* Device 1: iPhone 16 Pro */}
+                            <Link
+                                href="/product/julo-iphone-16-pro-max"
+                                className="group/item bg-[#F5F2EB] rounded-2xl p-3 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/80 hover:border-[#C59A63] hover:scale-102 transition-all overflow-hidden"
+                            >
+                                <div className="flex items-center justify-between w-full">
+                                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-[#8C8275]">
                                         Apple
                                     </span>
-                                </div>
-                                <div className="size-24 sm:size-28 flex items-center justify-center text-[#1C1B1F]">
-                                    <Smartphone
-                                        size={54}
-                                        strokeWidth={1.2}
-                                        className="text-[#C59A63]"
-                                    />
-                                </div>
-                                <p className="text-xs font-bold text-[#1C1B1F]">iPhone 16 Pro</p>
-                            </div>
-
-                            {/* Device 2: Samsung Galaxy */}
-                            <div className="bg-[#F5F2EB] rounded-2xl p-4 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/70 hover:scale-102 transition-transform">
-                                <div className="text-right w-full">
-                                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#8C8275]">
-                                        Samsung
+                                    <span className="text-[8px] font-bold text-[#C59A63] bg-white px-1.5 py-0.5 rounded-full shadow-xs">
+                                        Nouveau
                                     </span>
                                 </div>
-                                <div className="size-24 sm:size-28 flex items-center justify-center text-[#1C1B1F]">
-                                    <Smartphone
-                                        size={54}
-                                        strokeWidth={1.2}
-                                        className="text-[#1C1B1F]"
+                                <div className="size-20 sm:size-24 relative flex items-center justify-center my-1">
+                                    <Image
+                                        src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400&auto=format&fit=crop&q=80"
+                                        alt="iPhone 16 Pro Max"
+                                        width={100}
+                                        height={100}
+                                        className="w-full h-full object-cover rounded-xl group-hover/item:scale-105 transition-transform"
                                     />
                                 </div>
-                                <p className="text-xs font-bold text-[#1C1B1F]">S24 Ultra</p>
-                            </div>
-
-                            {/* Device 3: Laptop */}
-                            <div className="bg-[#F5F2EB] rounded-2xl p-4 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/70 hover:scale-102 transition-transform">
-                                <div className="text-right w-full">
-                                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#8C8275]">
-                                        PC &amp; Mac
-                                    </span>
-                                </div>
-                                <div className="size-24 sm:size-28 flex items-center justify-center text-[#1C1B1F]">
-                                    <Laptop
-                                        size={54}
-                                        strokeWidth={1.2}
-                                        className="text-[#1C1B1F]"
-                                    />
-                                </div>
-                                <p className="text-xs font-bold text-[#1C1B1F]">HP / MacBook</p>
-                            </div>
-
-                            {/* Device 4: Audio & Earbuds */}
-                            <div className="bg-[#F5F2EB] rounded-2xl p-4 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/70 hover:scale-102 transition-transform">
-                                <div className="text-right w-full">
-                                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#8C8275]">
-                                        Audio Pro
-                                    </span>
-                                </div>
-                                <div className="size-24 sm:size-28 flex items-center justify-center text-[#1C1B1F]">
-                                    <Headphones
-                                        size={54}
-                                        strokeWidth={1.2}
-                                        className="text-[#C59A63]"
-                                    />
-                                </div>
-                                <p className="text-xs font-bold text-[#1C1B1F]">
-                                    Casques &amp; AirPods
+                                <p className="text-[11px] font-bold text-[#1C1B1F] group-hover/item:text-[#C59A63] transition-colors truncate max-w-full">
+                                    iPhone 16 Pro Max
                                 </p>
-                            </div>
+                            </Link>
+
+                            {/* Device 2: Tecno Camon 30 Pro */}
+                            <Link
+                                href="/product/julo-tecno-camon-30-pro-5g"
+                                className="group/item bg-[#F5F2EB] rounded-2xl p-3 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/80 hover:border-[#C59A63] hover:scale-102 transition-all overflow-hidden"
+                            >
+                                <div className="flex items-center justify-between w-full">
+                                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-[#8C8275]">
+                                        Tecno
+                                    </span>
+                                    <span className="text-[8px] font-bold text-white bg-[#1C1B1F] px-1.5 py-0.5 rounded-full shadow-xs">
+                                        512 Go
+                                    </span>
+                                </div>
+                                <div className="size-20 sm:size-24 relative flex items-center justify-center my-1">
+                                    <Image
+                                        src="https://images.unsplash.com/photo-1567581935884-3349723552ca?w=400&auto=format&fit=crop&q=80"
+                                        alt="Tecno Camon 30 Pro"
+                                        width={100}
+                                        height={100}
+                                        className="w-full h-full object-cover rounded-xl group-hover/item:scale-105 transition-transform"
+                                    />
+                                </div>
+                                <p className="text-[11px] font-bold text-[#1C1B1F] group-hover/item:text-[#C59A63] transition-colors truncate max-w-full">
+                                    Camon 30 Pro 5G
+                                </p>
+                            </Link>
+
+                            {/* Device 3: MacBook Pro M3 */}
+                            <Link
+                                href="/product/julo-macbook-pro-m3-pro"
+                                className="group/item bg-[#F5F2EB] rounded-2xl p-3 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/80 hover:border-[#C59A63] hover:scale-102 transition-all overflow-hidden"
+                            >
+                                <div className="flex items-center justify-between w-full">
+                                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-[#8C8275]">
+                                        MacBook
+                                    </span>
+                                    <span className="text-[8px] font-bold text-[#C59A63] bg-white px-1.5 py-0.5 rounded-full shadow-xs">
+                                        M3 Pro
+                                    </span>
+                                </div>
+                                <div className="size-20 sm:size-24 relative flex items-center justify-center my-1">
+                                    <Image
+                                        src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&auto=format&fit=crop&q=80"
+                                        alt="MacBook Pro M3"
+                                        width={100}
+                                        height={100}
+                                        className="w-full h-full object-cover rounded-xl group-hover/item:scale-105 transition-transform"
+                                    />
+                                </div>
+                                <p className="text-[11px] font-bold text-[#1C1B1F] group-hover/item:text-[#C59A63] transition-colors truncate max-w-full">
+                                    MacBook Pro 14&quot;
+                                </p>
+                            </Link>
+
+                            {/* Device 4: Oraimo FreePods 4 */}
+                            <Link
+                                href="/product/julo-oraimo-freepods-4"
+                                className="group/item bg-[#F5F2EB] rounded-2xl p-3 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/80 hover:border-[#C59A63] hover:scale-102 transition-all overflow-hidden"
+                            >
+                                <div className="flex items-center justify-between w-full">
+                                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-[#8C8275]">
+                                        Oraimo
+                                    </span>
+                                    <span className="text-[8px] font-bold text-white bg-[#C59A63] px-1.5 py-0.5 rounded-full shadow-xs">
+                                        ANC
+                                    </span>
+                                </div>
+                                <div className="size-20 sm:size-24 relative flex items-center justify-center my-1">
+                                    <Image
+                                        src="https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=400&auto=format&fit=crop&q=80"
+                                        alt="Oraimo FreePods 4"
+                                        width={100}
+                                        height={100}
+                                        className="w-full h-full object-cover rounded-xl group-hover/item:scale-105 transition-transform"
+                                    />
+                                </div>
+                                <p className="text-[11px] font-bold text-[#1C1B1F] group-hover/item:text-[#C59A63] transition-colors truncate max-w-full">
+                                    Oraimo FreePods 4
+                                </p>
+                            </Link>
                         </div>
 
                         {/* Floating Podium Badge */}

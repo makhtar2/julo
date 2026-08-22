@@ -2,8 +2,8 @@
 import { useEffect } from 'react';
 
 // ─── Version de l'application ──────────────────────────────────────────────
-// ⚠️ À incrémenter à chaque déploiement pour forcer le nettoyage du cache SW
-const APP_VERSION = '1.0.5';
+// ⚠️ Incrémenté pour forcer le nettoyage du cache et des anciennes données
+const APP_VERSION = '2.0.0';
 
 export default function CacheBuster() {
     useEffect(() => {
@@ -21,17 +21,17 @@ export default function CacheBuster() {
         };
 
         // ── 2. Détection de version et reset complet ────────────────────────
-        const lastVersion = localStorage.getItem('ks_app_version');
-        const isNewVersion = lastVersion && lastVersion !== APP_VERSION;
+        const lastVersion = localStorage.getItem('julo_app_version');
+        const isNewVersion = !lastVersion || lastVersion !== APP_VERSION;
         const urlParams = new URLSearchParams(window.location.search);
         const forceClear = urlParams.get('clearCache') === 'true';
 
         if (isNewVersion || forceClear) {
-            console.log('[CacheBuster] Nouvelle version détectée. Nettoyage en cours…');
+            console.log('[CacheBuster] Version JULO 2.0.0 détectée. Nettoyage du cache…');
 
             localStorage.clear();
             sessionStorage.clear();
-            localStorage.setItem('ks_app_version', APP_VERSION);
+            localStorage.setItem('julo_app_version', APP_VERSION);
 
             // Désinscrire le Service Worker pour forcer une réinstallation propre
             if ('serviceWorker' in navigator) {
@@ -52,10 +52,10 @@ export default function CacheBuster() {
         }
 
         // Enregistrer la version actuelle si pas encore fait
-        localStorage.setItem('ks_app_version', APP_VERSION);
+        localStorage.setItem('julo_app_version', APP_VERSION);
 
         // ── 3. Gérer les erreurs de chunks (déploiement interrompu) ────────
-        const reloadCount = parseInt(sessionStorage.getItem('ks_reload_count') || '0');
+        const reloadCount = parseInt(sessionStorage.getItem('julo_reload_count') || '0');
 
         const handleChunkError = (error) => {
             const msg = error?.message || error?.reason?.message || '';
