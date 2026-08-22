@@ -10,8 +10,6 @@ import {
     X,
     ArrowRight,
     Home,
-    Menu,
-    Phone,
     Truck,
     Sparkles,
 } from 'lucide-react';
@@ -32,7 +30,6 @@ const Navbar = ({ user, isAdmin }) => {
     const [search, setSearch] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
 
     const cart = useCartStore((state) => state.cart);
@@ -88,7 +85,6 @@ const Navbar = ({ user, isAdmin }) => {
         if (search.trim()) {
             router.push(`/shop?search=${encodeURIComponent(search)}`);
             setIsSearchOpen(false);
-            setIsMobileMenuOpen(false);
             setSuggestions([]);
         }
     };
@@ -210,145 +206,11 @@ const Navbar = ({ user, isAdmin }) => {
                 )}
             </AnimatePresence>
 
-            {/* Mobile Navigation Drawer */}
-            <AnimatePresence>
-                {isMobileMenuOpen && (
-                    <>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="fixed inset-0 bg-black/40 backdrop-blur-xs z-[200] lg:hidden"
-                        />
-                        <motion.aside
-                            initial={{ x: '-100%' }}
-                            animate={{ x: 0 }}
-                            exit={{ x: '-100%' }}
-                            transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-                            className="fixed top-0 bottom-0 left-0 w-[85%] max-w-sm bg-[#FAF8F5] z-[210] lg:hidden flex flex-col shadow-2xl border-r border-[#EAE6DF]"
-                        >
-                            {/* Drawer Header */}
-                            <div className="p-5 border-b border-[#EAE6DF] flex items-center justify-between bg-white">
-                                <Link
-                                    href="/"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="flex items-center"
-                                >
-                                    <Image
-                                        src={assets.julo_logo_transparent}
-                                        alt="JULO."
-                                        width={105}
-                                        height={32}
-                                        className="h-7 w-auto object-contain"
-                                    />
-                                </Link>
-                                <button
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    aria-label="Fermer le menu"
-                                    className="size-8 rounded-full bg-[#F5F2EB] flex items-center justify-center text-zinc-600 hover:text-zinc-900"
-                                >
-                                    <X size={18} />
-                                </button>
-                            </div>
-
-                            {/* Drawer Links */}
-                            <div className="flex-1 overflow-y-auto p-4 space-y-1">
-                                <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#8C8275] px-3 mb-2">
-                                    Menu Principal
-                                </p>
-                                {navLinks.map((link) => {
-                                    const isActive = pathname === link.href;
-                                    return (
-                                        <Link
-                                            key={link.name}
-                                            href={link.href}
-                                            onClick={() => setIsMobileMenuOpen(false)}
-                                            className={`flex items-center justify-between p-3 rounded-2xl text-xs font-bold transition-all ${
-                                                isActive
-                                                    ? 'bg-[#1C1B1F] text-white shadow-xs'
-                                                    : 'text-[#1C1B1F] hover:bg-[#F5F2EB]'
-                                            }`}
-                                        >
-                                            <div className="flex items-center gap-3">
-                                                {link.isHome && <Home size={15} />}
-                                                <span>{link.name}</span>
-                                            </div>
-                                            <ArrowRight
-                                                size={13}
-                                                className={
-                                                    isActive ? 'text-[#C59A63]' : 'text-zinc-300'
-                                                }
-                                            />
-                                        </Link>
-                                    );
-                                })}
-
-                                <div className="pt-4 border-t border-[#EAE6DF] mt-4 space-y-1">
-                                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#8C8275] px-3 mb-2">
-                                        Rayons Populaires
-                                    </p>
-                                    <div className="grid grid-cols-2 gap-1.5 px-1">
-                                        {categoryLinks.map((cat) => (
-                                            <Link
-                                                key={cat.name}
-                                                href={cat.href}
-                                                onClick={() => setIsMobileMenuOpen(false)}
-                                                className="p-2.5 rounded-xl bg-white border border-[#EAE6DF] hover:border-[#C59A63] text-[11px] font-bold text-[#1C1B1F] transition-all truncate"
-                                            >
-                                                {cat.name}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div className="pt-4 border-t border-[#EAE6DF] mt-4 space-y-1">
-                                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#8C8275] px-3 mb-2">
-                                        Services &amp; Suivi
-                                    </p>
-                                    <Link
-                                        href="/track"
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                        className="flex items-center gap-3 p-3 rounded-2xl text-xs font-bold text-zinc-700 hover:bg-[#F5F2EB]"
-                                    >
-                                        <Truck size={16} className="text-[#C59A63]" />
-                                        <span>Suivre ma commande</span>
-                                    </Link>
-                                    <a
-                                        href="https://wa.me/221754469097"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-3 p-3 rounded-2xl text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100/80 transition-colors"
-                                    >
-                                        <Phone size={16} />
-                                        <span>WhatsApp : +221 75 446 90 97</span>
-                                    </a>
-                                </div>
-                            </div>
-
-                            {/* Drawer Footer */}
-                            <div className="p-4 border-t border-[#EAE6DF] bg-white text-center">
-                                <p className="text-[10px] font-bold text-[#8C8275]">
-                                    JULO Dakar &amp; Touba — Livraison 24h
-                                </p>
-                            </div>
-                        </motion.aside>
-                    </>
-                )}
-            </AnimatePresence>
-
             {/* Main Navbar Bar */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
-                    {/* Left: Mobile Hamburger & Brand Logo */}
+                    {/* Left: Brand Logo */}
                     <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-                        <button
-                            onClick={() => setIsMobileMenuOpen(true)}
-                            aria-label="Ouvrir le menu"
-                            className="lg:hidden flex items-center justify-center size-9 bg-white text-[#1C1B1F] border border-[#EAE6DF] rounded-full shadow-xs active:scale-95"
-                        >
-                            <Menu size={18} />
-                        </button>
                         <Link
                             href="/"
                             aria-label="JULO - Accueil"

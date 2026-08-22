@@ -15,13 +15,13 @@ const BestSelling = ({ products }) => {
         .slice(0, displayQuantity);
 
     return (
-        <section className="px-4 sm:px-6 py-10 sm:py-16 md:py-20 max-w-7xl mx-auto overflow-hidden">
+        <section className="px-4 sm:px-6 py-5 sm:py-12 max-w-7xl mx-auto overflow-hidden">
             <Title
                 title="Meilleures Ventes"
                 description={`Les équipements et articles les plus demandés chez JULO.`}
                 href="/shop"
             />
-            <div className="mt-6 sm:mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 gap-y-6 sm:gap-y-10">
+            <div className="mt-3 sm:mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 gap-y-4 sm:gap-y-8">
                 {sortedAndSlicedProducts.length > 0 ? (
                     sortedAndSlicedProducts.map((product) => (
                         <ProductCard key={product.id} product={product} />

@@ -6,13 +6,13 @@ import { Search, SlidersHorizontal, Bell, Sparkles, ArrowRight, Mic } from 'luci
 import { useRouter } from 'next/navigation';
 
 const mobileCategories = [
-    { name: 'Tous', slug: 'all', label: 'All' },
-    { name: 'AirPods & Audio', slug: 'Audio, Enceintes & Oraimo', label: 'AirPods' },
-    { name: 'Ordinateurs', slug: 'Ordinateurs & PC', label: 'Laptop' },
-    { name: 'Smartphones', slug: 'Smartphones & Apple', label: 'Phones' },
-    { name: 'Samsung', slug: 'Samsung Galaxy', label: 'Samsung' },
-    { name: 'Montres', slug: 'Montres & Wearables', label: 'Watches' },
-    { name: 'Accessoires', slug: 'Accessoires & Énergie', label: 'Accessories' },
+    { name: 'Tous', slug: 'all', label: 'Tous' },
+    { name: 'Smartphones', slug: 'Smartphones & Apple', label: 'Smartphones' },
+    { name: 'Samsung', slug: 'Samsung Galaxy', label: 'Samsung Galaxy' },
+    { name: 'Ordinateurs', slug: 'Ordinateurs & PC', label: 'PC & Mac' },
+    { name: 'AirPods & Audio', slug: 'Audio, Enceintes & Oraimo', label: 'Audio & AirPods' },
+    { name: 'Montres', slug: 'Montres & Wearables', label: 'Montres Connectées' },
+    { name: 'Accessoires', slug: 'Accessoires & Énergie', label: 'Accessoires & Charge' },
 ];
 
 export default function MobileHomeHero({ selectedCategory, onSelectCategory }) {
@@ -42,10 +42,10 @@ export default function MobileHomeHero({ selectedCategory, onSelectCategory }) {
 
     return (
         <div className="sm:hidden px-4 pt-3 pb-4 space-y-4">
-            {/* 1. Header: "Discover" + Notification Bell */}
+            {/* 1. Header: "Découvrir" + Notification Bell */}
             <div className="flex items-center justify-between pt-1">
                 <div>
-                    <h1 className="text-2xl font-black tracking-tight text-[#1C1B1F]">Discover</h1>
+                    <h1 className="text-2xl font-black tracking-tight text-[#1C1B1F]">Découvrir</h1>
                     <p className="text-[11px] font-semibold text-[#8C8275]">
                         Boutique officielle JULO Sénégal
                     </p>
@@ -69,7 +69,7 @@ export default function MobileHomeHero({ selectedCategory, onSelectCategory }) {
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Search for mobile, laptop, audio..."
+                        placeholder="Rechercher iPhone, Samsung, PC, AirPods..."
                         className="w-full bg-transparent outline-none text-xs font-semibold text-[#1C1B1F] placeholder:text-zinc-400 placeholder:font-normal"
                     />
                     <button
@@ -92,7 +92,7 @@ export default function MobileHomeHero({ selectedCategory, onSelectCategory }) {
                 </button>
             </form>
 
-            {/* 3. Clearance Sales Banner Card (Exact Screenshot Look) */}
+            {/* 3. Clearance Sales Banner Card */}
             <Link
                 href="/shop?sort=newest"
                 className="block group relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#10B981] via-[#059669] to-[#047857] p-5 text-white shadow-lg shadow-[#10B981]/20 active:scale-[0.98] transition-all"
@@ -108,10 +108,10 @@ export default function MobileHomeHero({ selectedCategory, onSelectCategory }) {
                             <span>Offres Flash</span>
                         </div>
                         <h2 className="text-xl font-black text-white leading-tight tracking-tight mb-2.5">
-                            Clearance <br /> Sales
+                            Promotions <br /> Spéciales
                         </h2>
                         <span className="inline-flex items-center gap-1 bg-white text-[#059669] px-3.5 py-1.5 rounded-full font-black text-[11px] uppercase tracking-wider shadow-xs group-hover:bg-emerald-50 transition-all">
-                            <span>Up to 50%</span>
+                            <span>Jusqu&apos;à -50%</span>
                             <ArrowRight size={12} strokeWidth={3} />
                         </span>
                     </div>
@@ -119,7 +119,7 @@ export default function MobileHomeHero({ selectedCategory, onSelectCategory }) {
                     <div className="relative w-36 h-28 shrink-0 flex items-center justify-center">
                         <Image
                             src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=500&auto=format&fit=crop&q=80"
-                            alt="Clearance Sales"
+                            alt="Offres Flash JULO"
                             width={160}
                             height={160}
                             className="object-contain w-full h-full drop-shadow-xl group-hover:scale-105 transition-transform duration-300"
@@ -131,9 +131,9 @@ export default function MobileHomeHero({ selectedCategory, onSelectCategory }) {
             {/* 4. Categories Section with Horizontal Scroll */}
             <div className="space-y-2.5 pt-1">
                 <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-black text-[#1C1B1F] tracking-tight">Categories</h3>
+                    <h3 className="text-sm font-black text-[#1C1B1F] tracking-tight">Rayons</h3>
                     <Link href="/shop" className="text-xs font-bold text-[#10B981] hover:underline">
-                        See all
+                        Voir tout
                     </Link>
                 </div>
 

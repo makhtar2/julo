@@ -47,3 +47,4 @@ next-env.d.ts
 
 # migration
 migration-backup.json
+.env*

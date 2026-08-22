@@ -7,7 +7,9 @@ export default function PublicLayout({ children }) {
         <>
             <Banner />
             <Navbar />
-            <main id="main-content">{children}</main>
+            <main id="main-content" className="pb-20 sm:pb-0 min-h-[calc(100vh-80px)]">
+                {children}
+            </main>
             <Footer />
         </>
     );

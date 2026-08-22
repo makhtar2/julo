@@ -5,13 +5,13 @@ import React from 'react';
 
 const Title = ({ title, description, visibleButton = true, href = '' }) => {
     return (
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
-            <div className="max-w-2xl">
-                <h2 className="text-2xl sm:text-3xl font-black text-[#1C1B1F] tracking-tight">
+        <div className="flex items-center justify-between gap-3 mb-4 sm:mb-8">
+            <div className="min-w-0 flex-1">
+                <h2 className="text-lg sm:text-2xl md:text-3xl font-black text-[#1C1B1F] tracking-tight">
                     {title}
                 </h2>
                 {description && (
-                    <p className="text-[#8C8275] font-normal mt-2 text-sm sm:text-base">
+                    <p className="text-[#8C8275] font-normal mt-0.5 sm:mt-1.5 text-xs sm:text-sm truncate">
                         {description}
                     </p>
                 )}
@@ -19,7 +19,7 @@ const Title = ({ title, description, visibleButton = true, href = '' }) => {
             {visibleButton && (
                 <Link
                     href={href}
-                    className="group inline-flex items-center gap-2 text-xs font-bold text-[#1C1B1F] hover:text-[#C59A63] underline underline-offset-4 transition-colors self-start md:self-auto"
+                    className="group inline-flex items-center gap-1.5 text-xs font-bold text-[#10B981] hover:text-[#059669] shrink-0 transition-colors"
                 >
                     <span>Voir tout</span>
                     <ArrowRight

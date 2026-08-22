@@ -19,7 +19,7 @@ export default function Banner() {
     ];
 
     return (
-        <div className="bg-zinc-950 text-white py-2 overflow-hidden relative border-b border-zinc-800">
+        <div className="hidden sm:block bg-zinc-950 text-white py-2 overflow-hidden relative border-b border-zinc-800">
             <div className="flex whitespace-nowrap gap-16 items-center px-10 animate-[marqueeScroll_30s_linear_infinite]">
                 {[...messages, ...messages, ...messages, ...messages].map((msg, index) => (
                     <div key={index} className="flex items-center gap-2.5 shrink-0">

@@ -59,21 +59,21 @@ const BottomNav = () => {
     const wishlistCount = useCartStore((state) => state.wishlist.length);
 
     const navLinks = [
-        { name: 'Home', href: '/', icon: <Home size={20} strokeWidth={2.2} /> },
-        { name: 'Search', href: '/shop', icon: <ShoppingBag size={20} strokeWidth={2.2} /> },
+        { name: 'Accueil', href: '/', icon: <Home size={20} strokeWidth={2.2} /> },
+        { name: 'Boutique', href: '/shop', icon: <ShoppingBag size={20} strokeWidth={2.2} /> },
         {
-            name: 'Saved',
+            name: 'Favoris',
             href: '/wishlist',
             icon: <Heart size={20} strokeWidth={2.2} />,
             isWishlist: true,
         },
         {
-            name: 'Cart',
+            name: 'Panier',
             href: '/cart',
             icon: <ShoppingCart size={20} strokeWidth={2.2} />,
             isCart: true,
         },
-        { name: 'Account', href: '/profile', icon: <User size={20} strokeWidth={2.2} /> },
+        { name: 'Compte', href: '/profile', icon: <User size={20} strokeWidth={2.2} /> },
     ];
 
     if (isAdmin) {
