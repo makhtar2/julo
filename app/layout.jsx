@@ -1,4 +1,4 @@
-import { Outfit } from 'next/font/google';
+import { Plus_Jakarta_Sans, Caveat } from 'next/font/google';
 import { Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
@@ -10,36 +10,41 @@ import CacheBuster from '@/components/CacheBuster';
 import ScrollToTop from '@/components/ScrollToTop';
 import './globals.css';
 
-const outfit = Outfit({
+const jakarta = Plus_Jakarta_Sans({
     subsets: ['latin'],
-    weight: ['300', '400', '500', '600', '700', '800', '900'],
+    weight: ['300', '400', '500', '600', '700', '800'],
+    display: 'swap',
+});
+
+const scriptFont = Caveat({
+    subsets: ['latin'],
+    weight: ['500', '600', '700'],
+    variable: '--font-script',
     display: 'swap',
 });
 
 export const viewport = {
     width: 'device-width',
     initialScale: 1,
-    themeColor: '#0f172a',
+    themeColor: '#FAF8F5',
 };
 
 export const metadata = {
     manifest: '/manifest.json',
     title: {
-        default: 'Julo | Électronique, Smartphones, PC & Sérigraphie/Infographie au Sénégal',
+        default: 'Julo | Smartphones, Ordinateurs & Sérigraphie au Sénégal',
         template: '%s | Julo Sénégal',
     },
     description:
-        'Julo : Votre destination pour l’achat de produits électroniques (smartphones, ordinateurs, accessoires) et services de sérigraphie/infographie personnalisés au Sénégal.',
+        'Julo : Votre destination de référence pour l’achat de smartphones, ordinateurs et accessoires de qualité ainsi que vos impressions sérigraphiques au Sénégal.',
     keywords: [
         'julo',
         'julo sénégal',
-        'accessoires téléphone dakar',
-        'smartphones sénégal',
-        'ordinateurs portables dakar',
-        'sérigraphie t-shirt dakar',
-        'infographie logo sénégal',
-        'personnalisation textile sénégal',
-        'vente en ligne sénégal',
+        'smartphones dakar',
+        'ordinateurs dakar',
+        'accessoires tech dakar',
+        'sérigraphie textile sénégal',
+        'personnalisation t-shirt dakar',
     ],
     authors: [{ name: 'Julo' }],
     metadataBase: new URL('https://julo.sn'),
@@ -47,41 +52,27 @@ export const metadata = {
         canonical: '/',
     },
     openGraph: {
-        title: 'Julo - Électronique & Sérigraphie/Infographie au Sénégal',
-        description:
-            'Achetez vos téléphones, ordinateurs, accessoires et commandez vos impressions sérigraphiques et créations graphiques sur-mesure.',
+        type: 'website',
+        locale: 'fr_SN',
         url: 'https://julo.sn',
         siteName: 'Julo',
+        title: 'Julo | Smartphones, Ordinateurs & Sérigraphie au Sénégal',
+        description:
+            'Achetez vos équipements high-tech certifiés et commandez vos impressions textiles sur-mesure chez Julo au Sénégal.',
         images: [
             {
-                url: '/assets/julo_logo.png',
+                url: '/assets/julo_logo_transparent.png',
                 width: 1200,
                 height: 630,
-                alt: 'Julo Sénégal - Électronique & Sérigraphie',
+                alt: 'Julo - Tech & Sérigraphie au Sénégal',
             },
         ],
-        locale: 'fr_SN',
-        type: 'website',
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Julo Sénégal',
-        description: 'Électronique & Sérigraphie/Infographie sur-mesure au Sénégal.',
-        images: ['/assets/julo_logo.png'],
-    },
-    robots: {
-        index: true,
-        follow: true,
-        googleBot: {
-            index: true,
-            follow: true,
-            'max-video-preview': -1,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
-        },
-    },
-    verification: {
-        google: '0e83-pwIv5QOCpOeG5zxwJZ1_Y3zn2sXIfya3t4TCk8',
+        title: 'Julo | Tech & Sérigraphie au Sénégal',
+        description: 'Vente de smartphones, ordinateurs, accessoires et sérigraphie au Sénégal.',
+        images: ['/assets/julo_logo_transparent.png'],
     },
 };
 
@@ -89,54 +80,34 @@ export default function RootLayout({ children }) {
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'OnlineStore',
-        '@id': 'https://globalairsn.com#organization',
-        name: 'Global Air Sénégal',
-        url: 'https://globalairsn.com',
-        logo: 'https://globalairsn.com/assets/gs_logo.jpg',
-        image: 'https://globalairsn.com/assets/gs_logo.jpg',
-        description: 'Vente de climatiseurs, téléviseurs et électroménager premium au Sénégal.',
+        name: 'Julo',
+        url: 'https://julo.sn',
+        logo: 'https://julo.sn/assets/julo_logo_transparent.png',
+        image: 'https://julo.sn/assets/julo_logo_transparent.png',
+        description:
+            'Vente de smartphones, ordinateurs, accessoires et services de sérigraphie au Sénégal.',
         brand: {
             '@type': 'Brand',
-            name: 'Global Air',
+            name: 'Julo',
         },
         address: {
             '@type': 'PostalAddress',
-            streetAddress: 'Avenue Cheikh Anta Diop',
+            streetAddress: 'Dakar',
             addressLocality: 'Dakar',
             addressCountry: 'SN',
         },
-        geo: {
-            '@type': 'GeoCoordinates',
-            latitude: '14.6937',
-            longitude: '-17.4441',
-        },
-        openingHoursSpecification: {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-            opens: '09:00',
-            closes: '19:00',
-        },
         contactPoint: {
             '@type': 'ContactPoint',
-            telephone: '+221-77-783-27-98',
+            telephone: '+221-75-446-90-97',
             contactType: 'customer service',
             areaServed: 'SN',
             availableLanguage: 'French',
         },
-        sameAs: [
-            'https://www.facebook.com/GlobalAIRSenegal/',
-            'https://www.instagram.com/globalairsn',
-            'https://wa.me/221777832798',
-        ],
-        potentialAction: {
-            '@type': 'SearchAction',
-            target: 'https://globalairsn.com/shop?search={search_term_string}',
-            'query-input': 'required name=search_term_string',
-        },
+        sameAs: ['https://wa.me/221754469097'],
     };
 
     return (
-        <html lang="fr">
+        <html lang="fr" className={`${scriptFont.variable}`}>
             <head>
                 <link rel="preconnect" href="https://res.cloudinary.com" />
                 <link rel="dns-prefetch" href="https://res.cloudinary.com" />
@@ -146,7 +117,9 @@ export default function RootLayout({ children }) {
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
                 />
             </head>
-            <body className={`${outfit.className} antialiased overflow-x-hidden pb-24 sm:pb-0`}>
+            <body
+                className={`${jakarta.className} antialiased bg-[#FAF8F5] text-[#1C1B1F] overflow-x-hidden pb-24 sm:pb-0`}
+            >
                 <CacheBuster />
                 <ScrollToTop />
                 <Toaster />

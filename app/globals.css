@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+@theme {
+    --font-script: var(--font-script), 'Caveat', cursive;
+}
+
 @layer components {
     @keyframes marqueeScroll {
         0% {
@@ -9,10 +13,16 @@
             transform: translateX(-50%);
         }
     }
+
+    .font-script {
+        font-family: var(--font-script), 'Caveat', cursive;
+    }
 }
 
 @layer base {
-    html {
+    body {
+        background-color: #faf8f5;
+        color: #1c1b1f;
         scroll-behavior: smooth;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;

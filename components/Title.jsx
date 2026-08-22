@@ -5,13 +5,13 @@ import React from 'react';
 
 const Title = ({ title, description, visibleButton = true, href = '' }) => {
     return (
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
             <div className="max-w-2xl">
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-black text-[#1C1B1F] tracking-tight">
                     {title}
                 </h2>
                 {description && (
-                    <p className="text-zinc-500 font-normal mt-2 text-sm sm:text-base">
+                    <p className="text-[#8C8275] font-normal mt-2 text-sm sm:text-base">
                         {description}
                     </p>
                 )}
@@ -19,11 +19,11 @@ const Title = ({ title, description, visibleButton = true, href = '' }) => {
             {visibleButton && (
                 <Link
                     href={href}
-                    className="group inline-flex items-center gap-2 bg-zinc-950 text-white px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-amber-500 hover:text-zinc-950 transition-all duration-200 self-start md:self-auto shadow-sm"
+                    className="group inline-flex items-center gap-2 text-xs font-bold text-[#1C1B1F] hover:text-[#C59A63] underline underline-offset-4 transition-colors self-start md:self-auto"
                 >
                     <span>Voir tout</span>
                     <ArrowRight
-                        size={14}
+                        size={13}
                         className="group-hover:translate-x-1 transition-transform"
                     />
                 </Link>

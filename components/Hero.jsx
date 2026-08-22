@@ -3,111 +3,323 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
+    ArrowRight,
+    Play,
+    ShieldCheck,
+    RotateCcw,
+    Truck,
+    Lock,
     Smartphone,
     Laptop,
     Headphones,
-    Palette,
-    ArrowRight,
-    ShieldCheck,
-    Truck,
-    MessageCircle,
+    Cable,
+    Watch,
+    Shirt,
 } from 'lucide-react';
-import CategoriesMarquee from './CategoriesMarquee';
-import { assets } from '@/assets/assets';
+import { motion } from 'framer-motion';
 
 const Hero = ({ initialCategories = [] }) => {
-    const categories = [
-        { name: 'Smartphones & Téléphones', icon: Smartphone, href: '/shop?category=telephones' },
-        { name: 'Ordinateurs & PC', icon: Laptop, href: '/shop?category=ordinateurs' },
-        { name: 'Accessoires High-Tech', icon: Headphones, href: '/shop?category=accessoires' },
-        { name: 'Sérigraphie & Goodies', icon: Palette, href: '/shop?category=serigraphie' },
-    ];
-
-    const handleWhatsAppOrder = () => {
-        const message =
-            'Bonjour JULO, je souhaite commander un produit ou avoir des renseignements.';
-        window.open(`https://wa.me/221754469097?text=${encodeURIComponent(message)}`, '_blank');
+    const handleWhatsAppShowcase = () => {
+        const msg = 'Bonjour JULO, je souhaite découvrir vos nouveautés et commander.';
+        window.open(`https://wa.me/221754469097?text=${encodeURIComponent(msg)}`, '_blank');
     };
 
-    return (
-        <div className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12 max-w-7xl mx-auto">
-            {/* Main Hero Card */}
-            <div className="rounded-[2.5rem] bg-zinc-950 text-white p-8 sm:p-14 lg:p-16 border border-zinc-800 shadow-2xl relative overflow-hidden flex flex-col justify-between min-h-[460px]">
-                {/* Subtle Ambient Glow */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+    const categoriesList = [
+        {
+            title: 'iPhone & Apple',
+            subtitle: 'Shop Now',
+            href: '/shop?category=telephones',
+            image: 'https://res.cloudinary.com/mpgjgsojeezqiovtkepz/image/upload/v1740000000/iphone_card_mockup.png',
+            fallbackIcon: Smartphone,
+        },
+        {
+            title: 'Samsung Galaxy',
+            subtitle: 'Shop Now',
+            href: '/shop?category=telephones',
+            image: 'https://res.cloudinary.com/mpgjgsojeezqiovtkepz/image/upload/v1740000000/samsung_card_mockup.png',
+            fallbackIcon: Smartphone,
+        },
+        {
+            title: 'PC & Laptops',
+            subtitle: 'Shop Now',
+            href: '/shop?category=ordinateurs',
+            image: 'https://res.cloudinary.com/mpgjgsojeezqiovtkepz/image/upload/v1740000000/laptop_card_mockup.png',
+            fallbackIcon: Laptop,
+        },
+        {
+            title: 'Audio & Casques',
+            subtitle: 'Shop Now',
+            href: '/shop?category=accessoires',
+            image: 'https://res.cloudinary.com/mpgjgsojeezqiovtkepz/image/upload/v1740000000/audio_card_mockup.png',
+            fallbackIcon: Headphones,
+        },
+        {
+            title: 'Accessoires GaN',
+            subtitle: 'Shop Now',
+            href: '/shop?category=accessoires',
+            image: 'https://res.cloudinary.com/mpgjgsojeezqiovtkepz/image/upload/v1740000000/charger_card_mockup.png',
+            fallbackIcon: Cable,
+        },
+        {
+            title: 'Sérigraphie & Tech',
+            subtitle: 'Shop Now',
+            href: '/shop?category=serigraphie',
+            image: 'https://res.cloudinary.com/mpgjgsojeezqiovtkepz/image/upload/v1740000000/watch_card_mockup.png',
+            fallbackIcon: Shirt,
+        },
+    ];
 
-                {/* Content */}
-                <div className="relative z-10 max-w-3xl">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-300 mb-6">
-                        <span className="size-2 rounded-full bg-amber-500 animate-pulse" />
-                        Livraison Express à Dakar, Thiès, Touba & Partout au Sénégal
+    return (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 pb-16">
+            {/* Top Hero Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center min-h-[500px]">
+                {/* Left Column: Typography & CTAs */}
+                <div className="lg:col-span-6 xl:col-span-6 flex flex-col justify-center">
+                    {/* Small Subtitle Header with fine lines */}
+                    <div className="flex items-center gap-3 mb-6">
+                        <span className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#8C8275]">
+                            PREMIUM TECH. PREMIUM LIFE.
+                        </span>
+                        <div className="h-px w-12 bg-[#D6CEBE]" />
                     </div>
 
-                    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-                        Smartphones, Ordinateurs &amp; Accessoires de Qualité.
+                    {/* Headline with golden script signature */}
+                    <h1 className="text-4xl sm:text-6xl lg:text-6xl font-black text-[#1C1B1F] tracking-tight leading-[1.08]">
+                        Upgrade Your <br className="hidden sm:inline" />
+                        Everyday{' '}
+                        <span className="font-script text-[#C59A63] text-5xl sm:text-7xl font-normal italic inline-block ml-1">
+                            Tech.
+                        </span>
                     </h1>
 
-                    <p className="mt-5 text-zinc-400 text-sm sm:text-base max-w-2xl font-normal leading-relaxed">
-                        Votre boutique de référence au Sénégal pour des équipements neufs garantis
-                        et vos impressions sérigraphiques sur-mesure.
+                    {/* Description */}
+                    <p className="mt-5 text-[#5A564F] text-sm sm:text-base font-normal leading-relaxed max-w-lg">
+                        Produits 100% originaux. Grandes marques internationales. Des choix
+                        intelligents pour sublimer votre quotidien au Sénégal.
                     </p>
-                </div>
 
-                {/* Actions & Value Props */}
-                <div className="relative z-10 mt-10 pt-8 border-t border-zinc-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-                    <div className="flex flex-wrap items-center gap-3">
+                    {/* CTA Buttons */}
+                    <div className="mt-8 flex flex-wrap items-center gap-4 sm:gap-6">
                         <Link
                             href="/shop"
-                            className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl transition-all shadow-md active:scale-95"
+                            className="inline-flex items-center gap-3 bg-[#C59A63] hover:bg-[#B4874F] text-white px-8 py-4 rounded-full font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-[#C59A63]/25 active:scale-95"
                         >
-                            <span>Voir la Boutique</span>
-                            <ArrowRight size={15} />
+                            <span>SHOP NOW</span>
+                            <ArrowRight size={16} />
                         </Link>
+
                         <button
-                            onClick={handleWhatsAppOrder}
-                            className="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-xs uppercase tracking-wider px-5 py-3.5 rounded-xl border border-zinc-700 transition-all active:scale-95"
+                            onClick={handleWhatsAppShowcase}
+                            className="inline-flex items-center gap-3 text-[#1C1B1F] hover:text-[#C59A63] transition-colors group py-2"
                         >
-                            <MessageCircle size={15} className="text-amber-400" />
-                            <span>Commander sur WhatsApp</span>
+                            <div className="size-11 rounded-full bg-white border border-[#EAE6DF] shadow-sm flex items-center justify-center text-[#1C1B1F] group-hover:scale-105 group-hover:border-[#C59A63] transition-all">
+                                <Play size={14} className="fill-[#1C1B1F] ml-0.5" />
+                            </div>
+                            <div className="text-left">
+                                <p className="text-xs font-bold leading-tight">Watch Showcase</p>
+                                <p className="text-[10px] text-zinc-400 font-medium">
+                                    WhatsApp Direct
+                                </p>
+                            </div>
                         </button>
                     </div>
 
-                    <div className="flex items-center gap-5 text-xs font-semibold text-zinc-400">
-                        <span className="flex items-center gap-1.5">
-                            <ShieldCheck size={16} className="text-amber-400" /> 100% Neuf &amp;
-                            Garanti
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                            <Truck size={16} className="text-amber-400" /> Expédition 24h
-                        </span>
+                    {/* 4 Feature Badges in Row */}
+                    <div className="mt-12 pt-8 border-t border-[#EAE6DF] grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div className="flex items-center gap-2.5">
+                            <div className="size-8 rounded-full border border-[#D6CEBE] flex items-center justify-center text-[#8C8275] shrink-0">
+                                <ShieldCheck size={15} />
+                            </div>
+                            <div>
+                                <p className="text-[11px] font-bold text-[#1C1B1F] leading-tight">
+                                    100% Original
+                                </p>
+                                <p className="text-[9px] text-[#8C8275]">Certifié Neuf</p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-2.5">
+                            <div className="size-8 rounded-full border border-[#D6CEBE] flex items-center justify-center text-[#8C8275] shrink-0">
+                                <RotateCcw size={15} />
+                            </div>
+                            <div>
+                                <p className="text-[11px] font-bold text-[#1C1B1F] leading-tight">
+                                    Garantie &amp; SAV
+                                </p>
+                                <p className="text-[9px] text-[#8C8275]">Assistance Pro</p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-2.5">
+                            <div className="size-8 rounded-full border border-[#D6CEBE] flex items-center justify-center text-[#8C8275] shrink-0">
+                                <Truck size={15} />
+                            </div>
+                            <div>
+                                <p className="text-[11px] font-bold text-[#1C1B1F] leading-tight">
+                                    Livraison 24h
+                                </p>
+                                <p className="text-[9px] text-[#8C8275]">Dakar &amp; Régions</p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-2.5">
+                            <div className="size-8 rounded-full border border-[#D6CEBE] flex items-center justify-center text-[#8C8275] shrink-0">
+                                <Lock size={15} />
+                            </div>
+                            <div>
+                                <p className="text-[11px] font-bold text-[#1C1B1F] leading-tight">
+                                    Paiement Sûr
+                                </p>
+                                <p className="text-[9px] text-[#8C8275]">Wave / OM / Cash</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right Column: Visual Showcase Podium with Glowing Golden Ring */}
+                <div className="lg:col-span-6 xl:col-span-6 relative flex items-center justify-center">
+                    {/* Glowing Golden Ring Halo */}
+                    <div className="absolute size-72 sm:size-96 rounded-full border-[2.5px] border-[#D4AF37]/35 shadow-[0_0_80px_rgba(212,175,55,0.15)] pointer-events-none" />
+
+                    {/* Podium Platform Card */}
+                    <div className="relative z-10 w-full max-w-lg bg-gradient-to-b from-white/90 to-[#FAF8F5]/90 backdrop-blur-md rounded-[2.5rem] p-6 sm:p-8 border border-[#EAE6DF] shadow-[0_20px_50px_rgba(0,0,0,0.06)] overflow-hidden">
+                        {/* Device Grid Showcase */}
+                        <div className="grid grid-cols-2 gap-4">
+                            {/* Device 1: iPhone Pro */}
+                            <div className="bg-[#F5F2EB] rounded-2xl p-4 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/70 hover:scale-102 transition-transform">
+                                <div className="text-right w-full">
+                                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#8C8275]">
+                                        Apple
+                                    </span>
+                                </div>
+                                <div className="size-24 sm:size-28 flex items-center justify-center text-[#1C1B1F]">
+                                    <Smartphone
+                                        size={54}
+                                        strokeWidth={1.2}
+                                        className="text-[#C59A63]"
+                                    />
+                                </div>
+                                <p className="text-xs font-bold text-[#1C1B1F]">iPhone 16 Pro</p>
+                            </div>
+
+                            {/* Device 2: Samsung Galaxy */}
+                            <div className="bg-[#F5F2EB] rounded-2xl p-4 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/70 hover:scale-102 transition-transform">
+                                <div className="text-right w-full">
+                                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#8C8275]">
+                                        Samsung
+                                    </span>
+                                </div>
+                                <div className="size-24 sm:size-28 flex items-center justify-center text-[#1C1B1F]">
+                                    <Smartphone
+                                        size={54}
+                                        strokeWidth={1.2}
+                                        className="text-[#1C1B1F]"
+                                    />
+                                </div>
+                                <p className="text-xs font-bold text-[#1C1B1F]">S24 Ultra</p>
+                            </div>
+
+                            {/* Device 3: Laptop */}
+                            <div className="bg-[#F5F2EB] rounded-2xl p-4 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/70 hover:scale-102 transition-transform">
+                                <div className="text-right w-full">
+                                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#8C8275]">
+                                        PC &amp; Mac
+                                    </span>
+                                </div>
+                                <div className="size-24 sm:size-28 flex items-center justify-center text-[#1C1B1F]">
+                                    <Laptop
+                                        size={54}
+                                        strokeWidth={1.2}
+                                        className="text-[#1C1B1F]"
+                                    />
+                                </div>
+                                <p className="text-xs font-bold text-[#1C1B1F]">HP / MacBook</p>
+                            </div>
+
+                            {/* Device 4: Audio & Earbuds */}
+                            <div className="bg-[#F5F2EB] rounded-2xl p-4 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/70 hover:scale-102 transition-transform">
+                                <div className="text-right w-full">
+                                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#8C8275]">
+                                        Audio Pro
+                                    </span>
+                                </div>
+                                <div className="size-24 sm:size-28 flex items-center justify-center text-[#1C1B1F]">
+                                    <Headphones
+                                        size={54}
+                                        strokeWidth={1.2}
+                                        className="text-[#C59A63]"
+                                    />
+                                </div>
+                                <p className="text-xs font-bold text-[#1C1B1F]">
+                                    Casques &amp; AirPods
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Floating Podium Badge */}
+                        <div className="mt-4 pt-4 border-t border-[#EAE6DF] flex items-center justify-between">
+                            <span className="text-[11px] font-bold text-[#1C1B1F]">
+                                Collection Officielle JULO 2026
+                            </span>
+                            <span className="text-[10px] font-bold text-[#C59A63]">
+                                Disponible à Dakar
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Quick Categories Bar */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
-                {categories.map((cat, idx) => (
+            {/* "Shop By Category" Section (Matching Exact Screenshot Layout) */}
+            <div className="mt-20 pt-10 border-t border-[#EAE6DF]">
+                {/* Category Header */}
+                <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-2xl sm:text-3xl font-black text-[#1C1B1F] tracking-tight">
+                        Shop By Category
+                    </h2>
                     <Link
-                        key={idx}
-                        href={cat.href}
-                        className="rounded-2xl bg-zinc-50 hover:bg-zinc-100 border border-zinc-200/80 p-4 transition-all duration-200 flex items-center gap-3 group"
+                        href="/shop"
+                        className="text-xs font-bold text-[#1C1B1F] hover:text-[#C59A63] transition-colors underline underline-offset-4"
                     >
-                        <div className="size-10 rounded-xl bg-white border border-zinc-200 flex items-center justify-center text-zinc-900 group-hover:scale-105 group-hover:bg-zinc-950 group-hover:text-white transition-all shadow-sm shrink-0">
-                            <cat.icon size={18} />
-                        </div>
-                        <span className="font-bold text-xs text-zinc-900 group-hover:text-amber-600 transition-colors">
-                            {cat.name}
-                        </span>
+                        View All Categories
                     </Link>
-                ))}
-            </div>
-
-            {/* Marquee Categories */}
-            {initialCategories.length > 0 && (
-                <div className="mt-8">
-                    <CategoriesMarquee categories={initialCategories} />
                 </div>
-            )}
+
+                {/* 6 Clean White Cards in Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                    {categoriesList.map((cat, idx) => {
+                        const Icon = cat.fallbackIcon;
+                        return (
+                            <Link
+                                key={idx}
+                                href={cat.href}
+                                className="group bg-white rounded-2xl p-4 border border-[#EAE6DF] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-xl hover:-translate-y-1 hover:border-[#C59A63] transition-all duration-300 flex flex-col justify-between"
+                            >
+                                {/* Soft Gray Image Placeholder Container */}
+                                <div className="bg-[#F5F2EB] rounded-xl aspect-square flex items-center justify-center mb-4 group-hover:bg-[#FAF8F5] transition-colors p-4">
+                                    <Icon
+                                        size={38}
+                                        strokeWidth={1.3}
+                                        className="text-[#1C1B1F] group-hover:text-[#C59A63] group-hover:scale-110 transition-all duration-300"
+                                    />
+                                </div>
+
+                                <div>
+                                    <h3 className="font-bold text-xs sm:text-sm text-[#1C1B1F] group-hover:text-[#C59A63] transition-colors">
+                                        {cat.title}
+                                    </h3>
+                                    <p className="text-[11px] font-medium text-zinc-400 mt-1 flex items-center gap-1">
+                                        <span>{cat.subtitle}</span>
+                                        <ArrowRight
+                                            size={11}
+                                            className="group-hover:translate-x-1 transition-transform"
+                                        />
+                                    </p>
+                                </div>
+                            </Link>
+                        );
+                    })}
+                </div>
+            </div>
         </div>
     );
 };

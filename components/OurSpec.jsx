@@ -4,14 +4,21 @@ import { ourSpecsData } from '@/assets/assets';
 
 const OurSpecs = () => {
     return (
-        <section className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 max-w-7xl mx-auto">
+        <section className="px-4 sm:px-6 lg:px-8 py-16 max-w-7xl mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-12">
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight">
-                    Pourquoi choisir JULO ?
+                <div className="flex items-center justify-center gap-3 mb-3">
+                    <div className="h-px w-8 bg-[#D6CEBE]" />
+                    <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#8C8275]">
+                        LE STANDARD JULO
+                    </span>
+                    <div className="h-px w-8 bg-[#D6CEBE]" />
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-[#1C1B1F] tracking-tight">
+                    L&apos;Excellence à Chaque Étape
                 </h2>
-                <p className="mt-2 text-zinc-500 text-sm">
-                    Une exigence absolue sur la qualité de nos produits et la rapidité de notre
-                    service.
+                <p className="mt-2 text-[#8C8275] text-sm">
+                    Une sélection rigoureuse d&apos;appareils électroniques et un atelier
+                    d&apos;impression textile dédié.
                 </p>
             </div>
 
@@ -21,19 +28,19 @@ const OurSpecs = () => {
                     return (
                         <div
                             key={index}
-                            className="rounded-2xl bg-zinc-50 border border-zinc-200/80 p-6 flex flex-col justify-between hover:bg-white hover:border-zinc-950 hover:shadow-lg transition-all duration-200 group"
+                            className="rounded-2xl bg-white border border-[#EAE6DF] p-6 flex flex-col justify-between hover:shadow-xl hover:border-[#C59A63] transition-all duration-300 group"
                         >
                             <div>
                                 <div
-                                    className="size-11 rounded-xl flex items-center justify-center text-white mb-5 group-hover:scale-105 transition-transform shadow-sm"
-                                    style={{ backgroundColor: spec.accent }}
+                                    className="size-12 rounded-full flex items-center justify-center text-white mb-5 group-hover:scale-105 transition-transform shadow-md"
+                                    style={{ backgroundColor: '#C59A63' }}
                                 >
                                     <Icon size={20} />
                                 </div>
-                                <h3 className="font-bold text-sm text-zinc-900 group-hover:text-amber-600 transition-colors">
+                                <h3 className="font-bold text-sm text-[#1C1B1F] group-hover:text-[#C59A63] transition-colors">
                                     {spec.title}
                                 </h3>
-                                <p className="text-xs font-normal text-zinc-500 mt-2 leading-relaxed">
+                                <p className="text-xs font-normal text-[#8C8275] mt-2 leading-relaxed">
                                     {spec.description}
                                 </p>
                             </div>

@@ -1,15 +1,15 @@
 'use client';
 import Link from 'next/link';
-import { Facebook, Instagram, Twitter, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 import { assets } from '@/assets/assets';
 import Image from 'next/image';
 
 const Footer = () => {
     return (
-        <footer className="bg-zinc-950 text-white border-t border-zinc-800 mt-20">
+        <footer className="bg-[#1C1B1F] text-white border-t border-[#33302A] mt-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Main Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 py-16 border-b border-zinc-800">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 py-16 border-b border-[#33302A]">
                     {/* Brand Column */}
                     <div className="lg:col-span-5">
                         <Link href="/" className="inline-flex items-center">
@@ -26,16 +26,17 @@ const Footer = () => {
                             accessoires électroniques de qualité, ainsi que pour vos travaux de
                             sérigraphie et d’infographie personnalisés.
                         </p>
-                        <p className="mt-3 text-xs font-semibold text-zinc-500">
-                            Co-fondateurs : Babacar Diop Gaye &amp; Makhtar Wade
-                        </p>
+                        <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2B2925] border border-[#3D3A34] text-[10px] text-zinc-300 font-semibold">
+                            <span className="text-[#C59A63]">Co-fondateurs :</span>
+                            <span>Babacar Diop Gaye &amp; Makhtar Wade</span>
+                        </div>
                     </div>
 
                     {/* Links Columns */}
                     <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
                         {/* Categories */}
                         <div>
-                            <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-4">
+                            <h3 className="text-xs font-bold text-[#C59A63] uppercase tracking-widest mb-4">
                                 PRODUITS
                             </h3>
                             <ul className="space-y-2.5 text-xs text-zinc-400">
@@ -76,7 +77,7 @@ const Footer = () => {
 
                         {/* Useful Links */}
                         <div>
-                            <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-4">
+                            <h3 className="text-xs font-bold text-[#C59A63] uppercase tracking-widest mb-4">
                                 NAVIGATION
                             </h3>
                             <ul className="space-y-2.5 text-xs text-zinc-400">
@@ -117,12 +118,12 @@ const Footer = () => {
 
                         {/* Contact */}
                         <div>
-                            <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-4">
+                            <h3 className="text-xs font-bold text-[#C59A63] uppercase tracking-widest mb-4">
                                 CONTACT
                             </h3>
                             <ul className="space-y-2.5 text-xs text-zinc-400">
                                 <li className="flex items-center gap-2">
-                                    <Phone size={13} className="text-amber-400 shrink-0" />
+                                    <Phone size={13} className="text-[#C59A63] shrink-0" />
                                     <a
                                         href="tel:+221754469097"
                                         className="hover:text-white transition-colors"
@@ -131,7 +132,7 @@ const Footer = () => {
                                     </a>
                                 </li>
                                 <li className="flex items-center gap-2">
-                                    <Mail size={13} className="text-amber-400 shrink-0" />
+                                    <Mail size={13} className="text-[#C59A63] shrink-0" />
                                     <a
                                         href="mailto:contact@julo.sn"
                                         className="hover:text-white transition-colors"
@@ -140,7 +141,7 @@ const Footer = () => {
                                     </a>
                                 </li>
                                 <li className="flex items-center gap-2">
-                                    <MapPin size={13} className="text-amber-400 shrink-0" />
+                                    <MapPin size={13} className="text-[#C59A63] shrink-0" />
                                     <span>Dakar &amp; Touba, Sénégal</span>
                                 </li>
                             </ul>

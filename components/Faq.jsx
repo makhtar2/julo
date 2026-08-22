@@ -5,24 +5,24 @@ import { ChevronDown, MessageCircle } from 'lucide-react';
 
 const faqData = [
     {
-        question: 'Comment passer commande sur JULO ?',
-        answer: "Choisissez vos articles (smartphones, ordinateurs, accessoires), ajoutez-les au panier et validez votre commande en 1 minute. Vous pouvez également cliquer sur 'Commander sur WhatsApp' pour échanger directement avec nous.",
+        question: 'Comment commander des équipements sur JULO ?',
+        answer: 'Ajoutez vos articles (smartphones, ordinateurs, accessoires) au panier et finalisez votre commande en toute sécurité. Vous pouvez aussi commander instantanément sur WhatsApp.',
     },
     {
-        question: 'Proposez-vous des services de sérigraphie et personnalisation ?',
-        answer: 'Oui ! Nous personnalisons vos t-shirts, polos, casquettes, sacs et goodies pour particuliers et entreprises avec une impression de haute qualité.',
+        question: "Comment fonctionne l'atelier de sérigraphie JULO ?",
+        answer: "Pour vos t-shirts, polos, hoodies, casquettes ou goodies pro, transmettez-nous votre visuel. Nous réalisons un aperçu numérique avant d'imprimer dans notre atelier.",
     },
     {
-        question: 'Quels sont les délais et zones de livraison au Sénégal ?',
-        answer: 'Livraison express en 24h à Dakar, Thiès et Touba. Expédition sous 48h dans toutes les autres régions du Sénégal par transporteurs partenaires agréés.',
+        question: 'Quels sont vos délais et zones de livraison au Sénégal ?',
+        answer: 'Livraison express sous 24h à Dakar, Thiès et Touba. Expédition 48h dans toutes les autres régions du Sénégal via nos partenaires agréés.',
     },
     {
         question: 'Quels sont les modes de paiement acceptés ?',
-        answer: 'Paiement mobile instantané par Wave et Orange Money, ou règlement en espèces (Cash) à la livraison.',
+        answer: 'Paiement mobile instantané par Wave et Orange Money, ou en espèces (Cash) à la réception de votre commande.',
     },
     {
-        question: 'Les téléphones et ordinateurs sont-ils sous garantie ?',
-        answer: "Tous nos équipements sont neufs, 100% authentiques et accompagnés d'une garantie constructeur avec service après-vente dédié.",
+        question: 'Tous les téléphones et ordinateurs sont-ils sous garantie ?',
+        answer: 'Oui, tous nos appareils sont 100% originaux, certifiés neufs et couverts par une garantie officielle avec service après-vente dédié.',
     },
 ];
 
@@ -34,15 +34,22 @@ const Faq = () => {
     };
 
     return (
-        <section className="py-16 sm:py-20 bg-zinc-50 border-t border-zinc-200/80">
+        <section className="py-16 sm:py-20 bg-[#F5F2EB]/60 border-t border-[#EAE6DF]">
             <div className="max-w-3xl mx-auto px-4 sm:px-6">
                 <div className="text-center mb-12">
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight mb-2">
+                    <div className="flex items-center justify-center gap-3 mb-3">
+                        <div className="h-px w-8 bg-[#D6CEBE]" />
+                        <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#8C8275]">
+                            QUESTIONS &amp; RÉPONSES
+                        </span>
+                        <div className="h-px w-8 bg-[#D6CEBE]" />
+                    </div>
+                    <h2 className="text-2xl sm:text-3xl font-black text-[#1C1B1F] tracking-tight mb-2">
                         Questions Fréquentes
                     </h2>
-                    <p className="text-sm text-zinc-500 max-w-lg mx-auto">
-                        Retrouvez les réponses aux questions les plus courantes sur nos produits et
-                        services.
+                    <p className="text-sm text-[#8C8275] max-w-lg mx-auto">
+                        Tout ce qu&apos;il faut savoir pour commander vos équipements et impressions
+                        textiles.
                     </p>
                 </div>
 
@@ -52,24 +59,24 @@ const Faq = () => {
                         return (
                             <div
                                 key={index}
-                                className="border border-zinc-200 rounded-2xl bg-white overflow-hidden transition-all duration-200"
+                                className="border border-[#EAE6DF] rounded-2xl bg-white overflow-hidden transition-all duration-200 shadow-xs"
                             >
                                 <button
                                     onClick={() => toggleFaq(index)}
-                                    className="w-full py-4 px-5 text-left flex justify-between items-center gap-4 hover:bg-zinc-50 transition-colors"
+                                    className="w-full py-4 px-5 text-left flex justify-between items-center gap-4 hover:bg-[#FAF8F5] transition-colors"
                                     aria-expanded={isOpen}
                                 >
-                                    <span className="font-bold text-sm text-zinc-900 leading-snug">
+                                    <span className="font-bold text-sm text-[#1C1B1F] leading-snug">
                                         {faq.question}
                                     </span>
                                     <div
                                         className={`size-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
                                             isOpen
-                                                ? 'bg-zinc-950 text-white rotate-180'
-                                                : 'bg-zinc-100 text-zinc-600'
+                                                ? 'bg-[#C59A63] text-white rotate-180'
+                                                : 'bg-[#F5F2EB] text-[#1C1B1F]'
                                         }`}
                                     >
-                                        <ChevronDown size={15} />
+                                        <ChevronDown size={14} />
                                     </div>
                                 </button>
 
@@ -81,7 +88,7 @@ const Faq = () => {
                                             exit={{ height: 0, opacity: 0 }}
                                             transition={{ duration: 0.2 }}
                                         >
-                                            <div className="px-5 pb-5 pt-1 text-xs sm:text-sm font-normal text-zinc-600 leading-relaxed border-t border-zinc-100">
+                                            <div className="px-5 pb-5 pt-1 text-xs sm:text-sm font-normal text-[#5A564F] leading-relaxed border-t border-[#EAE6DF]/70">
                                                 {faq.answer}
                                             </div>
                                         </motion.div>
@@ -94,15 +101,17 @@ const Faq = () => {
 
                 {/* WhatsApp Help CTA */}
                 <div className="mt-10 text-center">
-                    <p className="text-xs font-semibold text-zinc-500 mb-3">Une autre question ?</p>
+                    <p className="text-xs font-semibold text-[#8C8275] mb-3">
+                        Besoin d&apos;un conseil sur un modèle ou un devis personnalisé ?
+                    </p>
                     <a
-                        href="https://wa.me/221754469097?text=Bonjour%20Julo,%20j%27ai%20une%20question"
+                        href="https://wa.me/221754469097?text=Bonjour%20JULO,%20j%27ai%20une%20question"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all shadow-sm"
+                        className="inline-flex items-center gap-2 bg-[#1C1B1F] hover:bg-[#C59A63] text-white font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-full transition-all shadow-md active:scale-95"
                     >
-                        <MessageCircle size={14} className="text-amber-400" />
-                        <span>Écrivez-nous sur WhatsApp</span>
+                        <MessageCircle size={14} className="text-[#C59A63]" />
+                        <span>Discuter sur WhatsApp</span>
                     </a>
                 </div>
             </div>

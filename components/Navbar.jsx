@@ -1,99 +1,55 @@
 'use client';
 import {
-    Search,
     ShoppingCart,
-    Menu,
-    X,
+    Heart,
     User,
-    ShoppingBag,
     LogOut,
     Package,
-    Heart,
     ChevronDown,
+    Search,
+    X,
     ArrowRight,
+    Home,
 } from 'lucide-react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useCartStore } from '@/lib/store';
-import { createClient } from '@/lib/supabase/client';
-import { useHasMounted } from '@/lib/useHasMounted';
 import { motion, AnimatePresence } from 'framer-motion';
-import { logout } from '@/app/actions/auth';
 import { getSearchSuggestions } from '@/app/actions/product';
+import { logout } from '@/app/actions/auth';
 import { assets } from '@/assets/assets';
 
-const supabase = createClient();
-
-const Navbar = () => {
+const Navbar = ({ user, isAdmin }) => {
     const router = useRouter();
     const pathname = usePathname();
+    const [isAccountOpen, setIsAccountOpen] = useState(false);
     const [search, setSearch] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [isAccountOpen, setIsAccountOpen] = useState(false);
-    const [user, setUser] = useState(null);
-    const [isAdmin, setIsAdmin] = useState(false);
-    const mounted = useHasMounted();
-    const dropdownRef = useRef(null);
-    const searchRef = useRef(null);
+    const [mounted, setMounted] = useState(false);
 
-    const cartCount = useCartStore((state) =>
-        state.cart.reduce((acc, item) => acc + item.quantity, 0)
-    );
+    const cart = useCartStore((state) => state.cart);
     const wishlist = useCartStore((state) => state.wishlist);
-    const wishlistCount = wishlist?.length || 0;
+    const cartCount = Object.values(cart).reduce((acc, qty) => acc + qty, 0);
+    const wishlistCount = wishlist.length;
 
-    const checkAdminStatus = async (user) => {
-        if (!user) {
-            setIsAdmin(false);
-            return;
-        }
-        const { data: userData } = await supabase
-            .from('User')
-            .select('role')
-            .eq('id', user.id)
-            .single();
-        setIsAdmin(userData?.role === 'ADMIN');
-    };
+    const searchRef = useRef(null);
+    const dropdownRef = useRef(null);
 
     useEffect(() => {
-        let ignore = false;
-        const getUser = async () => {
-            const {
-                data: { user },
-            } = await supabase.auth.getUser();
-            if (ignore) return;
-            setUser(user);
-            checkAdminStatus(user);
-        };
-        (async () => {
-            if (!ignore) await getUser();
-        })();
-        const {
-            data: { subscription },
-        } = supabase.auth.onAuthStateChange((_event, session) => {
-            const currentUser = session?.user ?? null;
-            setUser(currentUser);
-            checkAdminStatus(currentUser);
-        });
-
+        setMounted(true);
         const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setIsAccountOpen(false);
-            }
             if (searchRef.current && !searchRef.current.contains(event.target)) {
                 setSuggestions([]);
             }
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsAccountOpen(false);
+            }
         };
         document.addEventListener('mousedown', handleClickOutside);
-
-        return () => {
-            ignore = true;
-            subscription.unsubscribe();
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
+        return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
     useEffect(() => {
@@ -119,47 +75,47 @@ const Navbar = () => {
     const handleSearch = (e) => {
         e?.preventDefault();
         if (search.trim()) {
-            router.push(`/shop?search=${search}`);
+            router.push(`/shop?search=${encodeURIComponent(search)}`);
             setIsSearchOpen(false);
             setSuggestions([]);
         }
     };
 
     const navLinks = [
-        { name: 'Boutique', href: '/shop' },
+        { name: 'Home', href: '/', isHome: true },
+        { name: 'Shop', href: '/shop' },
         { name: 'Smartphones', href: '/shop?category=telephones' },
         { name: 'Ordinateurs', href: '/shop?category=ordinateurs' },
         { name: 'Accessoires', href: '/shop?category=accessoires' },
         { name: 'Sérigraphie', href: '/shop?category=serigraphie' },
-        { name: 'À Propos', href: '/about' },
+        { name: 'About', href: '/about' },
+        { name: 'Contact', href: '/contact' },
     ];
 
     return (
-        <nav className="relative bg-white/95 backdrop-blur-md border-b border-zinc-200/80 sticky top-0 z-[150]">
-            {/* Search Overlay for Mobile */}
+        <nav className="relative bg-[#FAF8F5]/90 backdrop-blur-md border-b border-[#EAE6DF] sticky top-0 z-[150]">
+            {/* Mobile Search Overlay */}
             <AnimatePresence>
                 {isSearchOpen && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-white z-[200] flex flex-col sm:hidden"
+                        className="fixed inset-0 bg-[#FAF8F5] z-[200] flex flex-col sm:hidden"
                     >
-                        {/* Mobile Search Header */}
-                        <div className="p-4 border-b border-zinc-100 flex items-center gap-4">
+                        <div className="p-4 border-b border-[#EAE6DF] flex items-center gap-3 bg-white">
                             <form
                                 onSubmit={handleSearch}
-                                className="flex-1 flex items-center gap-3 bg-zinc-100 px-4 py-3 rounded-2xl"
+                                className="flex-1 flex items-center gap-3 bg-[#F5F2EB] px-4 py-3 rounded-full border border-[#EAE6DF]"
                             >
-                                <Search size={20} className="text-zinc-400" />
+                                <Search size={18} className="text-zinc-400" />
                                 <input
                                     autoFocus
-                                    className="w-full bg-transparent outline-none placeholder-zinc-400 font-bold text-sm"
+                                    className="w-full bg-transparent outline-none placeholder-zinc-400 font-medium text-sm text-[#1C1B1F]"
                                     type="text"
-                                    placeholder="Rechercher un smartphone, PC, t-shirt..."
+                                    placeholder="Rechercher un iPhone, PC, t-shirt..."
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
-                                    required
                                 />
                             </form>
                             <button
@@ -168,13 +124,12 @@ const Navbar = () => {
                                     setSearch('');
                                     setSuggestions([]);
                                 }}
-                                className="text-zinc-500 font-bold text-xs uppercase tracking-wider px-2"
+                                className="text-zinc-500 font-bold text-xs px-2"
                             >
                                 <X size={20} />
                             </button>
                         </div>
 
-                        {/* Suggestions Results */}
                         <div className="flex-1 overflow-y-auto p-4">
                             {suggestions.length > 0 ? (
                                 <div className="space-y-2">
@@ -190,11 +145,13 @@ const Navbar = () => {
                                                 setSearch('');
                                                 setSuggestions([]);
                                             }}
-                                            className="flex items-center gap-3 p-3 hover:bg-zinc-50 rounded-2xl transition-colors"
+                                            className="flex items-center gap-3 p-3 bg-white rounded-2xl border border-[#EAE6DF] shadow-sm hover:border-[#C59A63] transition-colors"
                                         >
-                                            <div className="size-12 bg-zinc-100 rounded-xl flex items-center justify-center p-2">
+                                            <div className="size-12 bg-[#F5F2EB] rounded-xl flex items-center justify-center p-2">
                                                 <Image
-                                                    src={item.images[0]}
+                                                    src={
+                                                        item.images?.[0] || '/placeholder-image.png'
+                                                    }
                                                     alt=""
                                                     width={40}
                                                     height={40}
@@ -202,11 +159,11 @@ const Navbar = () => {
                                                 />
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <p className="text-xs font-bold text-zinc-900 truncate">
+                                                <p className="text-xs font-bold text-[#1C1B1F] truncate">
                                                     {item.name}
                                                 </p>
-                                                <p className="text-[11px] font-bold text-amber-600 mt-0.5">
-                                                    {item.price.toLocaleString('fr-SN')} FCFA
+                                                <p className="text-[11px] font-bold text-[#C59A63] mt-0.5">
+                                                    {item.price?.toLocaleString('fr-SN')} FCFA
                                                 </p>
                                             </div>
                                             <ArrowRight size={14} className="text-zinc-300" />
@@ -232,10 +189,11 @@ const Navbar = () => {
                 )}
             </AnimatePresence>
 
-            <div className="px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between max-w-7xl mx-auto h-16 sm:h-20 gap-4">
+            {/* Main Navbar Bar */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
                     {/* Left: Brand Logo */}
-                    <div className="flex items-center gap-3">
+                    <div className="shrink-0">
                         <Link
                             href="/"
                             aria-label="JULO - Accueil"
@@ -245,56 +203,47 @@ const Navbar = () => {
                                 src={assets.julo_logo_transparent}
                                 alt="JULO."
                                 width={120}
-                                height={40}
+                                height={38}
                                 priority
                                 className="h-7 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105"
                             />
                         </Link>
                     </div>
 
-                    {/* Center: Desktop Navigation Links */}
-                    <div className="hidden lg:flex items-center gap-1 xl:gap-2">
+                    {/* Center: Floating Navigation Pill (Exact Screenshot Look) */}
+                    <div className="hidden lg:flex items-center bg-white/90 border border-[#EAE6DF] shadow-sm rounded-full p-1.5 gap-1">
                         {navLinks.map((link) => {
                             const isActive = pathname === link.href;
                             return (
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150 ${
+                                    className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ${
                                         isActive
-                                            ? 'bg-zinc-950 text-white shadow-sm'
-                                            : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
+                                            ? 'bg-[#1C1B1F] text-white shadow-sm'
+                                            : 'text-[#4A4742] hover:text-[#1C1B1F] hover:bg-[#F5F2EB]'
                                     }`}
                                 >
-                                    {link.name}
+                                    {link.isHome && (
+                                        <Home size={13} strokeWidth={isActive ? 2.5 : 2} />
+                                    )}
+                                    <span>{link.name}</span>
                                 </Link>
                             );
                         })}
                     </div>
 
-                    {/* Mobile: Search Toggle */}
-                    <div className="flex lg:hidden items-center">
-                        <motion.button
-                            whileTap={{ scale: 0.9 }}
-                            onClick={() => setIsSearchOpen(true)}
-                            aria-label="Ouvrir la recherche"
-                            className="p-2 text-zinc-600 hover:bg-zinc-100 rounded-xl transition-colors"
-                        >
-                            <Search size={20} strokeWidth={2} />
-                        </motion.button>
-                    </div>
-
-                    {/* Actions */}
-                    <div className="flex items-center justify-end gap-2 sm:gap-4 flex-1">
-                        {/* Desktop Search */}
-                        <div className="hidden xl:block relative" ref={searchRef}>
+                    {/* Right: Actions (Search, Wishlist, Cart, Profile) */}
+                    <div className="flex items-center gap-2 sm:gap-3">
+                        {/* Search button / bar */}
+                        <div className="relative" ref={searchRef}>
                             <form
                                 onSubmit={handleSearch}
-                                className="flex items-center w-60 text-sm gap-2 bg-zinc-100 px-4 py-2 rounded-xl border border-transparent focus-within:border-zinc-300 transition-all"
+                                className="hidden xl:flex items-center w-52 bg-white px-3.5 py-1.5 rounded-full border border-[#EAE6DF] focus-within:border-[#C59A63] transition-all shadow-sm"
                             >
-                                <Search size={16} className="text-zinc-400" />
+                                <Search size={14} className="text-zinc-400 mr-2" />
                                 <input
-                                    className="w-full bg-transparent outline-none placeholder-zinc-400 font-medium text-xs text-zinc-900"
+                                    className="w-full bg-transparent outline-none placeholder-zinc-400 font-medium text-xs text-[#1C1B1F]"
                                     type="text"
                                     placeholder="Rechercher..."
                                     value={search}
@@ -302,13 +251,14 @@ const Navbar = () => {
                                 />
                             </form>
 
+                            {/* Suggestions Dropdown */}
                             <AnimatePresence>
                                 {suggestions.length > 0 && (
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: 10 }}
-                                        className="absolute top-full mt-2 left-0 right-0 bg-white rounded-2xl border border-zinc-200 shadow-2xl overflow-hidden p-2 z-[999]"
+                                        className="absolute top-full mt-2 right-0 w-80 bg-white rounded-2xl border border-[#EAE6DF] shadow-xl overflow-hidden p-2 z-[999]"
                                     >
                                         {suggestions.map((item) => (
                                             <Link
@@ -318,28 +268,31 @@ const Navbar = () => {
                                                     setSuggestions([]);
                                                     setSearch('');
                                                 }}
-                                                className="flex items-center gap-3 p-2 hover:bg-zinc-50 rounded-xl transition-colors group"
+                                                className="flex items-center gap-3 p-2 hover:bg-[#FAF8F5] rounded-xl transition-colors group"
                                             >
-                                                <div className="size-10 bg-zinc-100 rounded-lg flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
+                                                <div className="size-10 bg-[#F5F2EB] rounded-lg flex items-center justify-center p-1 group-hover:scale-105 transition-transform">
                                                     <Image
-                                                        src={item.images[0]}
+                                                        src={
+                                                            item.images?.[0] ||
+                                                            '/placeholder-image.png'
+                                                        }
                                                         alt=""
-                                                        width={30}
-                                                        height={30}
+                                                        width={32}
+                                                        height={32}
                                                         className="object-contain"
                                                     />
                                                 </div>
                                                 <div className="flex-1 min-w-0">
-                                                    <p className="text-xs font-bold text-zinc-900 truncate">
+                                                    <p className="text-xs font-bold text-[#1C1B1F] truncate">
                                                         {item.name}
                                                     </p>
-                                                    <p className="text-[10px] font-bold text-amber-600">
-                                                        {item.price.toLocaleString('fr-SN')} FCFA
+                                                    <p className="text-[10px] font-bold text-[#C59A63]">
+                                                        {item.price?.toLocaleString('fr-SN')} FCFA
                                                     </p>
                                                 </div>
                                                 <ArrowRight
                                                     size={12}
-                                                    className="text-zinc-300 group-hover:text-zinc-900 group-hover:translate-x-1 transition-all"
+                                                    className="text-zinc-300 group-hover:text-[#1C1B1F] group-hover:translate-x-1 transition-all"
                                                 />
                                             </Link>
                                         ))}
@@ -348,171 +301,121 @@ const Navbar = () => {
                             </AnimatePresence>
                         </div>
 
-                        <div className="flex items-center gap-1 sm:gap-2">
-                            <motion.div
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="relative hidden sm:block"
-                            >
-                                <Link
-                                    href="/wishlist"
-                                    aria-label="Voir mes favoris"
-                                    className="flex items-center justify-center size-9 sm:size-10 bg-zinc-100 text-zinc-700 hover:text-red-500 rounded-xl transition-all group"
-                                >
-                                    <Heart size={18} strokeWidth={2} />
-                                    {mounted && wishlistCount > 0 && (
-                                        <span className="absolute -top-1 -right-1 text-[9px] font-black text-white bg-red-500 size-4 rounded-full flex items-center justify-center border-2 border-white">
-                                            {wishlistCount}
-                                        </span>
-                                    )}
-                                </Link>
-                            </motion.div>
+                        {/* Mobile Search Button */}
+                        <button
+                            onClick={() => setIsSearchOpen(true)}
+                            aria-label="Ouvrir la recherche"
+                            className="xl:hidden flex items-center justify-center size-9 bg-white text-[#1C1B1F] border border-[#EAE6DF] rounded-full shadow-sm"
+                        >
+                            <Search size={16} />
+                        </button>
 
-                            <motion.div
-                                key={cartCount}
-                                initial={{ scale: 1 }}
-                                animate={{ scale: [1, 1.2, 1] }}
-                                transition={{ duration: 0.3 }}
-                                className="relative"
-                            >
-                                <Link
-                                    href="/cart"
-                                    aria-label="Voir mon panier"
-                                    className="flex items-center justify-center size-9 sm:size-10 bg-zinc-950 text-white hover:bg-amber-500 hover:text-zinc-950 rounded-xl transition-all group"
-                                >
-                                    <ShoppingCart size={18} strokeWidth={2} />
-                                    {mounted && cartCount > 0 && (
-                                        <span className="absolute -top-1 -right-1 text-[9px] font-black text-zinc-950 bg-amber-400 size-4 rounded-full flex items-center justify-center border-2 border-white">
-                                            {cartCount}
-                                        </span>
-                                    )}
-                                </Link>
-                            </motion.div>
+                        {/* Cart Button (with gold badge matching screenshot) */}
+                        <Link
+                            href="/cart"
+                            aria-label="Voir mon panier"
+                            className="relative flex items-center justify-center size-9 sm:size-10 bg-white text-[#1C1B1F] hover:border-[#C59A63] border border-[#EAE6DF] rounded-full shadow-sm transition-all"
+                        >
+                            <ShoppingCart size={17} strokeWidth={1.8} />
+                            {mounted && (
+                                <span className="absolute -top-1 -right-1 text-[9px] font-black text-white bg-[#C59A63] size-4.5 rounded-full flex items-center justify-center border-2 border-white shadow-xs">
+                                    {cartCount}
+                                </span>
+                            )}
+                        </Link>
 
-                            <div className="hidden sm:block relative" ref={dropdownRef}>
-                                {user ? (
-                                    <>
-                                        <motion.button
-                                            whileHover={{ scale: 1.02 }}
-                                            whileTap={{ scale: 0.98 }}
-                                            onClick={() => setIsAccountOpen(!isAccountOpen)}
-                                            className="flex items-center gap-3 pl-2 pr-4 py-1.5 bg-slate-900 text-white rounded-full font-black text-[10px] uppercase tracking-widest shadow-xl shadow-slate-900/10 transition-all"
-                                        >
-                                            <div className="size-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs">
-                                                {user.user_metadata?.full_name?.charAt(0) ||
-                                                    user.email?.charAt(0).toUpperCase()}
-                                            </div>
-                                            <span className="max-w-[100px] truncate">
-                                                {user.user_metadata?.full_name?.split(' ')[0] ||
-                                                    'Compte'}
-                                            </span>
-                                            <ChevronDown
-                                                size={14}
-                                                className={`transition-transform duration-300 ${isAccountOpen ? 'rotate-180' : ''}`}
-                                            />
-                                        </motion.button>
+                        {/* Wishlist Button */}
+                        <Link
+                            href="/wishlist"
+                            aria-label="Voir mes favoris"
+                            className="relative flex items-center justify-center size-9 sm:size-10 bg-white text-[#1C1B1F] hover:text-red-500 hover:border-red-200 border border-[#EAE6DF] rounded-full shadow-sm transition-all"
+                        >
+                            <Heart size={17} strokeWidth={1.8} />
+                            {mounted && wishlistCount > 0 && (
+                                <span className="absolute -top-1 -right-1 text-[9px] font-black text-white bg-red-500 size-4 rounded-full flex items-center justify-center border-2 border-white">
+                                    {wishlistCount}
+                                </span>
+                            )}
+                        </Link>
 
-                                        <AnimatePresence>
-                                            {isAccountOpen && (
-                                                <motion.div
-                                                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                                                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                                    className="absolute right-0 mt-3 w-64 bg-white rounded-[2rem] shadow-2xl shadow-slate-200 border border-slate-100 overflow-hidden z-[100]"
-                                                >
-                                                    <div className="p-6 bg-slate-50/50 border-b border-slate-100">
-                                                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">
-                                                            Bienvenue
-                                                        </p>
-                                                        <p className="text-slate-900 font-black truncate">
-                                                            {user.user_metadata?.full_name ||
-                                                                user.email}
-                                                        </p>
-                                                    </div>
-                                                    <div className="p-3">
-                                                        {isAdmin && (
-                                                            <Link
-                                                                href="/admin"
-                                                                onClick={() =>
-                                                                    setIsAccountOpen(false)
-                                                                }
-                                                                className="flex items-center gap-4 px-4 py-3 text-blue-600 hover:bg-blue-50 rounded-2xl transition-all group"
-                                                            >
-                                                                <div className="size-10 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                                                                    <User size={18} />
-                                                                </div>
-                                                                <span className="font-bold text-sm">
-                                                                    Espace Admin
-                                                                </span>
-                                                            </Link>
-                                                        )}
-                                                        <Link
-                                                            href="/profile"
-                                                            onClick={() => setIsAccountOpen(false)}
-                                                            className="flex items-center gap-4 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-2xl transition-all group"
-                                                        >
-                                                            <div className="size-10 bg-slate-100 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                                                                <User size={18} />
-                                                            </div>
-                                                            <span className="font-bold text-sm">
-                                                                Mon Profil
-                                                            </span>
-                                                        </Link>
-                                                        <Link
-                                                            href="/wishlist"
-                                                            onClick={() => setIsAccountOpen(false)}
-                                                            className="flex items-center gap-4 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-2xl transition-all group"
-                                                        >
-                                                            <div className="size-10 bg-slate-100 rounded-xl flex items-center justify-center group-hover:bg-red-500 group-hover:text-white transition-colors">
-                                                                <Heart size={18} />
-                                                            </div>
-                                                            <span className="font-bold text-sm">
-                                                                Favoris
-                                                            </span>
-                                                        </Link>
-                                                        <Link
-                                                            href="/orders"
-                                                            onClick={() => setIsAccountOpen(false)}
-                                                            className="flex items-center gap-4 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-2xl transition-all group"
-                                                        >
-                                                            <div className="size-10 bg-slate-100 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                                                                <Package size={18} />
-                                                            </div>
-                                                            <span className="font-bold text-sm">
-                                                                Mes Commandes
-                                                            </span>
-                                                        </Link>
-                                                        <div className="my-2 border-t border-slate-50"></div>
-                                                        <button
-                                                            onClick={handleLogout}
-                                                            className="w-full flex items-center gap-4 px-4 py-3 text-red-600 hover:bg-red-50 rounded-2xl transition-all group"
-                                                        >
-                                                            <div className="size-10 bg-red-100/50 rounded-xl flex items-center justify-center group-hover:bg-red-600 group-hover:text-white transition-colors">
-                                                                <LogOut size={18} />
-                                                            </div>
-                                                            <span className="font-bold text-sm">
-                                                                Déconnexion
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
-                                    </>
-                                ) : (
-                                    <motion.div
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
+                        {/* User Profile / Account */}
+                        <div className="relative" ref={dropdownRef}>
+                            {user ? (
+                                <>
+                                    <button
+                                        onClick={() => setIsAccountOpen(!isAccountOpen)}
+                                        className="flex items-center justify-center size-9 sm:size-10 bg-[#1C1B1F] text-white rounded-full shadow-sm transition-all"
+                                        aria-label="Menu utilisateur"
                                     >
-                                        <Link
-                                            href="/login"
-                                            className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl shadow-blue-600/10 transition-all block"
-                                        >
-                                            Connexion
-                                        </Link>
-                                    </motion.div>
-                                )}
-                            </div>
+                                        <User size={16} />
+                                    </button>
+
+                                    <AnimatePresence>
+                                        {isAccountOpen && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                className="absolute right-0 mt-3 w-64 bg-white rounded-2xl shadow-2xl border border-[#EAE6DF] overflow-hidden z-[100]"
+                                            >
+                                                <div className="p-4 bg-[#FAF8F5] border-b border-[#EAE6DF]">
+                                                    <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-0.5">
+                                                        Connecté
+                                                    </p>
+                                                    <p className="text-[#1C1B1F] font-bold text-sm truncate">
+                                                        {user.user_metadata?.full_name ||
+                                                            user.email}
+                                                    </p>
+                                                </div>
+                                                <div className="p-2 space-y-1">
+                                                    {isAdmin && (
+                                                        <Link
+                                                            href="/admin"
+                                                            onClick={() => setIsAccountOpen(false)}
+                                                            className="flex items-center gap-3 px-3 py-2 text-[#C59A63] hover:bg-[#FAF8F5] rounded-xl text-xs font-bold transition-all"
+                                                        >
+                                                            <User size={15} />
+                                                            <span>Espace Admin</span>
+                                                        </Link>
+                                                    )}
+                                                    <Link
+                                                        href="/profile"
+                                                        onClick={() => setIsAccountOpen(false)}
+                                                        className="flex items-center gap-3 px-3 py-2 text-zinc-700 hover:bg-[#FAF8F5] rounded-xl text-xs font-semibold transition-all"
+                                                    >
+                                                        <User size={15} />
+                                                        <span>Mon Profil</span>
+                                                    </Link>
+                                                    <Link
+                                                        href="/orders"
+                                                        onClick={() => setIsAccountOpen(false)}
+                                                        className="flex items-center gap-3 px-3 py-2 text-zinc-700 hover:bg-[#FAF8F5] rounded-xl text-xs font-semibold transition-all"
+                                                    >
+                                                        <Package size={15} />
+                                                        <span>Mes Commandes</span>
+                                                    </Link>
+                                                    <div className="border-t border-[#EAE6DF] my-1" />
+                                                    <button
+                                                        onClick={handleLogout}
+                                                        className="w-full flex items-center gap-3 px-3 py-2 text-red-600 hover:bg-red-50 rounded-xl text-xs font-semibold transition-all"
+                                                    >
+                                                        <LogOut size={15} />
+                                                        <span>Déconnexion</span>
+                                                    </button>
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </>
+                            ) : (
+                                <Link
+                                    href="/login"
+                                    className="flex items-center justify-center size-9 sm:size-10 bg-white text-[#1C1B1F] hover:border-[#C59A63] border border-[#EAE6DF] rounded-full shadow-sm transition-all"
+                                    aria-label="Se connecter"
+                                >
+                                    <User size={17} strokeWidth={1.8} />
+                                </Link>
+                            )}
                         </div>
                     </div>
                 </div>
