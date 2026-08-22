@@ -118,13 +118,13 @@ const ProductDetails = ({ product }) => {
                                 alt={product.name}
                                 width={700}
                                 height={700}
-                                className="w-full h-full object-cover rounded-2xl drop-shadow-sm"
+                                className="w-full h-full object-contain rounded-2xl drop-shadow-sm p-4"
                                 priority
                             />
                         </motion.div>
 
                         {product.mrp > product.price && (
-                            <div className="absolute top-6 left-6 bg-[#C59A63] text-white px-4 py-1.5 rounded-full font-black text-xs uppercase tracking-wider shadow-md">
+                            <div className="absolute top-6 left-6 bg-[#10B981] text-white px-4 py-1.5 rounded-full font-black text-xs uppercase tracking-wider shadow-md">
                                 -{Math.round(((product.mrp - product.price) / product.mrp) * 100)}%
                             </div>
                         )}
@@ -139,13 +139,13 @@ const ProductDetails = ({ product }) => {
                                     onClick={() => setMainImage(image)}
                                     className={`bg-white shrink-0 size-20 sm:size-24 rounded-2xl border-2 transition-all p-1.5 flex items-center justify-center overflow-hidden ${
                                         mainImage === image
-                                            ? 'border-[#C59A63] shadow-md scale-95'
+                                            ? 'border-[#10B981] shadow-md scale-95'
                                             : 'border-[#EAE6DF] hover:border-zinc-300'
                                     }`}
                                 >
                                     <Image
                                         src={image}
-                                        className="object-cover w-full h-full rounded-xl"
+                                        className="object-contain w-full h-full rounded-xl"
                                         alt=""
                                         width={80}
                                         height={80}
@@ -176,7 +176,7 @@ const ProductDetails = ({ product }) => {
                                             <StarIcon
                                                 key={index}
                                                 size={15}
-                                                className="fill-[#C59A63] text-[#C59A63]"
+                                                className="fill-[#F59E0B] text-[#F59E0B]"
                                             />
                                         ))}
                                 </div>
@@ -190,7 +190,7 @@ const ProductDetails = ({ product }) => {
                             <span
                                 className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${
                                     product.inStock
-                                        ? 'bg-[#F5F2EB] text-[#1C1B1F] border border-[#EAE6DF]'
+                                        ? 'bg-[#F0FDF4] text-[#10B981] border border-[#10B981]/30'
                                         : 'bg-red-50 text-red-600 border border-red-200'
                                 }`}
                             >
@@ -235,7 +235,7 @@ const ProductDetails = ({ product }) => {
                                                 });
                                                 toast.success('Ajouté au panier !');
                                             }}
-                                            className="bg-[#1C1B1F] hover:bg-[#C59A63] text-white py-4 rounded-full font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95"
+                                            className="bg-[#1C1B1F] hover:bg-[#10B981] text-white py-4 rounded-full font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-xs active:scale-95"
                                         >
                                             <ShoppingBag size={16} />
                                             <span>Ajouter au Panier</span>
@@ -243,7 +243,7 @@ const ProductDetails = ({ product }) => {
                                     ) : (
                                         <button
                                             onClick={() => router.push('/cart')}
-                                            className="bg-[#C59A63] text-white py-4 rounded-full font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95"
+                                            className="bg-[#10B981] text-white py-4 rounded-full font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-xs active:scale-95"
                                         >
                                             <ShoppingBag size={16} />
                                             <span>Voir le Panier</span>
@@ -252,7 +252,7 @@ const ProductDetails = ({ product }) => {
 
                                     <button
                                         onClick={handleWhatsAppOrder}
-                                        className="bg-[#25D366] hover:bg-[#128C7E] text-white py-4 rounded-full font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95"
+                                        className="bg-[#25D366] hover:bg-[#128C7E] text-white py-4 rounded-full font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-xs active:scale-95"
                                     >
                                         <WhatsAppIcon size={16} />
                                         <span>Commander WhatsApp</span>
@@ -261,7 +261,7 @@ const ProductDetails = ({ product }) => {
 
                                 <button
                                     onClick={handleBuyNow}
-                                    className="w-full bg-[#C59A63] hover:bg-[#B4874F] text-white py-4 rounded-full font-extrabold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md shadow-[#C59A63]/25 active:scale-95"
+                                    className="w-full bg-[#10B981] hover:bg-[#059669] text-white py-4 rounded-full font-extrabold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md shadow-[#10B981]/25 active:scale-95"
                                 >
                                     <span>Acheter Immédiatement</span>
                                     <ArrowRight size={16} />
@@ -343,7 +343,11 @@ const ProductDetails = ({ product }) => {
                                         FCFA
                                     </small>
                                 </p>
-                                <p className="text-[9px] font-bold text-[#C59A63] mt-0.5">
+                                <p
+                                    className={`text-[9px] font-bold mt-0.5 ${
+                                        product.inStock ? 'text-[#10B981]' : 'text-red-500'
+                                    }`}
+                                >
                                     {product.inStock ? '● En Stock' : '● Rupture'}
                                 </p>
                             </div>

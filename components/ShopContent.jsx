@@ -152,10 +152,21 @@ export default function ShopContent({ initialProducts, initialCategories }) {
                 : true;
             const catLower = categoryParam?.toLowerCase() || '';
             const productCat = (product.Category?.name || product.category || '').toLowerCase();
+            const productBrand = (product.brand || '').toLowerCase();
+            const productName = (product.name || '').toLowerCase();
+
             const matchesCategory = categoryParam
                 ? productCat === catLower ||
                   productCat.includes(catLower) ||
-                  catLower.includes(productCat)
+                  catLower.includes(productCat) ||
+                  (productBrand && catLower.includes(productBrand)) ||
+                  (productBrand && productCat.includes(productBrand)) ||
+                  catLower
+                      .split(/[ ,&]+/)
+                      .some(
+                          (token) =>
+                              token && (productName.includes(token) || productCat.includes(token))
+                      )
                 : true;
             const matchesMinPrice = minPriceParam ? product.price >= Number(minPriceParam) : true;
             const matchesMaxPrice = maxPriceParam ? product.price <= Number(maxPriceParam) : true;

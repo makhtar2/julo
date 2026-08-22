@@ -26,8 +26,8 @@ const Newsletter = () => {
                 </h2>
 
                 <p className="mt-2 text-sm text-[#8C8275] max-w-md mx-auto">
-                    Recevez nos meilleures offres sur les smartphones, ordinateurs et les
-                    collections de l&apos;atelier textile.
+                    Recevez nos meilleures offres sur les smartphones, ordinateurs, montres et
+                    accessoires high-tech certifiés au Sénégal.
                 </p>
 
                 <form

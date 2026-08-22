@@ -37,7 +37,9 @@ const Navbar = ({ user, isAdmin }) => {
 
     const cart = useCartStore((state) => state.cart);
     const wishlist = useCartStore((state) => state.wishlist);
-    const cartCount = Object.values(cart).reduce((acc, qty) => acc + qty, 0);
+    const cartCount = Array.isArray(cart)
+        ? cart.reduce((acc, item) => acc + (item.quantity || 1), 0)
+        : 0;
     const wishlistCount = wishlist.length;
 
     const searchRef = useRef(null);
@@ -132,7 +134,7 @@ const Navbar = ({ user, isAdmin }) => {
                                     autoFocus
                                     className="w-full bg-transparent outline-none placeholder-zinc-400 font-medium text-sm text-[#1C1B1F]"
                                     type="text"
-                                    placeholder="Rechercher un iPhone, PC, t-shirt..."
+                                    placeholder="Rechercher un iPhone, Samsung, PC, écouteurs..."
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
                                 />

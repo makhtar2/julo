@@ -225,14 +225,14 @@ const Hero = ({ initialCategories = [] }) => {
                             <div className="grid grid-cols-2 gap-3.5">
                                 {/* Device 1: iPhone 16 Pro */}
                                 <Link
-                                    href="/product/julo-iphone-16-pro-max"
-                                    className="group/item bg-[#F5F2EB] rounded-2xl p-3 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/80 hover:border-[#C59A63] hover:scale-102 transition-all overflow-hidden"
+                                    href="/shop?search=iPhone"
+                                    className="group/item bg-[#F5F2EB] rounded-2xl p-3 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/80 hover:border-[#10B981] hover:scale-102 transition-all overflow-hidden"
                                 >
                                     <div className="flex items-center justify-between w-full">
                                         <span className="text-[9px] font-extrabold uppercase tracking-wider text-[#8C8275]">
                                             Apple
                                         </span>
-                                        <span className="text-[8px] font-bold text-[#C59A63] bg-white px-1.5 py-0.5 rounded-full shadow-xs">
+                                        <span className="text-[8px] font-bold text-[#10B981] bg-white px-1.5 py-0.5 rounded-full shadow-xs">
                                             Nouveau
                                         </span>
                                     </div>
@@ -242,18 +242,18 @@ const Hero = ({ initialCategories = [] }) => {
                                             alt="iPhone 16 Pro Max"
                                             width={100}
                                             height={100}
-                                            className="w-full h-full object-cover rounded-xl group-hover/item:scale-105 transition-transform"
+                                            className="w-full h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform"
                                         />
                                     </div>
-                                    <p className="text-[11px] font-bold text-[#1C1B1F] group-hover/item:text-[#C59A63] transition-colors truncate max-w-full">
+                                    <p className="text-[11px] font-bold text-[#1C1B1F] group-hover/item:text-[#10B981] transition-colors truncate max-w-full">
                                         iPhone 16 Pro Max
                                     </p>
                                 </Link>
 
                                 {/* Device 2: Tecno Camon 30 Pro */}
                                 <Link
-                                    href="/product/julo-tecno-camon-30-pro-5g"
-                                    className="group/item bg-[#F5F2EB] rounded-2xl p-3 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/80 hover:border-[#C59A63] hover:scale-102 transition-all overflow-hidden"
+                                    href="/shop?search=Tecno"
+                                    className="group/item bg-[#F5F2EB] rounded-2xl p-3 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/80 hover:border-[#10B981] hover:scale-102 transition-all overflow-hidden"
                                 >
                                     <div className="flex items-center justify-between w-full">
                                         <span className="text-[9px] font-extrabold uppercase tracking-wider text-[#8C8275]">
@@ -269,24 +269,24 @@ const Hero = ({ initialCategories = [] }) => {
                                             alt="Tecno Camon 30 Pro"
                                             width={100}
                                             height={100}
-                                            className="w-full h-full object-cover rounded-xl group-hover/item:scale-105 transition-transform"
+                                            className="w-full h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform"
                                         />
                                     </div>
-                                    <p className="text-[11px] font-bold text-[#1C1B1F] group-hover/item:text-[#C59A63] transition-colors truncate max-w-full">
+                                    <p className="text-[11px] font-bold text-[#1C1B1F] group-hover/item:text-[#10B981] transition-colors truncate max-w-full">
                                         Camon 30 Pro 5G
                                     </p>
                                 </Link>
 
                                 {/* Device 3: MacBook Pro M3 */}
                                 <Link
-                                    href="/product/julo-macbook-pro-m3-pro"
-                                    className="group/item bg-[#F5F2EB] rounded-2xl p-3 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/80 hover:border-[#C59A63] hover:scale-102 transition-all overflow-hidden"
+                                    href="/shop?search=MacBook"
+                                    className="group/item bg-[#F5F2EB] rounded-2xl p-3 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/80 hover:border-[#10B981] hover:scale-102 transition-all overflow-hidden"
                                 >
                                     <div className="flex items-center justify-between w-full">
                                         <span className="text-[9px] font-extrabold uppercase tracking-wider text-[#8C8275]">
                                             MacBook
                                         </span>
-                                        <span className="text-[8px] font-bold text-[#C59A63] bg-white px-1.5 py-0.5 rounded-full shadow-xs">
+                                        <span className="text-[8px] font-bold text-[#10B981] bg-white px-1.5 py-0.5 rounded-full shadow-xs">
                                             M3 Pro
                                         </span>
                                     </div>
@@ -296,24 +296,24 @@ const Hero = ({ initialCategories = [] }) => {
                                             alt="MacBook Pro M3"
                                             width={100}
                                             height={100}
-                                            className="w-full h-full object-cover rounded-xl group-hover/item:scale-105 transition-transform"
+                                            className="w-full h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform"
                                         />
                                     </div>
-                                    <p className="text-[11px] font-bold text-[#1C1B1F] group-hover/item:text-[#C59A63] transition-colors truncate max-w-full">
+                                    <p className="text-[11px] font-bold text-[#1C1B1F] group-hover/item:text-[#10B981] transition-colors truncate max-w-full">
                                         MacBook Pro 14&quot;
                                     </p>
                                 </Link>
 
                                 {/* Device 4: Oraimo FreePods 4 */}
                                 <Link
-                                    href="/product/julo-oraimo-freepods-4"
-                                    className="group/item bg-[#F5F2EB] rounded-2xl p-3 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/80 hover:border-[#C59A63] hover:scale-102 transition-all overflow-hidden"
+                                    href="/shop?search=Oraimo"
+                                    className="group/item bg-[#F5F2EB] rounded-2xl p-3 flex flex-col items-center justify-between aspect-square border border-[#EAE6DF]/80 hover:border-[#10B981] hover:scale-102 transition-all overflow-hidden"
                                 >
                                     <div className="flex items-center justify-between w-full">
                                         <span className="text-[9px] font-extrabold uppercase tracking-wider text-[#8C8275]">
                                             Oraimo
                                         </span>
-                                        <span className="text-[8px] font-bold text-white bg-[#C59A63] px-1.5 py-0.5 rounded-full shadow-xs">
+                                        <span className="text-[8px] font-bold text-white bg-[#10B981] px-1.5 py-0.5 rounded-full shadow-xs">
                                             ANC
                                         </span>
                                     </div>
@@ -323,10 +323,10 @@ const Hero = ({ initialCategories = [] }) => {
                                             alt="Oraimo FreePods 4"
                                             width={100}
                                             height={100}
-                                            className="w-full h-full object-cover rounded-xl group-hover/item:scale-105 transition-transform"
+                                            className="w-full h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform"
                                         />
                                     </div>
-                                    <p className="text-[11px] font-bold text-[#1C1B1F] group-hover/item:text-[#C59A63] transition-colors truncate max-w-full">
+                                    <p className="text-[11px] font-bold text-[#1C1B1F] group-hover/item:text-[#10B981] transition-colors truncate max-w-full">
                                         Oraimo FreePods 4
                                     </p>
                                 </Link>
