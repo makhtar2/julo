@@ -80,10 +80,10 @@ const PRICE_PRESETS = [
 ];
 
 const SORT_OPTIONS = [
-    { label: 'Nouveautés', value: 'newest', icon: <ZapIcon size={14} /> },
-    { label: 'Prix croissant', value: 'price_asc', icon: <SortAsc size={14} /> },
-    { label: 'Prix décroissant', value: 'price_desc', icon: <SortDesc size={14} /> },
-    { label: 'Mieux notés', value: 'rating', icon: <Star size={14} /> },
+    { label: 'Nouveautés', value: 'newest', renderIcon: () => <ZapIcon size={14} /> },
+    { label: 'Prix croissant', value: 'price_asc', renderIcon: () => <SortAsc size={14} /> },
+    { label: 'Prix décroissant', value: 'price_desc', renderIcon: () => <SortDesc size={14} /> },
+    { label: 'Mieux notés', value: 'rating', renderIcon: () => <Star size={14} /> },
 ];
 
 export default function ShopContent({ initialProducts }) {
@@ -442,7 +442,7 @@ export default function ShopContent({ initialProducts }) {
                                         : 'bg-white text-[#4A4742] border-[#EAE6DF]')
                                 }
                             >
-                                {currentSort?.icon}
+                                {currentSort?.renderIcon?.()}
                                 <span className="hidden xs:inline">{currentSort?.label}</span>
                                 <ChevronDown
                                     size={11}
@@ -479,7 +479,7 @@ export default function ShopContent({ initialProducts }) {
                                                             : 'text-zinc-700 hover:bg-[#FAF8F5]')
                                                     }
                                                 >
-                                                    <span>{opt.icon}</span>
+                                                    {opt.renderIcon()}
                                                     <span className="flex-1 text-left">
                                                         {opt.label}
                                                     </span>
@@ -579,7 +579,7 @@ export default function ShopContent({ initialProducts }) {
                                                         : 'text-zinc-700 hover:bg-[#FAF8F5]')
                                                 }
                                             >
-                                                <span>{opt.icon}</span>
+                                                {opt.renderIcon()}
                                                 <span>{opt.label}</span>
                                             </button>
                                         ))}
