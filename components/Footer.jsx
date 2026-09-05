@@ -176,7 +176,7 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-500 font-medium">
+                <div className="pt-6 pb-24 sm:pb-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-500 font-medium">
                     <p>© 2026 JULO. TOUS DROITS RÉSERVÉS.</p>
                     <div className="flex items-center gap-6">
                         <Link

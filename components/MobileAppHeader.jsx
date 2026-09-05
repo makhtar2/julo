@@ -77,10 +77,11 @@ export default function MobileAppHeader({ title: customTitle, onSearchClick }) {
                 <ArrowLeft size={18} strokeWidth={2.4} />
             </motion.button>
 
-            {/* Screen Title */}
-            <h1 className="text-sm font-black text-[#1C1B1F] tracking-tight truncate max-w-[200px] text-center px-2">
+            {/* Screen Title — libellé de navigation, pas le titre du document :
+                chaque page porte déjà son propre <h1> dans le contenu. */}
+            <p className="text-sm font-black text-[#1C1B1F] tracking-tight truncate max-w-[200px] text-center px-2">
                 {getScreenTitle()}
-            </h1>
+            </p>
 
             {/* Right Native Actions */}
             <div className="flex items-center gap-1.5 shrink-0">
