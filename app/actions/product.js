@@ -1,11 +1,10 @@
 'use server';
 
-import { createClient } from '@/lib/supabase/server';
-import { createAdminClient } from '@/lib/supabase/admin';
 import { revalidatePath } from 'next/cache';
 import { checkAdmin } from '@/lib/auth-utils';
 import { productSchema, updateProductSchema } from '@/lib/validations';
 import { v2 as cloudinary } from 'cloudinary';
+import { getSql } from '@/lib/db';
 import { processStockNotifications } from './stock';
 
 cloudinary.config({
@@ -42,6 +41,43 @@ export async function uploadProductImage(file) {
     }
 }
 
+/**
+ * Colonnes acceptées par updateProduct. La clause SET est construite
+ * dynamiquement : cette liste blanche empêche qu'un champ inattendu venu du
+ * formulaire admin se retrouve dans la requête.
+ */
+const UPDATABLE_COLUMNS = [
+    'name',
+    'description',
+    'mrp',
+    'price',
+    'images',
+    'categoryId',
+    'stock',
+    'inStock',
+    'guarantee',
+];
+
+/**
+ * Un produit tel que l'attend l'interface : la catégorie imbriquée sous
+ * "Category" et les notes agrégées sous "rating", comme le faisaient les
+ * jointures Supabase (ProductCard, ProductDetails et ShopContent lisent
+ * product.Category.name et product.rating[].rating).
+ */
+const PRODUCT_SELECT = `
+    SELECT p.*,
+           CASE WHEN c."id" IS NULL THEN NULL
+                ELSE json_build_object('id', c."id", 'name', c."name")
+           END AS "Category",
+           COALESCE(
+               (SELECT json_agg(json_build_object('rating', r."rating"))
+                FROM "Rating" r WHERE r."productId" = p."id"),
+               '[]'::json
+           ) AS "rating"
+    FROM "Product" p
+    LEFT JOIN "Category" c ON c."id" = p."categoryId"
+`;
+
 export async function addProduct(productData) {
     try {
         await checkAdmin();
@@ -58,29 +94,18 @@ export async function addProduct(productData) {
             return { error: validation.error.issues[0].message };
         }
 
-        const supabaseAdmin = await createAdminClient();
+        const sql = getSql();
         const { name, description, mrp, price, images, categoryId, stock } = validation.data;
         const guarantee = productData.guarantee || '6 mois';
 
-        const { data: product, error } = await supabaseAdmin
-            .from('Product')
-            .insert([
-                {
-                    name,
-                    description,
-                    mrp,
-                    price,
-                    images,
-                    categoryId,
-                    stock,
-                    guarantee,
-                    inStock: stock > 0,
-                },
-            ])
-            .select()
-            .single();
-
-        if (error) throw error;
+        const [product] = await sql`
+            INSERT INTO "Product"
+                ("name", "description", "mrp", "price", "images",
+                 "categoryId", "stock", "guarantee", "inStock")
+            VALUES (${name}, ${description}, ${mrp}, ${price}, ${images},
+                    ${categoryId}, ${stock}, ${guarantee}, ${stock > 0})
+            RETURNING *
+        `;
 
         revalidatePath('/shop');
         revalidatePath('/admin/products');
@@ -108,23 +133,33 @@ export async function updateProduct(id, productData) {
             return { error: validation.error.issues[0].message };
         }
 
-        const supabaseAdmin = await createAdminClient();
-        const updatePayload = { ...validation.data };
+        const payload = { ...validation.data };
         if (validation.data.stock !== undefined) {
-            updatePayload.inStock = validation.data.stock > 0;
+            payload.inStock = validation.data.stock > 0;
         }
 
-        const { data: updatedProduct, error } = await supabaseAdmin
-            .from('Product')
-            .update(updatePayload)
-            .eq('id', id)
-            .select()
-            .single();
+        const columns = UPDATABLE_COLUMNS.filter((c) => payload[c] !== undefined);
+        if (columns.length === 0) {
+            return { error: 'Aucun champ à mettre à jour.' };
+        }
 
-        if (error) throw error;
+        const sql = getSql();
+        const assignments = columns.map((c, i) => `"${c}" = $${i + 2}`).join(', ');
+        const values = columns.map((c) => payload[c]);
+
+        const rows = await sql.query(
+            `UPDATE "Product" SET ${assignments}, "updatedAt" = now()
+             WHERE "id" = $1 RETURNING *`,
+            [id, ...values]
+        );
+        const updatedProduct = rows[0];
+
+        if (!updatedProduct) {
+            return { error: 'Produit introuvable.' };
+        }
 
         // If stock became > 0, notify subscribers
-        if (updatedProduct && updatedProduct.stock > 0) {
+        if (updatedProduct.stock > 0) {
             await processStockNotifications(updatedProduct);
         }
 
@@ -139,89 +174,52 @@ export async function updateProduct(id, productData) {
 }
 
 export async function getProducts(filters = {}) {
-    const { JULO_MOCK_PRODUCTS, isJuloProduct } = await import('@/lib/mockProducts');
-    const { createPublicClient } = await import('@/lib/supabase/server');
     const { category, search } = filters;
 
-    let allProducts = [...JULO_MOCK_PRODUCTS];
-
     try {
-        const supabase = createPublicClient();
-        const { data: dbProducts } = await supabase
-            .from('Product')
-            .select('*, Category(id, name), rating:Rating(rating)')
-            .order('createdAt', { ascending: false });
+        const sql = getSql();
+        const conditions = [];
+        const values = [];
 
-        if (dbProducts && dbProducts.length > 0) {
-            const validDbProducts = dbProducts.filter(isJuloProduct);
-
-            // Prepend new DB products that are not already in mock
-            const existingIds = new Set(allProducts.map((p) => p.id));
-            for (const dp of validDbProducts) {
-                if (!existingIds.has(dp.id)) {
-                    allProducts.unshift(dp);
-                }
-            }
+        if (category) {
+            values.push(category);
+            conditions.push(`c."name" = $${values.length}`);
         }
-    } catch {
-        // Fallback to JULO catalog
-    }
 
-    // Apply category filter if provided
-    if (category) {
-        const catLower = category.toLowerCase();
-        allProducts = allProducts.filter((p) => {
-            const pCat = (p.Category?.name || p.category || '').toLowerCase();
-            const pBrand = (p.brand || '').toLowerCase();
-            const pName = (p.name || '').toLowerCase();
-            return (
-                pCat === catLower ||
-                pCat.includes(catLower) ||
-                catLower.includes(pCat) ||
-                (pBrand && catLower.includes(pBrand)) ||
-                (pBrand && pCat.includes(pBrand)) ||
-                catLower.split(/[ ,&]+/).some((t) => t && (pName.includes(t) || pCat.includes(t)))
+        if (search) {
+            values.push(`%${search}%`);
+            conditions.push(
+                `(p."name" ILIKE $${values.length} OR p."description" ILIKE $${values.length})`
             );
-        });
-    }
+        }
 
-    // Apply search filter if provided
-    if (search) {
-        const sLower = search.toLowerCase();
-        allProducts = allProducts.filter(
-            (p) =>
-                p.name.toLowerCase().includes(sLower) ||
-                (p.description && p.description.toLowerCase().includes(sLower))
+        const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
+        const products = await sql.query(
+            `${PRODUCT_SELECT} ${where} ORDER BY p."createdAt" DESC`,
+            values
         );
-    }
 
-    return { products: allProducts };
+        return { products };
+    } catch (error) {
+        console.error('Get products error:', error);
+        return { products: [] };
+    }
 }
 
 export async function getProduct(id) {
-    const { JULO_MOCK_PRODUCTS, isJuloProduct } = await import('@/lib/mockProducts');
-    const { createPublicClient } = await import('@/lib/supabase/server');
-
-    // 1. Direct lookup in JULO's real catalog
-    const mockProduct = JULO_MOCK_PRODUCTS.find((p) => p.id === id);
-    if (mockProduct) {
-        return { product: mockProduct };
-    }
-
     try {
-        const supabase = createPublicClient();
-        const { data: product, error } = await supabase
-            .from('Product')
-            .select('*, Category(id, name), rating:Rating(*, user:User(id, name))')
-            .eq('id', id)
-            .single();
+        const sql = getSql();
+        const rows = await sql.query(`${PRODUCT_SELECT} WHERE p."id" = $1`, [id]);
 
-        if (!error && product && isJuloProduct(product)) {
-            return { product: JSON.parse(JSON.stringify(product)) };
+        if (!rows.length) {
+            return { error: 'Produit non trouvé.' };
         }
 
-        return { error: 'Produit non trouvé.' };
-    } catch {
+        return { product: rows[0] };
+    } catch (error) {
+        // Un identifiant qui n'est pas un UUID fait échouer la requête (22P02) :
+        // c'est un produit inexistant, pas une panne.
+        if (error.code !== '22P02') console.error('Get product error:', error);
         return { error: 'Produit non trouvé.' };
     }
 }
@@ -229,36 +227,39 @@ export async function getProduct(id) {
 export async function getSearchSuggestions(query) {
     if (!query || query.length < 2) return { suggestions: [] };
 
-    const { JULO_MOCK_PRODUCTS } = await import('@/lib/mockProducts');
-    const qLower = query.toLowerCase();
-
-    const mockSuggestions = JULO_MOCK_PRODUCTS.filter((p) => p.name.toLowerCase().includes(qLower))
-        .slice(0, 5)
-        .map((p) => ({
-            id: p.id,
-            name: p.name,
-            images: p.images,
-            price: p.price,
-            Category: p.Category,
-        }));
-
-    return { suggestions: mockSuggestions };
+    try {
+        const sql = getSql();
+        const suggestions = await sql`
+            SELECT p."id", p."name", p."images", p."price",
+                   CASE WHEN c."id" IS NULL THEN NULL
+                        ELSE json_build_object('id', c."id", 'name', c."name")
+                   END AS "Category"
+            FROM "Product" p
+            LEFT JOIN "Category" c ON c."id" = p."categoryId"
+            WHERE p."name" ILIKE ${`%${query}%`}
+            ORDER BY p."name" ASC
+            LIMIT 5
+        `;
+        return { suggestions };
+    } catch (error) {
+        console.error('Search suggestions error:', error);
+        return { suggestions: [] };
+    }
 }
 
 export async function deleteProduct(id) {
     try {
         await checkAdmin();
-        const supabaseAdmin = await createAdminClient();
+        const sql = getSql();
 
-        const { error } = await supabaseAdmin.from('Product').delete().eq('id', id);
-
-        if (error) throw error;
+        await sql`DELETE FROM "Product" WHERE "id" = ${id}`;
 
         revalidatePath('/shop');
         revalidatePath('/admin/products');
         revalidatePath(`/product/${id}`);
         return { success: 'Produit supprimé !' };
     } catch (error) {
+        console.error('Delete product error:', error);
         return { error: 'Erreur lors de la suppression du produit.' };
     }
 }

@@ -1,78 +1,59 @@
 'use server';
 
-import { createAdminClient } from '@/lib/supabase/admin';
 import { revalidatePath } from 'next/cache';
 import { checkAdmin } from '@/lib/auth-utils';
+import { getSql } from '@/lib/db';
 
 export async function addCategory(name) {
     try {
         await checkAdmin();
-        const supabaseAdmin = await createAdminClient();
+        const sql = getSql();
 
-        const { data: category, error } = await supabaseAdmin
-            .from('Category')
-            .insert([{ name }])
-            .select()
-            .single();
-
-        if (error) throw error;
+        const [category] = await sql`
+            INSERT INTO "Category" ("name")
+            VALUES (${name})
+            RETURNING *
+        `;
 
         revalidatePath('/admin/products');
         revalidatePath('/shop');
         return { success: 'Catégorie ajoutée !', category };
     } catch (error) {
+        console.error('Add category error:', error);
         return { error: "Erreur lors de l'ajout de la catégorie." };
     }
 }
 
 export async function getCategories() {
-    const { JULO_CATEGORIES } = await import('@/lib/mockProducts');
-    const { createPublicClient } = await import('@/lib/supabase/server');
-
-    let allCategories = [...JULO_CATEGORIES];
-
     try {
-        const supabase = createPublicClient();
-        const { data: dbCategories } = await supabase
-            .from('Category')
-            .select('*')
-            .order('name', { ascending: true });
-
-        if (dbCategories && dbCategories.length > 0) {
-            const existingNames = new Set(allCategories.map((c) => c.name.toLowerCase()));
-            for (const cat of dbCategories) {
-                const nameLow = (cat.name || '').toLowerCase();
-                const isOldAppliance =
-                    nameLow.includes('ventilateur') ||
-                    nameLow.includes('climatiseur') ||
-                    nameLow.includes('fontaine') ||
-                    nameLow.includes('bouilloire') ||
-                    nameLow.includes('valise') ||
-                    nameLow.includes('woofer');
-                if (!isOldAppliance && !existingNames.has(nameLow)) {
-                    allCategories.push(cat);
-                }
-            }
-        }
-        return { categories: allCategories };
-    } catch {
-        return { categories: JULO_CATEGORIES };
+        const sql = getSql();
+        const categories = await sql`
+            SELECT "id", "name", "slug", "image"
+            FROM "Category"
+            ORDER BY "name" ASC
+        `;
+        return { categories };
+    } catch (error) {
+        console.error('Get categories error:', error);
+        // Volontairement vide plutôt qu'un repli sur le catalogue statique :
+        // deux sources de vérité concurrentes sont ce qui a laissé le catalogue
+        // Global Air s'afficher dans la boutique JULO.
+        return { categories: [] };
     }
 }
 
 export async function deleteCategory(id) {
     try {
         await checkAdmin();
-        const supabaseAdmin = await createAdminClient();
+        const sql = getSql();
 
-        const { error } = await supabaseAdmin.from('Category').delete().eq('id', id);
-
-        if (error) throw error;
+        await sql`DELETE FROM "Category" WHERE "id" = ${id}`;
 
         revalidatePath('/admin/products');
         revalidatePath('/shop');
         return { success: 'Catégorie supprimée.' };
     } catch (error) {
+        console.error('Delete category error:', error);
         return { error: 'Erreur lors de la suppression de la catégorie.' };
     }
 }
