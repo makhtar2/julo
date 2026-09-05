@@ -109,8 +109,8 @@ export default function AuthPage() {
                 <div className="flex justify-center mb-8">
                     <Link href="/">
                         <Image
-                            src={assets.global_air_logo}
-                            alt="Global Air"
+                            src={assets.julo_logo_transparent}
+                            alt="JULO"
                             width={300}
                             height={100}
                             className="h-20 sm:h-28 w-auto object-contain"

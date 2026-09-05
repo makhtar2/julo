@@ -1,13 +1,22 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Smartphone, X, Download } from 'lucide-react';
 
 const PWAInstallPrompt = () => {
     const [deferredPrompt, setDeferredPrompt] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
+    const pathname = usePathname();
+
+    // Le panier porte la barre « commander » fixe : on n'y superpose jamais la bannière.
+    const isCheckoutRoute = pathname === '/cart';
 
     useEffect(() => {
+        // On écoute quelle que soit la route : `beforeinstallprompt` n'est émis
+        // qu'une fois par chargement, le manquer ferait perdre l'installation.
+        let timer;
+
         const handler = (e) => {
             // Empêche le navigateur d'afficher l'invite par défaut
             e.preventDefault();
@@ -15,20 +24,21 @@ const PWAInstallPrompt = () => {
             setDeferredPrompt(e);
 
             // On attend 5 secondes avant de montrer notre propre bannière (moins intrusif)
-            const timer = setTimeout(() => {
+            timer = setTimeout(() => {
                 // Vérifier si l'utilisateur n'a pas déjà fermé la bannière dans cette session
                 const isClosed = sessionStorage.getItem('pwa_prompt_closed');
                 if (!isClosed) {
                     setIsVisible(true);
                 }
             }, 5000);
-
-            return () => clearTimeout(timer);
         };
 
         window.addEventListener('beforeinstallprompt', handler);
 
-        return () => window.removeEventListener('beforeinstallprompt', handler);
+        return () => {
+            window.removeEventListener('beforeinstallprompt', handler);
+            clearTimeout(timer);
+        };
     }, []);
 
     const handleInstall = async () => {
@@ -57,12 +67,12 @@ const PWAInstallPrompt = () => {
 
     return (
         <AnimatePresence>
-            {isVisible && (
+            {isVisible && !isCheckoutRoute && (
                 <motion.div
                     initial={{ y: 100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: 100, opacity: 0 }}
-                    className="fixed bottom-24 left-4 right-4 z-[90] sm:left-auto sm:right-6 sm:w-80"
+                    className="fixed bottom-36 left-4 right-4 z-[80] sm:bottom-24 sm:left-auto sm:right-6 sm:w-80"
                 >
                     <div className="bg-[#1C1B1F] text-white p-5 rounded-3xl shadow-2xl border border-[#33302A] backdrop-blur-xl relative overflow-hidden group">
                         {/* Background Decoration */}

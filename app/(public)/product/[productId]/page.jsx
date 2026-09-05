@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
     const { productId } = await params;
     const { product } = await getProduct(productId);
 
-    if (!product) return { title: 'Produit non trouvé | Julo' };
+    if (!product) return { title: 'Produit non trouvé' };
 
     const formattedPrice = product.price?.toLocaleString('fr-SN') + ' FCFA';
     const categoryName = product.Category?.name || product.category || 'High-Tech';
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }) {
         : 'Découvrez ce produit premium chez Julo Sénégal. Authenticité et livraison rapide garanties.';
 
     return {
-        title: `${product.name} — ${formattedPrice} | Julo Sénégal`,
+        title: `${product.name} — ${formattedPrice}`,
         description: `Achetez ${product.name} au meilleur prix (${formattedPrice}) chez Julo Sénégal. Livraison 24h à Dakar, Thiès, Touba.`,
         openGraph: {
             title: `${product.name} — ${formattedPrice}`,

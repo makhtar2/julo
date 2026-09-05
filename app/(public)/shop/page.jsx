@@ -12,7 +12,7 @@ export async function generateMetadata({ searchParams }) {
 
     if (category) {
         return {
-            title: `${category} au Sénégal — Boutique JULO`,
+            title: `${category} au Sénégal`,
             description: `Achetez vos ${category} au Sénégal chez JULO. Produits 100% originaux certifiés avec garantie. Livraison rapide à Dakar, Thiès et Touba.`,
             alternates: {
                 canonical: `${baseUrl}/shop?category=${encodeURIComponent(category)}`,
@@ -26,7 +26,7 @@ export async function generateMetadata({ searchParams }) {
     }
 
     return {
-        title: 'Boutique High-Tech & Smartphones au Sénégal | JULO',
+        title: 'Boutique High-Tech & Smartphones au Sénégal',
         description:
             'Découvrez le catalogue officiel JULO : Smartphones Apple, Samsung, Tecno, Xiaomi, MacBook, PC portables, montres connectées et accessoires certifiés. Livraison express au Sénégal.',
         alternates: {

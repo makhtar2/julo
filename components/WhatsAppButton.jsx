@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 const WhatsAppIcon = ({ size = 24, className = '' }) => (
@@ -16,7 +17,12 @@ const WhatsAppIcon = ({ size = 24, className = '' }) => (
 );
 
 const WhatsAppButton = () => {
+    const pathname = usePathname();
     const phoneNumber = '221754469097';
+
+    // Sur le panier, la barre « commander » occupe la bande 4.25rem→~7.75rem en
+    // pleine largeur (mobile uniquement) : on remonte le bouton pour la dégager.
+    const bottomOffset = pathname === '/cart' ? 'bottom-36' : 'bottom-20';
     const message =
         'Bonjour JULO, je souhaiterais avoir des informations sur vos smartphones, ordinateurs et accessoires disponibles.';
 
@@ -32,7 +38,7 @@ const WhatsAppButton = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleClick}
-            className="fixed bottom-20 sm:bottom-8 right-6 z-50 flex items-center gap-2.5 bg-[#25D366] hover:bg-[#128C7E] text-white p-3 sm:px-5 sm:py-3 rounded-full shadow-lg shadow-[#25D366]/25 border border-white/30 transition-all"
+            className={`fixed ${bottomOffset} sm:bottom-8 right-6 z-50 flex items-center gap-2.5 bg-[#25D366] hover:bg-[#128C7E] text-white p-3 sm:px-5 sm:py-3 rounded-full shadow-lg shadow-[#25D366]/25 border border-white/30 transition-all`}
             aria-label="Contactez-nous sur WhatsApp"
         >
             <div className="relative">

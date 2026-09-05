@@ -45,8 +45,8 @@ export default function RootAdminLayout({ children }) {
                 <div className="px-4 sm:px-6 h-16 flex items-center justify-between">
                     <Link href="/admin" className="flex items-center">
                         <Image
-                            src={assets.global_air_logo}
-                            alt="Global Air Admin"
+                            src={assets.julo_logo_transparent}
+                            alt="JULO Admin"
                             width={180}
                             height={60}
                             className="h-12 w-auto object-contain"
@@ -69,8 +69,8 @@ export default function RootAdminLayout({ children }) {
                 <aside className="hidden lg:flex sticky top-0 h-screen flex-col border-r border-slate-200 bg-white px-5 py-6">
                     <Link href="/admin" className="mb-8 px-3">
                         <Image
-                            src={assets.global_air_logo}
-                            alt="Global Air Admin"
+                            src={assets.julo_logo_transparent}
+                            alt="JULO Admin"
                             width={220}
                             height={75}
                             className="h-14 w-auto object-contain"
