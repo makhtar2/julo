@@ -139,7 +139,7 @@ export async function updateProduct(id, productData) {
 }
 
 export async function getProducts(filters = {}) {
-    const { JULO_MOCK_PRODUCTS } = await import('@/lib/mockProducts');
+    const { JULO_MOCK_PRODUCTS, isJuloProduct } = await import('@/lib/mockProducts');
     const { createPublicClient } = await import('@/lib/supabase/server');
     const { category, search } = filters;
 
@@ -153,24 +153,7 @@ export async function getProducts(filters = {}) {
             .order('createdAt', { ascending: false });
 
         if (dbProducts && dbProducts.length > 0) {
-            const validDbProducts = dbProducts.filter((p) => {
-                const catName = (p.Category?.name || p.category || '').toLowerCase();
-                const pName = (p.name || '').toLowerCase();
-                const isOldAppliance =
-                    catName.includes('ventilateur') ||
-                    catName.includes('climatiseur') ||
-                    catName.includes('fontaine') ||
-                    catName.includes('bouilloire') ||
-                    catName.includes('valise') ||
-                    catName.includes('woofer') ||
-                    pName.includes('ventilateur') ||
-                    pName.includes('climatiseur') ||
-                    pName.includes('fontaine') ||
-                    pName.includes('bouilloire') ||
-                    pName.includes('valise') ||
-                    pName.includes('woofer');
-                return !isOldAppliance;
-            });
+            const validDbProducts = dbProducts.filter(isJuloProduct);
 
             // Prepend new DB products that are not already in mock
             const existingIds = new Set(allProducts.map((p) => p.id));
@@ -216,7 +199,7 @@ export async function getProducts(filters = {}) {
 }
 
 export async function getProduct(id) {
-    const { JULO_MOCK_PRODUCTS } = await import('@/lib/mockProducts');
+    const { JULO_MOCK_PRODUCTS, isJuloProduct } = await import('@/lib/mockProducts');
     const { createPublicClient } = await import('@/lib/supabase/server');
 
     // 1. Direct lookup in JULO's real catalog
@@ -233,7 +216,7 @@ export async function getProduct(id) {
             .eq('id', id)
             .single();
 
-        if (!error && product) {
+        if (!error && product && isJuloProduct(product)) {
             return { product: JSON.parse(JSON.stringify(product)) };
         }
 
