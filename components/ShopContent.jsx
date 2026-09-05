@@ -239,7 +239,9 @@ export default function ShopContent({ initialProducts }) {
     const currentSort = SORT_OPTIONS.find((s) => s.value === sortParam);
 
     /* ─── Desktop Sidebar ─── */
-    const DesktopSidebar = () => (
+    // Fonction de rendu (et non composant) : un composant déclaré dans le render
+    // serait recréé à chaque rendu et perdrait son état / son DOM.
+    const renderDesktopSidebar = () => (
         <aside className="hidden md:block w-64 shrink-0">
             <div className="sticky top-28 space-y-5">
                 <div className="bg-white rounded-3xl p-5 border border-[#EAE6DF] shadow-xs">
@@ -634,7 +636,7 @@ export default function ShopContent({ initialProducts }) {
                 MAIN CONTENT
             ══════════════════════════════════════════════════ */}
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 px-4 sm:px-6 lg:px-8 pt-4 md:pt-8">
-                <DesktopSidebar />
+                {renderDesktopSidebar()}
 
                 <div className="flex-1 min-w-0">
                     {/* Desktop result count */}

@@ -20,6 +20,7 @@ import { getSearchSuggestions } from '@/app/actions/product';
 import { logout } from '@/app/actions/auth';
 import { assets } from '@/assets/assets';
 import MobileAppHeader from '@/components/MobileAppHeader';
+import { useHasMounted } from '@/lib/useHasMounted';
 
 const Navbar = ({ user, isAdmin }) => {
     const router = useRouter();
@@ -28,7 +29,7 @@ const Navbar = ({ user, isAdmin }) => {
     const [search, setSearch] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [mounted, setMounted] = useState(false);
+    const mounted = useHasMounted();
 
     const cart = useCartStore((state) => state.cart);
     const wishlist = useCartStore((state) => state.wishlist);
@@ -41,7 +42,6 @@ const Navbar = ({ user, isAdmin }) => {
     const dropdownRef = useRef(null);
 
     useEffect(() => {
-        setMounted(true);
         const handleClickOutside = (event) => {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
                 setSuggestions([]);
